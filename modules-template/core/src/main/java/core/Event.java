@@ -3,9 +3,10 @@ import java.time.LocalDateTime;
 
 public class Event {
     private String eventName;
-    private LocalDateTime eventStart; // getDayOfWeek(); function
-    private LocalDateTime eventEnd;
+    private LocalDateTime eventTimeStart; //getDayOfWeek(); function
+    private LocalDateTime eventTimeEnd;
     private String text;
+    private LocalDateTime eventDate;
     
     public String getEventName(){
         return eventName;
@@ -23,19 +24,28 @@ public class Event {
         this.text = text;
     }
 
-    public LocalDateTime getEventStart(){
-        return eventStart;
+    public LocalDateTime getEventTimeStart(){
+        return eventTimeStart;
     }
 
-    public void setEventStart(LocalDateTime eventStart){
-        this.eventStart = eventStart;
+    public void setEventStart(LocalDateTime eventTimeStart){
+        this.eventTimeStart = eventTimeStart;
     }
 
     public LocalDateTime getEventEnd(){
-        return eventEnd;
+        return eventTimeEnd;
     }
 
-    public void setEventEnd(LocalDateTime eventEnd){
-        this.eventEnd = eventEnd;
+    public void setEventEnd(LocalDateTime eventTimeEnd){
+        this.eventTimeEnd = eventTimeEnd;
     }
+
+    public void setEventDate(LocalDateTime eventDate){
+        this.eventDate = eventDate;
+    }
+
+    public LocalDateTime getEventDate(){
+        return eventDate;
+    }
+
 }
