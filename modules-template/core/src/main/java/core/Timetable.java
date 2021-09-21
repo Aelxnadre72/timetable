@@ -4,25 +4,33 @@ import java.util.List;
 
 public class Timetable {
     
-    private final List<Event> eventList;
+    private List<Event> eventList = new ArrayList<>();
 
-    public Timetable() {
-        eventList = null; // Useless code, remove later
+    public Timetable(ArrayList<Event> eventer) {
+        for (Event e : eventer) {
+            this.eventList.add(e);
+         }
     }
 
     // Return complete list with events
     public List<Event> getEventList() {
-        return null;
+        return eventList;
     }
 
     // Make new event in timetable
-    public void addEvent() { 
-
+    public void addEvent(Event event) { 
+        for (e : eventList) {
+            if (e.getDayOfWeek() == event.getDayOfWeek()) and (e.getTimeStart == event.getTimeStart()) {
+                // Fault message
+                // break
+            }
+        }
+        this.eventList.add(event);
     }
 
     // Remove event from timetable
-    public Event removeEvent() {
-        return null;
+    public Event removeEvent(Event event) {
+        this.eventList.remove(event);
     }
 
     
