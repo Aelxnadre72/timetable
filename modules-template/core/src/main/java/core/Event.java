@@ -2,18 +2,18 @@ package core;
 import java.time.LocalDateTime;
 
 public class Event {
-    private String eventName;
-    private LocalDateTime eventTimeStart; //getDayOfWeek(); function
-    private LocalDateTime eventTimeEnd;
-    private String text;
-    private LocalDateTime eventDate;
+    private String title;
+    private String description;
+    private LocalDateTime timeStart; //getDayOfWeek(); function
+    private LocalDateTime timeEnd;
+    private LocalDateTime date;
     
-    public String getEventName(){
+    public String getTitle(){
         return eventName;
     }
 
-    public void setEventName(String eventName){
-        this.eventName = eventName;
+    public void setTitle(String title){
+        this.title = title;
     }
 
     public String getText(){
@@ -28,15 +28,15 @@ public class Event {
         return eventTimeStart;
     }
 
-    public void setEventStart(LocalDateTime eventTimeStart){
+    public void setEventTimeStart(LocalDateTime eventTimeStart){
         this.eventTimeStart = eventTimeStart;
     }
 
-    public LocalDateTime getEventEnd(){
+    public LocalDateTime getEventTimeEnd(){
         return eventTimeEnd;
     }
 
-    public void setEventEnd(LocalDateTime eventTimeEnd){
+    public void setEventTimeEnd(LocalDateTime eventTimeEnd){
         this.eventTimeEnd = eventTimeEnd;
     }
 
