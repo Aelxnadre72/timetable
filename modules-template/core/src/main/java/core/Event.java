@@ -65,6 +65,10 @@ public class Event {
         return date.format(formatter);
     }
 
+    public int getDayOfWeek(){
+        return date.getDayOfWeek().getValue();
+    }
+
     public boolean isCorrectTimeFormat(String s){
         // checks if String s is of length 5, contains a colon at index 2 and every other character is a digit
         return s.length() == 5 && s.substring(2, 3).equals(":") && s.replace(":", "").matches("[0-9]+");
