@@ -9,43 +9,43 @@ public class Event {
     private LocalDateTime date;
     
     public String getTitle(){
-        return eventName;
+        return title;
     }
 
     public void setTitle(String title){
         this.title = title;
     }
 
-    public String getText(){
-        return text;
+    public String getDescription(){
+        return description;
     }
 
-    public void setText(String text){
-        this.text = text;
+    public void setDescription(String description){
+        this.description = description;
     }
 
-    public LocalDateTime getEventTimeStart(){
-        return eventTimeStart;
+    public LocalDateTime getTimeStart(){
+        return timeStart;
     }
 
-    public void setEventTimeStart(LocalDateTime eventTimeStart){
-        this.eventTimeStart = eventTimeStart;
+    public void setEvStart(String timeStart){
+        //this.timeStart = timeStart;
     }
 
-    public LocalDateTime getEventTimeEnd(){
-        return eventTimeEnd;
+    public LocalDateTime getETimeEnd(){
+        return timeEnd;
     }
 
-    public void setEventTimeEnd(LocalDateTime eventTimeEnd){
-        this.eventTimeEnd = eventTimeEnd;
+    public void setEventTimeEnd(String eventEnd){
+        //this.eventTimeEnd = eventTimeEnd;
     }
 
-    public void setEventDate(LocalDateTime eventDate){
-        this.eventDate = eventDate;
+    public void setEventDate(String eventDate){
+       // this.eventDate = eventDate;
     }
 
     public LocalDateTime getEventDate(){
-        return eventDate;
+        return date;
     }
 
 }
