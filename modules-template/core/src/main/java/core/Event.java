@@ -28,23 +28,23 @@ public class Event {
         return timeStart;
     }
 
-    public void setEvStart(String timeStart){
+    public void setTimeStart(String timeStart){
         //this.timeStart = timeStart;
     }
 
-    public LocalDateTime getETimeEnd(){
+    public LocalDateTime getTimeEnd(){
         return timeEnd;
     }
 
-    public void setEventTimeEnd(String eventEnd){
+    public void setTimeEnd(String eventEnd){
         //this.eventTimeEnd = eventTimeEnd;
     }
 
-    public void setEventDate(String eventDate){
+    public void setDate(String eventDate){
        // this.eventDate = eventDate;
     }
 
-    public LocalDateTime getEventDate(){
+    public LocalDateTime getDate(){
         return date;
     }
 
