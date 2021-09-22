@@ -1,12 +1,13 @@
 package core;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Timetable {
     
     private List<Event> eventList = new ArrayList<>();
 
-    public Timetable(ArrayList<Event> eventer) {
+    public Timetable(List<Event> eventer) {
         for (Event e : eventer) {
             this.eventList.add(e);
          }
@@ -19,8 +20,8 @@ public class Timetable {
 
     // Make new event in timetable
     public void addEvent(Event event) { 
-        for (e : eventList) {
-            if (e.getDayOfWeek() == event.getDayOfWeek()) and (e.getTimeStart == event.getTimeStart()) {
+        for (Event e : eventList) {
+            if (e.getDayOfWeek() == event.getDayOfWeek()) and (e.getTimeStart.equals(event.getTimeStart())) {
                 // Fault message
                 // break
             }

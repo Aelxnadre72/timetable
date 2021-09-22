@@ -66,6 +66,7 @@ public class Event {
     }
 
     public int getDayOfWeek(){
+        // day of week is represented by 1 to 7
         return date.getDayOfWeek().getValue();
     }
 
