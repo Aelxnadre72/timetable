@@ -1,19 +1,20 @@
 package ui;
 
-public class TimetableController {
-    
-    public TimetableController() {
-        Timetable timetable = new
-    }
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 
-    // Handle add event 
-    public void handleAdd() {
-        
-        updateView();
-    }
+public class TimetableController  {
 
-    // Update GUI 
-    public void updateView() {
-        
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    void initialize() {
+
     }
 }
+
