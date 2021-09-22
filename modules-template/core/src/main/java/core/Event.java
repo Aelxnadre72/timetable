@@ -8,7 +8,7 @@ import java.util.Locale;
 public class Event {
     private String title;
     private String description;
-    private LocalTime timeStart; //getDayOfWeek(); function
+    private LocalTime timeStart;
     private LocalTime timeEnd;
     private LocalDate date;
     
