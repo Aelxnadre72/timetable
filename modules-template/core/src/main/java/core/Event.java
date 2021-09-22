@@ -81,6 +81,7 @@ public class Event {
     }
 
     public static void main(String[] args) {
+        // test
         Event test = new Event();
         test.setDate("21.02.2000");
         System.out.println(test.getDate());
