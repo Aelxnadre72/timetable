@@ -1,5 +1,5 @@
 package core;
-import java.time.LocalDate;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
@@ -10,17 +10,17 @@ public class Event {
     private String description;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private LocalDate date;
+    private String day;
     
-    public Event(String title, String description, String timeStart, String timeEnd, String date){
-        if(!isCorrectTimeFormat(timeStart) || !isCorrectDateFormat(date)){
-            throw new IllegalArgumentException("Time or date is in incorrect format.");
+    public Event(String title, String description, String timeStart, String timeEnd, String day){
+        if(!isCorrectTimeFormat(timeStart) || !isCorrectTimeFormat(timeEnd)){
+            throw new IllegalArgumentException("Time is in incorrect format.");
         }
         this.title = title;
         this.description = description;
         this.timeStart = timeParser(timeStart);
         this.timeEnd = timeParser(timeEnd);
-        this.date = dateParser(date);
+        this.day = day;
     }
 
     // get title
@@ -72,48 +72,19 @@ public class Event {
     }
 
     // set date of event
-    public void setDate(String dateString){
-        if(!isCorrectDateFormat(dateString)){
-            throw new IllegalArgumentException("setDate has been given an argument of incorrect format.");
-        }
-        date = dateParser(dateString);
+    public void setDay(String day){
+        this.day = day;
     }
 
     // get date of event
-    public String getDate(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return date.format(formatter);
-    }
-
-    // get the day of the week of the event
-    public int getDayOfWeek(){
-        // day of week is represented by 1 to 7
-        return date.getDayOfWeek().getValue();
-    }
-
-    
-    // get the week of year of the event
-    public int getWeekOfYear(){
-        // day of week is represented by 1 to 52
-        WeekFields weekFields = WeekFields.of(Locale.getDefault()); 
-        return date.get(weekFields.weekOfWeekBasedYear());
-    }
-
-    // get the year
-    public int getYear(){
-        return date.getYear();
+    public String getDay(){
+        return day;
     }
 
     // converts from string to LocalTime format
     private static LocalTime timeParser(String s){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         return LocalTime.parse(s, formatter);
-    }
-
-    // converts from string to LocalDate format
-    private static LocalDate dateParser(String s){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        return LocalDate.parse(s, formatter);
     }
     
     // check that the time is in the correct format
@@ -122,14 +93,8 @@ public class Event {
         return s.length() == 5 && s.substring(2, 3).equals(":") && s.replace(":", "").matches("[0-9]+");
     }
 
-    // check that the date is in the correct format
-    private boolean isCorrectDateFormat(String s){
-        // checks if String s is of length 10, contains a dot at index 2 and 5 and every other character is a digit
-        return s.length() == 10 && s.substring(2, 3).equals(".") && s.substring(5, 6).equals(".");
-    }
-
     public static void main(String[] args) {
-        Event test = new Event("tittel", "beskrivelse", "08:00", "09:00", "22.09.2021");
+        Event test = new Event("title", "desc", "08:00", "09:00", "Monday");
         // test.setDate("21.02.2000");
         System.out.println(test.getDate());
         System.out.println(test.getWeekOfYear());
