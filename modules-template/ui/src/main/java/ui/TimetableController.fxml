@@ -41,6 +41,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -73,15 +74,79 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="MONDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="1" />
             <CharmListView GridPane.columnIndex="3" GridPane.rowIndex="7" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TUESDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="WEDNSDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="THURSDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="FRIDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SATERDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="6" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="TIME" textAlignment="CENTER" wrappingWidth="107.07891845703125" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SUNDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125" GridPane.columnIndex="7" />
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIME" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="1">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MONDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="2">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TUESDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="3">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WEDNSDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="4">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="THURSDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="5">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FRIDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="6">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SATERDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
+            <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #d5e1df;" GridPane.columnIndex="7">
+               <children>
+                  <Text layoutX="3.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SUNDAY" textAlignment="CENTER" wrappingWidth="107.07891845703125">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </Pane>
          </children>
       </GridPane>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" />
@@ -93,13 +158,14 @@
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <VBox.margin>
             <Insets left="112.0" />
          </VBox.margin>
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="137.0" text="NAME" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="137.0" text="TITLE" textOverrun="CENTER_ELLIPSIS" wrapText="true">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -109,14 +175,20 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="137.0" text="DESCRIPTION" textOverrun="CENTER_ELLIPSIS" wrapText="true" GridPane.rowIndex="2">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="137.0" text="DESCRIPTION" textOverrun="CENTER_ELLIPSIS" wrapText="true" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox prefHeight="13.0" prefWidth="414.0" promptText=" PICK DAY" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="day"/>
+            <TextField fx:id="TITLE" GridPane.columnIndex="1" />
+            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="day" prefHeight="13.0" prefWidth="414.0" promptText=" PICK DAY OF WEEK" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="137.0" text="TIME" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="day1" prefHeight="13.0" prefWidth="414.0" promptText=" PICK TIME" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
       <Button maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="552.0" style="-fx-background-color: #bdcebe; -fx-border-color: black;" text="ADD EVENT">
