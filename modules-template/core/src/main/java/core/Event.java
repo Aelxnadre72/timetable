@@ -2,8 +2,6 @@ package core;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.WeekFields;
-import java.util.Locale;
 
 public class Event {
     private String title;
@@ -95,9 +93,7 @@ public class Event {
 
     public static void main(String[] args) {
         Event test = new Event("title", "desc", "08:00", "09:00", "Monday");
-        // test.setDate("21.02.2000");
-        System.out.println(test.getDate());
-        System.out.println(test.getWeekOfYear());
+        System.out.println(test.getDay());
     }
 
 }

@@ -52,4 +52,8 @@ public class Timetable {
     private boolean isDuplicateEvent(Event event){
         return eventList.stream().anyMatch(e -> e.getDay() == event.getDay() && e.getTimeStart().equals(event.getTimeStart()));
     }
+
+    public static void main(String[] args) {
+        
+    }
 }
