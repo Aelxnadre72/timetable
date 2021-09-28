@@ -3,8 +3,8 @@ package ui;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import core.Event;
-import core.Timetable;
+import timetable.core.Event;
+import timetable.core.Timetable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -53,11 +53,11 @@ public class TimetableController  {
     public void handleAdd() {
         // Fetch name, day, time and text from fxml file, and make Event object
         time = splittimeOfDay.getSelectionModel().getSelectedItem();
-        String[] timeArray = time.split("-")
+        String[] timeArray = time.split("-");
         
         Event event = new Event(title.getText(), description.getText(), timeArray[0], timeArray[1], weekDay.getSelectionModel().getSelectedItem());
         
-        if (isAvailable(event) {
+        if (isAvailable(event)) {
             timetable.addEvent(event);
         }
         else {
@@ -72,14 +72,14 @@ public class TimetableController  {
         
     }
 
-    public boolean isAvailable(Event event) {
-        for (e : timetable.getEventList()) {
+    /*public boolean isAvailable(Event event) {
+        for (Event event : timetable.getEventList()) {
             if ((event.getDayOfWeek() == e.getDayOfWeek()) and (event.getTimeStart() == e.getTimeStart()) {
                 return false;
             }
         }
         return true;
-    }
+    }*/
 
 
     // Method for later release
