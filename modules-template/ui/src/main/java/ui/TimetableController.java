@@ -2,6 +2,7 @@ package ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+<<<<<<< HEAD
 
 import core.Event;
 import core.Timetable;
@@ -87,3 +88,21 @@ public class TimetableController  {
     public void handleRemove() {
     }
 }
+=======
+import javafx.fxml.FXML;
+
+public class TimetableController  {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    void initialize() {
+
+    }
+}
+
+>>>>>>> f6374443e88bb95aa39d5d5978d7359cefecea13
