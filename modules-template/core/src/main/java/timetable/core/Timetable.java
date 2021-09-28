@@ -1,5 +1,8 @@
-package core;
+package timetable.core;
 
+import timetable.json.EventIO;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Timetable {

@@ -1,4 +1,4 @@
-package core;
+package timetable.core;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
