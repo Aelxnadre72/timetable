@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-
 <?import com.gluonhq.charm.glisten.control.CharmListView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -84,12 +82,12 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <ComboBox prefHeight="13.0" prefWidth="414.0" promptText=" PICK DAY" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="day"/>
+            <TextField fx:id="title" GridPane.columnIndex="1" />
+            <TextField fx:id="description" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="weekDay" prefHeight="13.0" prefWidth="414.0" promptText=" PICK DAY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <Button maxWidth="-Infinity" mnemonicParsing="false" prefHeight="26.0" prefWidth="552.0" style="-fx-background-color: #bdcebe; -fx-border-color: black;" text="ADD EVENT">
+      <Button maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleAdd" prefHeight="26.0" prefWidth="552.0" style="-fx-background-color: #bdcebe; -fx-border-color: black;" text="ADD EVENT">
          <VBox.margin>
             <Insets left="110.0" />
          </VBox.margin>
