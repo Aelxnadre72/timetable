@@ -92,7 +92,7 @@ public class Event {
     }
 
     public static void main(String[] args) {
-        Event test = new Event("title", "desc", "08:00", "09:00", "Monday");
+        Event test = new Event("title", "desc", "09:00", "10:00", "Monday");
         System.out.println(test.getDay());
     }
 
