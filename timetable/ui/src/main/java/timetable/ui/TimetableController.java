@@ -52,17 +52,14 @@ public class TimetableController  {
     @FXML
     public void handleAdd() {
         // Fetch name, day, time and text from fxml file, and make Event object
-        time = splittimeOfDay.getSelectionModel().getSelectedItem();
+        
+        String time = splittimeOfDay.getSelectionModel().getSelectedItem();
         String[] timeArray = time.split("-");
         
         Event event = new Event(title.getText(), description.getText(), timeArray[0], timeArray[1], weekDay.getSelectionModel().getSelectedItem());
         
-        if (isAvailable(event)) {
-            timetable.addEvent(event);
-        }
-        else {
-            // Occupied space, notify user
-        }
+        
+        timetable.addEvent(event);
 
         timetable.writeEvent();
         updateTimetableView();
