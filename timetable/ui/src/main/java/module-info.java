@@ -3,5 +3,5 @@ module timetable.ui {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens ui to javafx.graphics, javafx.fxml;
+    opens timetable.ui to javafx.graphics, javafx.fxml;
 }
