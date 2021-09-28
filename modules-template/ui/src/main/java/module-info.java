@@ -1,5 +1,5 @@
-module calc.ui {
-    requires calc.core;
+module timetable.ui {
+    requires timetable.core;
     requires javafx.controls;
     requires javafx.fxml;
 
