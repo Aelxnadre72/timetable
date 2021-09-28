@@ -3,6 +3,7 @@ package ui;
 import java.net.URL;
 import java.util.ResourceBundle;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import core.Event;
 import core.Timetable;
@@ -71,6 +72,21 @@ public class TimetableController  {
 
     public void updateTimetableView() {
         
+=======
+import javafx.fxml.FXML;
+
+public class TimetableController  {
+
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    void initialize() {
+
+>>>>>>> a485daaf196016f61b665349d3980ba2ecc4c7df
     }
 
     public boolean isAvailable(Event event) {
@@ -105,4 +121,7 @@ public class TimetableController  {
     }
 }
 
+<<<<<<< HEAD
 >>>>>>> f6374443e88bb95aa39d5d5978d7359cefecea13
+=======
+>>>>>>> a485daaf196016f61b665349d3980ba2ecc4c7df
