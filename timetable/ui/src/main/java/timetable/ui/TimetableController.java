@@ -1,4 +1,4 @@
-package ui;
+package timetable.ui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,10 +37,12 @@ public class TimetableController  {
     @FXML
     private URL location;
 
+    Timetable timetable;
+
     @FXML
     void initialize() {
         
-        
+        timetable = new Timetable();
         
         weekDay.setValue("Monday");
         weekDay.setItems(weekDayList);
@@ -53,8 +55,8 @@ public class TimetableController  {
     public void handleAdd() {
         // Fetch name, day, time and text from fxml file, and make Event object
         
-        String time = splittimeOfDay.getSelectionModel().getSelectedItem();
-        String[] timeArray = time.split("-");
+        //String time = splittimeOfDay.getSelectionModel().getSelectedItem();
+        //String[] timeArray = time.split("-");
         
         Event event = new Event(title.getText(), description.getText(), timeArray[0], timeArray[1], weekDay.getSelectionModel().getSelectedItem());
         

@@ -1,4 +1,5 @@
 module timetable.ui {
+    exports timetable.ui;
     requires timetable.core;
     requires javafx.controls;
     requires javafx.fxml;
