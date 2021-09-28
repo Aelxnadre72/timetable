@@ -1,6 +1,5 @@
 package ui;
 
-<<<<<<< HEAD
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -48,14 +47,6 @@ public class TimetableController  {
 
         timeOfDay.setValue("08:00-09:00");
         timeOfDay.setItems(timeList);
-=======
-import core.Timetable;
-
-public class TimetableController {
-    
-    public TimetableController() {
-        Timetable timetable = new Timetable(null);
->>>>>>> core
     }
 
     @FXML
