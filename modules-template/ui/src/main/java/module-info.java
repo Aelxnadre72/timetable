@@ -1,5 +1,5 @@
 module timetable.ui {
-    requires c.core;
+    requires calc.core;
     requires javafx.controls;
     requires javafx.fxml;
 

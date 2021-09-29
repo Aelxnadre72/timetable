@@ -1,3 +1,3 @@
-module c.core {
+module calc.core {
     exports core;
 }
