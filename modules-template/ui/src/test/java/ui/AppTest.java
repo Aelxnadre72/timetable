@@ -1,4 +1,4 @@
-package timetable.ui;
+package ui;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
