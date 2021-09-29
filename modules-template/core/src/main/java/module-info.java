@@ -1,3 +1,3 @@
-module timetable.core {
+module c.core {
     exports core;
 }
