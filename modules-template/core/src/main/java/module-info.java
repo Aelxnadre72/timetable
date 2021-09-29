@@ -1,3 +1,4 @@
-module calc.core {
+module timetable.core {
     exports core;
+    exports json;
 }
