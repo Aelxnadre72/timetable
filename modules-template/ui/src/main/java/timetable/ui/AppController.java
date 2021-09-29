@@ -1,6 +1,4 @@
-package ui;
-
-import core.Calc;
+package timetable.ui;
 
 import java.util.List;
 import java.util.function.BinaryOperator;
@@ -11,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.ListView;
+import timetable.core.Calc;
 
 public class AppController {
 
