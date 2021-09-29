@@ -1,11 +1,10 @@
-package ui;
-
-import core.Calc;
+package timetable.ui;
 
 import java.util.List;
 import java.util.function.BinaryOperator;
 import java.util.function.UnaryOperator;
 
+import timetable.core.Calc;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

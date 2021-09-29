@@ -1,4 +1,4 @@
-package core;
+package timetable.core;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

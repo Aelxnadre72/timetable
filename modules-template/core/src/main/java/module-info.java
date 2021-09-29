@@ -1,4 +1,4 @@
 module timetable.core {
-    exports core;
-    exports json;
+    exports timetable.core;
+    exports timetable.json;
 }
