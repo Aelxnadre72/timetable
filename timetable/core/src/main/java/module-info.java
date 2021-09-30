@@ -1,6 +1,4 @@
-module timetable.core {
+module calc.core {
+    exports core;
     requires json.simple;
-    exports timetable.core;
-    exports timetable.json;
-
 }

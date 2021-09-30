@@ -12,12 +12,14 @@
     </parent>
 
     <dependencies>
-        <!-- read write with json-simple -->
+
+        <!-- IO with json-simple -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+
 
         <!-- junit testing with jupiter -->
         <dependency>
@@ -31,12 +33,6 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-        </dependency>
-    
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>1.9.76</version>
         </dependency>
     </dependencies>
 
