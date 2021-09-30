@@ -1,135 +1,89 @@
 package ui;
 
-import core.Calc;
+// import java.net.URL;
+// import java.util.ResourceBundle;
 
-import java.util.List;
-import java.util.function.BinaryOperator;
-import java.util.function.UnaryOperator;
+// import core.Event;
+// import core.Timetable;
+// import javafx.collections.FXCollections;
+// import javafx.collections.ObservableList;
+// import javafx.fxml.FXML;
+// import javafx.scene.control.ComboBox;
+// import javafx.scene.control.TextField;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Labeled;
-import javafx.scene.control.ListView;
+public class AppController  {
 
-public class AppController {
+    // ObservableList<String> weekDayList = FXCollections
+    //     .observableArrayList("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday");
 
-    private Calc calc;
+    // ObservableList<String> timeList = FXCollections
+    //     .observableArrayList("08:00-09:00", "09:00-10:00", "10:00-11:00", "11:00-12:00", "12:00-13:00", "13:00-14:00"
+    //     , "14:00-15:00", "15:00-16:00", "16:00-17:00", "17:00-18:00");
+    // @FXML
+    // private TextField title;
 
-    public AppController() {
-        calc = new Calc(0.0, 0.0, 0.0);
-    }
+    // @FXML 
+    // private TextField description;
 
-    public Calc getCalc() {
-        return calc;
-    }
+    // @FXML
+    // private ComboBox weekDay;
 
-    public void setCalc(Calc calc) {
-        this.calc = calc;
-        updateOperandsView();
-    }
+    // @FXML
+    // private ComboBox timeOfDay;
 
-    @FXML
-    private ListView<Double> operandsView;
+    // @FXML
+    // private ResourceBundle resources;
 
-    @FXML
-    private Label operandView;
+    // @FXML
+    // private URL location;
 
-    @FXML
-    void initialize() {
-        updateOperandsView();
-    }
+    // Timetable timetable;
 
-    private void updateOperandsView() {
-        List<Double> operands = operandsView.getItems();
-        operands.clear();
-        int elementCount = Math.min(calc.getOperandCount(), 3);
-        for (int i = 0; i < elementCount; i++) {
-            operands.add(calc.peekOperand(elementCount - i - 1));
-        }
-    }
+    // @FXML
+    // void initialize() {
+        
+    //     // timetable = new Timetable();
+        
+    //     // weekDay.setValue("Monday");
+    //     // weekDay.setItems(weekDayList);
 
-    private String getOperandString() {
-        return operandView.getText();
-    }
+    //     // timeOfDay.setValue("08:00-09:00");
+    //     // timeOfDay.setItems(timeList);
+    // }
 
-    private boolean hasOperand() {
-        return ! getOperandString().isBlank();
-    }
+    // @FXML
+    // public void handleAdd() {
+    //     // Fetch name, day, time and text from fxml file, and make Event object
+        
+    //     //String time = splittimeOfDay.getSelectionModel().getSelectedItem();
+    //     //String[] timeArray = time.split("-");
+        
+    //     //Event event = new Event(title.getText(), description.getText(), timeArray[0], timeArray[1], weekDay.getSelectionModel().getSelectedItem());
+        
+        
+    //     //timetable.addEvent(event);
 
-    private double getOperand() {
-        return Double.valueOf(operandView.getText());
-    }
-    
-    private void setOperand(String operandString) {
-        operandView.setText(operandString);
-    }
+    //     timetable.writeEvent();
+    //     updateTimetableView();
+    // }
 
-    @FXML
-    void handleEnter() {
-        if (hasOperand()) {
-            calc.pushOperand(getOperand());
-        } else {
-            calc.dup();
-        }
-        setOperand("");
-        updateOperandsView();
-    }
+    // public void updateTimetableView() {
+        
+    // }
 
-    private void appendToOperand(String s) {
-        // TODO
-    }
+    // /*public boolean isAvailable(Event event) {
+    //     for (Event event : timetable.getEventList()) {
+    //         if ((event.getDayOfWeek() == e.getDayOfWeek()) and (event.getTimeStart() == e.getTimeStart()) {
+    //             return false;
+    //         }
+    //     }
+    //     return true;
+    // }*/
 
-    @FXML
-    void handleDigit(ActionEvent ae) {
-        if (ae.getSource() instanceof Labeled l) {
-            // TODO append button label to operand
-        }
-    }
 
-    @FXML
-    void handlePoint() {
-        var operandString = getOperandString();
-        if (operandString.contains(".")) {
-            // TODO remove characters after point
-        } else {
-            // TODO append point
-        }
-    }
-
-    @FXML
-    void handleClear() {
-        // TODO clear operand
-    }
-
-    @FXML
-    void handleSwap() {
-        // TODO clear operand
-    }
-
-    private void performOperation(UnaryOperator<Double> op) {
-        // TODO
-    }
-
-    private void performOperation(boolean swap, BinaryOperator<Double> op) {
-        if (hasOperand()) {
-            // TODO push operand first
-        }
-        // TODO perform operation, but swap first if needed
-    }
-
-    @FXML
-    void handleOpAdd() {
-        // TODO
-    }
-
-    @FXML
-    void handleOpSub() {
-        // TODO
-    }
-
-    @FXML
-    void handleOpMult() {
-        // TODO
-    }
+    // // Method for later release
+    // @FXML
+    // public void handleRemove() {
+    // }
 }
+
