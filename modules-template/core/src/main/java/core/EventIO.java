@@ -2,6 +2,9 @@ package core;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -19,33 +22,34 @@ public class EventIO implements IO {
     public EventIO(Timetable timetable){
         this.timetable = timetable;
 
-        try{
-            File file = new File("modules-template\\core\\src\\main\\java\\core\\Events.json");
-            if(file.createNewFile()){
-                System.out.println("File created: Events.json");
-                FileWriter writer = new FileWriter("modules-template\\core\\src\\main\\java\\core\\Events.json");
-                writer.write("[]");
-                writer.close();
-            }
-        }catch (IOException e){
-            System.out.println("An error occured.");
-            e.printStackTrace();
-        }
+        // try{
+        //     File file = new File("modules-template\\core\\src\\main\\java\\core\\Events.json");
+        //     if(file.createNewFile()){
+        //         System.out.println("File created: Events.json");
+        //         FileWriter writer = new FileWriter("modules-template\\core\\src\\main\\java\\core\\Events.json");
+        //         writer.write("[]");
+        //         writer.close();
+        //     }
+        // }catch (IOException e){
+        //     System.out.println("An error occured.");
+        //     e.printStackTrace();
+        // }
     }
 
     public EventIO(){ //kun for testing
-        try{
-            File file = new File("modules-template\\core\\src\\main\\java\\core\\Events.json");
-            if(file.createNewFile()){
-                System.out.println("File created: Events.json");
-                FileWriter writer = new FileWriter("modules-template\\core\\src\\main\\java\\core\\Events.json");
-                writer.write("[]");
-                writer.close();
-            }
-        }catch (IOException e){
-            System.out.println("An error occured.");
-            e.printStackTrace();
-        }
+        // try{
+        //     File file = new File("modules-template\\core\\src\\main\\java\\core\\Events.json");
+        //     if(file.createNewFile()){
+        //         System.out.println("File created: Events.json");
+        //         FileWriter writer = new FileWriter("modules-template\\core\\src\\main\\java\\core\\Events.json");
+        //         writer.write("[]");
+        //         writer.close();
+        //     }
+        // }catch (IOException e){
+        //     System.out.println("An error occured.");
+        //     e.printStackTrace();
+        // }
+        System.out.println("test");
     }
 
     // reads all, creates events and adds to timetable
@@ -54,10 +58,12 @@ public class EventIO implements IO {
         JSONParser jsonParser = new JSONParser();
          
         try{
-	    FileReader reader = new FileReader("modules-template\\core\\src\\main\\java\\core\\Events.json");
-            Object obj = jsonParser.parse(reader);
+        InputStream input = getClass().getClassLoader().getResourceAsStream("Events.json");
+        JSONArray eventList = (JSONArray) jsonParser.parse(new InputStreamReader(input, "UTF-8"));
+	    // FileReader reader = new FileReader("modules-template\\core\\src\\main\\java\\core\\Events.json");
+        //     Object obj = jsonParser.parse(reader);
  
-            JSONArray eventList = (JSONArray) obj;
+            // JSONArray eventList = (JSONArray) obj;
 
             for(Object event : eventList){
                 JSONObject eventObject = (JSONObject) event;
@@ -78,7 +84,7 @@ public class EventIO implements IO {
     // writes the last event in timetable.eventList to json
     @Override
     public void write(){
-            JSONObject eventObject = new JSONObject();
+            // JSONObject eventObject = new JSONObject();
 
             //Event event = timetable.getLastEvent();
             //eventObject.put("title", event.getTitle());
@@ -87,35 +93,36 @@ public class EventIO implements IO {
             //eventObject.put("timeEnd", event.getTimeEnd());
             //eventObject.put("day", event.getDay());
 
-            eventObject.put("title", "title");
-            eventObject.put("description", "desc");
-            eventObject.put("timeStart", "08:00");
-            eventObject.put("timeEnd", "09:00");
-            eventObject.put("day", "thursday");
+            // eventObject.put("title", "title");
+            // eventObject.put("description", "desc");
+            // eventObject.put("timeStart", "08:00");
+            // eventObject.put("timeEnd", "09:00");
+            // eventObject.put("day", "thursday");
 
-            try{
-                JSONParser jsonParser = new JSONParser();
-                FileReader reader = new FileReader("modules-template\\core\\src\\main\\java\\core\\Events.json");
-                Object obj = jsonParser.parse(reader);
-                JSONArray eventList = (JSONArray) obj;
-                eventList.add(eventObject);
+            // try{
+                // klarer ikke skrive til json filen pga. mangel på classpath. Virker som om det kanskje ikke er meninge å skrive til json fil i et maven-prosjekt.
+        //         JSONParser jsonParser = new JSONParser();
+        //         FileReader reader = new FileReader("modules-template\\core\\src\\main\\resources\\Events.json");
+        //         Object obj = jsonParser.parse(reader);
+        //         JSONArray eventList = (JSONArray) obj;
+        //         eventList.add(eventObject);
 
-                FileWriter writer = new FileWriter("modules-template\\core\\src\\main\\java\\core\\Events.json");
-                writer.write(eventList.toJSONString());
-                writer.flush();
-                writer.close();
-        }catch (FileNotFoundException e) {
-			System.out.println("An error occured while writing to Events.json");
-            e.printStackTrace();
-		}catch (IOException e){
-            e.printStackTrace();
-        }catch (ParseException e) {
-            e.printStackTrace();
-        }
+        //         FileWriter writer = new FileWriter("modules-template\\core\\src\\main\\resources\\Events.json");
+        //         writer.write(eventList.toJSONString());
+        //         writer.flush();
+        //         writer.close();
+        // }catch (FileNotFoundException e) {
+		// 	System.out.println("An error occured while writing to Events.json");
+        //     e.printStackTrace();
+		// }catch (IOException e){
+        //     e.printStackTrace();
+        // }catch (ParseException e) {
+        //     e.printStackTrace();
+        // }
     }
     public static void main(String[] args) {
-        EventIO test = new EventIO();
-        test.write();
+        EventIO test = new EventIO(new Timetable());
+        test.read();
         System.out.println("HEI");
     }
 }

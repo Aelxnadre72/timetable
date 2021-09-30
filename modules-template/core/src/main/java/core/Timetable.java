@@ -49,7 +49,7 @@ public class Timetable {
 
     // check if the event already exists in eventList
     private boolean isDuplicateEvent(Event event){
-        return eventList.stream().anyMatch(e -> e.getDay() == event.getDay() && e.getTimeStart().equals(event.getTimeStart()));
+        return eventList.stream().anyMatch(e -> e.getDay().equals(event.getDay()) && e.getTimeStart().equals(event.getTimeStart()));
     }
 
     public static void main(String[] args) {
