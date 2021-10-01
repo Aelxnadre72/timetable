@@ -1,26 +1,29 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/javafx-template)
-# Javafx template
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2139/gr2139)
 
-A repository with three variants of a javafx projects, with maven setup for Java 16 and JavaFX 16, and JUnit 5 (Jupiter) and TestFX for testing.
+# modules-template 
+Modules-template [modules-template](modules-template) is the main folder for our group project in the subject IT1901. 
+The goal for our app is for the user to add events, with title, day of week, time of day and a description. The event will then appear in a timetable. In modules-template there is a folder for the logic of the app ([core] (modules-template/core)), and a folder for the user interface ([ui](modules-template/ui)). 
 
-To make the project(s) more interesting, it is the start of an [RPN](https://en.wikipedia.org/wiki/Reverse_Polish_notation) calculator (look for `// TODO`) markers). The core logic is almost implemented (in [Calc.java](javafx-template/src/main/java/app/Calc.java)), the fxml file (in [App.fxml](javafx-template/src/main/resources/app/App.fxml) is almost complete, but the controller class (in [AppController.java](javafx-template/src/main/java/app/AppController.java) is pretty limited. And last, but not least, there is a TestFX-based test (in [AppTest.java](javafx-template/src/test/java/app/AppTest.java), see the [README](javafx-template/src/test/java/app/README.md) for details about what it tests).
+# Core 
+The core logic is implemented in [Timetable.java](modules-template/core/src/main/java/core/Timetable.java). It has methods for adding and removing events from the lists of events.
+[Event.java](modules-template/core/src/main/java/core/Event.java) is the event object, and contains gets and sets for an event object. And has methods for making event-objects with title, description, time and day. 
 
-## javafx-template
+# json
+[EventIO.java](Timetable/core/src/main/java/timetable/json/EventIO.java) saves the event information the user added, which can be read and become an event-object. The even-object can then appear in the timetable gui.  
 
-Template for  single-module, single-package javafx project.
 
-## packages-template
+# ui
+## fxml
+In [App.fxml](modules-template/ui/src/main/resources/ui/App.fxml) the GUI for the timetable is implemented. The timetable is made with a pane and ListView for each coloumn. The coloumns represents the hours of the day and days of the week. There are Textfield-boxes for the user to fill in a title and description. And Choiceboxes to pick a day and time. Each of these items have an id, which is used in the controller. 
 
-Template for  single-module, multi-package javafx project.
+## Controller
+[AppController.java](modules-template/ui/src/main/java/ui/AppController.java) is the controller, which combines the core logic with the ui. 
 
-## modules-template
+# Tests
+[EventTest.java](modules-template/core/src/test/java/core/EventTest.java) tests the event class (the constructor and the setters) and it also has exception tests. 
 
-Template for  multi-module, multi-package javafx project.
-
-## Trying it out
-
-All projects can be tried out by cd-ing into the corresponding folder and using `mvn`:
-
-- compile with `mvn compile` (after `cd javafx-template` of course)
-- test with `mvn test` (it should fail until you complete the RPN calculator)
-- run with `mvn javafx:run` (it should open, but not work properly)
+# Trying it out
+To try out the projects, cd into the corrosponding folder.
+* compile with mvn compile
+* test with mvn test 
+* run mvn javfx:run 
