@@ -87,9 +87,10 @@ public class Event {
     
     // check that the time is in the correct format
     private boolean isCorrectTimeFormat(String s){
-        // checks if String s is of length 5, contains a colon at index 2 and every other character is a digit
-        return s.length() == 5 && s.substring(2, 3).equals(":") && s.replace(":", "").matches("[0-9]+");
+        // checks if String s is of length 5, contains a colon at index 2, every other character is a digit and the time is a valid time
+        return s.length() == 5 && s.substring(2, 3).equals(":") && s.replace(":", "").matches("[0-9]+") && Integer.parseInt(s.substring(0, 2))<24 && Integer.parseInt(s.substring(0, 2))>=0 && Integer.parseInt(s.substring(3, 5))<60 && Integer.parseInt(s.substring(3, 5))>=0;
     }
+    
 
     public static void main(String[] args) {
         Event test = new Event("title", "desc", "09:00", "10:00", "Monday");
