@@ -1,4 +1,4 @@
-package core;
+package timetable.core;
 
 interface IO {
     public void write();

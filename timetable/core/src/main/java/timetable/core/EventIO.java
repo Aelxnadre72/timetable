@@ -1,4 +1,4 @@
-package core;
+package timetable.core;
 
 import java.io.IOException;
 import java.io.InputStream;
