@@ -1,11 +1,9 @@
-package ui;
-
-import core.Timetable;
+package timetable.ui;
 
 import java.util.Arrays;
 
-import core.Event;
-
+import timetable.core.Event;
+import timetable.core.Timetable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;

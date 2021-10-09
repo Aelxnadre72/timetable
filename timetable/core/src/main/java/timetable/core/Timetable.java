@@ -1,4 +1,4 @@
-package core;
+package timetable.core;
 
 import java.util.ArrayList;
 import java.util.List;
