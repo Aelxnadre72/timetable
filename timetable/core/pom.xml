@@ -13,6 +13,13 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.liferay</groupId>
+            <artifactId>com.fasterxml.jackson.databind</artifactId>
+            <version>2.10.5.1.LIFERAY-PATCHED-1</version>
+        </dependency>
+
+
         <!-- IO with json-simple -->
         <dependency>
             <groupId>com.googlecode.json-simple</groupId>
@@ -24,12 +31,14 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
+            <version>2.11.1</version>
         </dependency>
 
         <!-- jackson-databind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+            <version>2.13.0</version>
         </dependency>
 
         <!-- junit testing with jupiter -->
