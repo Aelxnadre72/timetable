@@ -6,13 +6,19 @@ import java.util.List;
 public class Timetable {
     
     private List<Event> eventList = new ArrayList<>();
+    private int week;
     private EventIO eventIO;
 
-    public Timetable() {
+    public Timetable(int week) {
         // initialize an EventIO object
         eventIO = new EventIO(this);
         // reads and creates events from json and 
         eventIO.read();
+        // set week
+        if(week<1 && week>52){
+            throw new IllegalArgumentException("The week number is invalid.");
+        }
+        this.week = week;
     }
 
     // return complete list with events
@@ -49,7 +55,11 @@ public class Timetable {
 
     // check if the event already exists in eventList
     private boolean isDuplicateEvent(Event event){
-        return eventList.stream().anyMatch(e -> e.getDay().equals(event.getDay()) && e.getTimeStart().equals(event.getTimeStart()));
+        return eventList.stream().anyMatch(e -> e.getDate().equals(event.getDate()) && e.getTimeStart().equals(event.getTimeStart()));
+    }
+
+    public int getWeek(){
+        return week;
     }
 
     public static void main(String[] args) {
