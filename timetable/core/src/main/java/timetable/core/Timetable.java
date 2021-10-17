@@ -8,7 +8,7 @@ public class Timetable {
     private List<Event> eventList = new ArrayList<>();
     private int week;
     private int year;
-    private EventIO eventIO;
+    // private EventIO eventIO;
 
     public Timetable(int week, int year) {
         // initialize an EventIO object
