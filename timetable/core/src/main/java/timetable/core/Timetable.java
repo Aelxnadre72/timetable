@@ -7,18 +7,23 @@ public class Timetable {
     
     private List<Event> eventList = new ArrayList<>();
     private int week;
+    private int year;
     private EventIO eventIO;
 
-    public Timetable(int week) {
+    public Timetable(int week, int year) {
         // initialize an EventIO object
         eventIO = new EventIO(this);
         // reads and creates events from json and 
         eventIO.read();
-        // set week
-        if(week<1 && week>52){
+        // set week (53 because some years have 53 weeks)
+        if(week<1 && week>53){
             throw new IllegalArgumentException("The week number is invalid.");
         }
+        if(year<1921 && year>2121){
+            throw new IllegalArgumentException("The year is invalid.");
+        }
         this.week = week;
+        this.year = year;
     }
 
     // return complete list with events
@@ -43,11 +48,6 @@ public class Timetable {
         this.eventList.add(event);
     }
 
-    // writes the last event to the json file
-    public void writeEvent(){
-        eventIO.write();
-    }
-
     // remove event from timetable
     public void removeEvent(Event event) {
         this.eventList.remove(event);
@@ -58,8 +58,14 @@ public class Timetable {
         return eventList.stream().anyMatch(e -> e.getDate().equals(event.getDate()) && e.getTimeStart().equals(event.getTimeStart()));
     }
 
+    // get week of timetable
     public int getWeek(){
         return week;
+    }
+
+    // get year of timetable
+    public int getYear(){
+        return year;
     }
 
     public static void main(String[] args) {
