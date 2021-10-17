@@ -90,6 +90,7 @@ public class Event {
         return null;
     }
 
+    // returns week number
     public int getWeek(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault()); 
         int weekNumber = date.get(weekFields.weekOfWeekBasedYear());

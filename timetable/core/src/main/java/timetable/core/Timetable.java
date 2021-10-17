@@ -63,6 +63,11 @@ public class Timetable {
         return week;
     }
 
+    // get year of timetable
+    public int getYear(){
+        return year;
+    }
+
     public static void main(String[] args) {
         
     }

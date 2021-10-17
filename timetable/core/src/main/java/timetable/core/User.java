@@ -20,6 +20,30 @@ public class User {
     // feks en liste for år. så vil det være enten 52 eller 53 uker (tall) bortover øverst på siden som man kan trykke på.
     // må også ha uke 53 fordi noen år har uke 53. 
     //A year has 53 weeks if 1 January is on a Thursday on a non-leap year, or on a Wednesday or a Thursday on a leap year.
+    
+    private String id;
+
     private Map<String, Timetable> timetableList = new HashMap<>();
+
+    public User(String id){
+        this.id = id;
+    }
+
+    // add timetable-object to timetableList. Key is week + year.
+    public void addTimetable(Timetable timetable){
+        String k = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
+        if(timetableList.containsKey(k)){
+            throw new IllegalArgumentException("The timetable with this specific key already exist.");
+        }
+        timetableList.put(k, timetable);
+    }
+
+    // get timetable-object with key k
+    public Timetable getTimetable(String k){
+        if(!timetableList.containsKey(k)){
+            throw new IllegalArgumentException("The timetable with this specific key does not exist.");
+        }
+        return timetableList.get(k);
+    }
     
 }
