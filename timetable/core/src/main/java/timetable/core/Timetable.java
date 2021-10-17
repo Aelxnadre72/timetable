@@ -12,9 +12,9 @@ public class Timetable {
 
     public Timetable(int week, int year) {
         // initialize an EventIO object
-        eventIO = new EventIO(this);
+        // eventIO = new EventIO(this);
         // reads and creates events from json and 
-        eventIO.read();
+        // eventIO.read();
         // set week (53 because some years have 53 weeks)
         if(week<1 && week>53){
             throw new IllegalArgumentException("The week number is invalid.");
