@@ -1,6 +1,8 @@
 package timetable.core;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class User {
@@ -23,7 +25,7 @@ public class User {
     
     private String id;
 
-    private Map<String, Timetable> timetableList = new HashMap<>();
+    private Map<String, Timetable> timetableMap = new HashMap<>();
 
     public User(String id){
         this.id = id;
@@ -32,18 +34,23 @@ public class User {
     // add timetable-object to timetableList. Key is week + year.
     public void addTimetable(Timetable timetable){
         String k = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
-        if(timetableList.containsKey(k)){
+        if(timetableMap.containsKey(k)){
             throw new IllegalArgumentException("The timetable with this specific key already exist.");
         }
-        timetableList.put(k, timetable);
+        timetableMap.put(k, timetable);
     }
 
     // get timetable-object with key k
     public Timetable getTimetable(String k){
-        if(!timetableList.containsKey(k)){
+        if(!timetableMap.containsKey(k)){
             throw new IllegalArgumentException("The timetable with this specific key does not exist.");
         }
-        return timetableList.get(k);
+        return timetableMap.get(k);
+    }
+
+    public List<Timetable> getTimetableList(){
+        List<Timetable> l = new ArrayList<>(timetableMap.values());
+        return l;
     }
     
 }
