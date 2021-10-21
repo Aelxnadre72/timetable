@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>it1901</groupId>
     <artifactId>core</artifactId>
-   
+
 
     <parent>
         <groupId>it1901</groupId>
