@@ -2,7 +2,7 @@
 
 # timetable 
 Timetable [timetable](timetable) is the main folder for our group project in the subject IT1901. 
-The goal for our app is for the user to add events, with title, day of week, time of day and a description. The event will then appear in a timetable. 
+The goal for our app is for the user to add events, with title, a date, time of day and a description. The event will then appear in a timetable. The user can also choose between several weeks, not just plan for one week. 
 In timetable there is a folder for the logic of the app ([core](timetable/core)), and a folder for the user interface ([fxui](timetable/fxui)). 
 
 # Core 
@@ -13,15 +13,19 @@ The core logic is implemented in [Timetable.java](timetable/core/src/main/java/t
 [EventIO.java](timetable/core/src/main/java/timetable/core/EventIO.java) saves the event information the user added, which can be read and become an event-object. The even-object can then appear in the timetable gui.  
 
 
-# ui
-## fxml
-In [App.fxml](timetable/fxui/src/main/resources/timetable/ui/App.fxml) the GUI for the timetable is implemented. The timetable is made with a pane and ListView for each coloumn. The coloumns represents the hours of the day and days of the week. There are Textfield-boxes for the user to fill in a title and description. And Choiceboxes to pick a day and time. Each of these items have an id, which is used in the controller. 
+# fxui 
 
 ## Controller
-[AppController.java](timetable/fxui/src/main/java/timetable/ui/AppController.java) is the controller, which combines the core logic with the ui. 
+[AppController.java](timetable/fxui/src/main/java/timetable/ui/AppController.java) is the controller, which combines the core logic with the ui.
+
+## fxml
+In [App.fxml](timetable/fxui/src/main/resources/timetable/ui/App.fxml) the GUI for the timetable is implemented. The timetable is made with a pane and ListView for each coloumn. The coloumns represents the hours of the day and days of the week. There are Textfield-boxes for the user to fill in a title and description. And Choiceboxes to pick a day and time. Each of these items have an id, which is used in the controller.
 
 # Tests
-[EventTest.java](timetable/core/src/test/java/timetable/core/EventTest.java) tests the event class (the constructor and the setters) and it also has exception tests. 
+[EventTest.java](timetable/core/src/test/java/timetable/core/EventTest.java) have Junit tests that tests the event class (the constructor and the setters) and it also has exception tests.
+
+## Spotbugs
+## Checkstyle 
 
 # Trying it out
 To try out the projects, cd into the corrosponding folder.
