@@ -1,0 +1,14 @@
+@startuml
+
+component core{
+    package timetable.core
+}
+
+component fxui{
+    package timetable.ui
+}
+
+timetable.ui ..> timetable.core
+timetable.ui ..> timetable.json
+
+@enduml
