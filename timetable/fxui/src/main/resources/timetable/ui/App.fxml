@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AppController.java">
    <children>
       <Label layoutX="58.0" layoutY="501.0" text="Weeks: ">
          <font>
@@ -26,59 +26,59 @@
          <content>
             <HBox alignment="TOP_CENTER" prefHeight="26.0" prefWidth="1597.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="1" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="2" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="3" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="4" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="5" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="6" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="7" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="8" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="9" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="10" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="11" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="12" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="13" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="14" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="15" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="16" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="17" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="18" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="19" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="20" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="21" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="22" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="23" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="25" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="25" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="26" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="27" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="28" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="29" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="30" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="31" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="32" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="33" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="34" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="35" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="36" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="37" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="38" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="39" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="40" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="41" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="42" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="43" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="44" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="45" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="46" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="47" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="48" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="49" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="50" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="51" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="52" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="53" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="1" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="2" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="3" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="4" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="5" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="6" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="7" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="8" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="9" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="10" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="11" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="12" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="13" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="14" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="15" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="16" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="17" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="18" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="19" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="20" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="21" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="22" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="23" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="25" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="25" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="26" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="27" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="28" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="29" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="30" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="31" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="32" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="33" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="34" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="35" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="36" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="37" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="38" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="39" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="40" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="41" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="42" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="43" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="44" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="45" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="46" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="47" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="48" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="49" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="50" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="51" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="52" />
+                  <Button mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="32.0" text="53" />
                </children>
             </HBox>
          </content>
@@ -141,7 +141,7 @@
                               </AnchorPane>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
-                                    <HBox prefHeight="366.0" prefWidth="884.0">
+                                    <HBox prefHeight="366.0" prefWidth="883.0">
                                        <children>
                                           <ListView fx:id="hours" prefHeight="275.0" prefWidth="65.0" />
                                           <ListView fx:id="monday" layoutX="10.0" layoutY="10.0" prefHeight="275.0" prefWidth="117.0" />
@@ -177,7 +177,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="title" prefHeight="20.0" prefWidth="175.0" />
+                                          <TextField fx:id="newTitle" prefHeight="20.0" prefWidth="175.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
@@ -190,7 +190,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker fx:id="date" prefHeight="20.0" />
+                                          <DatePicker fx:id="newDate" prefHeight="20.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
@@ -203,7 +203,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox fx:id="time" prefHeight="25.0" prefWidth="207.0" />
+                                          <ChoiceBox fx:id="newStartTime" prefHeight="25.0" prefWidth="207.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
@@ -216,7 +216,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox fx:id="time1" prefHeight="25.0" prefWidth="200.0" />
+                                          <ChoiceBox fx:id="newEndTime" prefHeight="25.0" prefWidth="200.0" />
                                        </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="20.0" layoutY="88.0" prefHeight="23.0" prefWidth="578.0">
@@ -226,13 +226,13 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="description" prefHeight="20.0" prefWidth="217.0" />
+                                          <TextField fx:id="newDescription" prefHeight="20.0" prefWidth="217.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button mnemonicParsing="false" onAction="#handleAdd" prefHeight="20.0" prefWidth="134.0" text="ADD EVENT" textFill="#2980b9">
+                                    <Button mnemonicParsing="false" onAction="#handleAddEvent" prefHeight="20.0" prefWidth="134.0" text="ADD EVENT" textFill="#2980b9">
                                        <font>
                                           <Font name="System Bold" size="12.0" />
                                        </font>
@@ -260,7 +260,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
+                                          <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -277,7 +277,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
+                                          <Text fx:id="date" strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -294,7 +294,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
+                                          <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -311,7 +311,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="189.6032772064209">
+                                          <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="189.6032772064209">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -346,7 +346,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="46.4417781829834">
+            <Text fx:id="weekNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="46.4417781829834">
                <font>
                   <Font size="16.0" />
                </font>
@@ -360,7 +360,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="year" prefWidth="150.0" />
          </children></HBox>
    </children>
 </Pane>
