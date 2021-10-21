@@ -6,3 +6,5 @@ For the core logic we had to extend the Event-class so that it can handle catego
 For the ui we had to implement buttons for the weeks of the year. So that the user can click on any week and the evetns for that week will show up. Also we wanted the user to pick a time for the events, instead of writing it in manually. So this had to be implemented in the ui as well. We also added som color to the timetable to make it more flattering for the user.
 
 Some weaknesses of the app is that.......
+
+## workflow, workhabits and quality 
