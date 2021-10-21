@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Assertions;
 
 public class EventTest {
 
-    @Test
+/*     @Test
     public void testSetTimeStart(){
         Event event = new Event("Work","At the office","08:00","09:00","Monday");
         event.setTimeStart("07:30");
@@ -58,5 +58,5 @@ public class EventTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work","At the office","08:00","five","Monday"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work","At the office","four","20:00","Monday"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work","At the office","08:00","99:00","Monday"));
-    }
+    } */
 }
