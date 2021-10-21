@@ -117,8 +117,8 @@ public class EventIO implements IO {
         // }
     }
     public static void main(String[] args) {
-        EventIO test = new EventIO(new Timetable());
+/*         EventIO test = new EventIO(new Timetable());
         test.read();
-        System.out.println("HEI");
+        System.out.println("HEI"); */
     }
 }
