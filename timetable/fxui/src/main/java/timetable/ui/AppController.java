@@ -1,8 +1,8 @@
 package timetable.ui;
 
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
-
 import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
@@ -89,8 +89,10 @@ public class AppController {
     void initialize() {
 //        timetable = new Timetable();
         initializeTimes();
+        initializeYear();
         initializeHoursListView();
-        resetDaysListView();        
+        resetDaysListView();
+        //eksempler:        
         monday.getItems().add(0, "trene");
         tuesday.getItems().add(0, "spise");
         //initializeSavedEvents();
@@ -98,11 +100,13 @@ public class AppController {
 
     @FXML
     void handleWeeks(ActionEvent event) {
+        //should show the current year and current week timetable when launching app
          if (event.getSource() instanceof Labeled w) {
-            title.setText(w.getText());
+            weekNumber.setText(w.getText());
          }
     }
 
+    //må ha en varselmelding dersom dato er satt til år over/under grensen, år 2010-2030
     @FXML
     void handleAddEvent(ActionEvent event) {
 /*         try{
@@ -202,6 +206,17 @@ public class AppController {
         } */
     }
 
+    private void initializeYear(){
+        // when choosing a new year, should display the week you were on for that year. week 53 should appear/dissappear 
+        // depending on if the year has 53 weeks. if week 53 is selected, then 52 should be diplayed if the new year doesn have 53.
+        // or maybe just start on the current week of the current year, but with the newly chosen year instead
+        for(int i = 2010; i<2031; i++){
+            year.getItems().add(Integer.toString(i));
+        }
+        //should show the current year and current week timetable when launching app
+        year.setValue(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
+    }
+
     //må endre slik at dersom feks 15 er valgt som start så vises kun 16 og senere på slutt. Bruk en onclick på start og slutt. og i lik verdien.
     private void initializeTimes(){
         for(int i = 0; i<24; i++){
@@ -210,12 +225,32 @@ public class AppController {
                 newEndTime.getItems().add(Integer.toString(i+1) + ":00");
             }
             else{
-                newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
-                newEndTime.getItems().add("0" + Integer.toString(i+1) + ":00");
+                if(i<9){
+                    newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
+                    newEndTime.getItems().add("0" + Integer.toString(i+1) + ":00");
+                }
+                else{
+                    newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
+                    newEndTime.getItems().add(Integer.toString(i+1) + ":00");
+                }
             }
         }
-        newStartTime.setValue("00:00");
-        newEndTime.setValue("01:00");
+
+        int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if(h>9){
+            newStartTime.setValue(Integer.toString(h) + ":00" );
+            newEndTime.setValue(Integer.toString(h+1) + ":00");
+        }
+        else{
+            if(h<9){
+                newStartTime.setValue("0" + Integer.toString(h) + ":00" );
+                newEndTime.setValue("0" + Integer.toString(h+1) + ":00");
+            }
+            else{
+                newStartTime.setValue("0" + Integer.toString(h) + ":00" );
+                newEndTime.setValue(Integer.toString(h+1) + ":00");
+            }
+        }
     }
 
 }
