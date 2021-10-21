@@ -82,7 +82,7 @@ public class Event {
     // get date of event
     public String getDate(){
         try{
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             return date.format(formatter);
         }catch(Exception e){
             e.printStackTrace();
