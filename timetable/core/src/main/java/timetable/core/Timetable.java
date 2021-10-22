@@ -19,7 +19,7 @@ public class Timetable {
         if(week<1 && week>53){
             throw new IllegalArgumentException("The week number is invalid.");
         }
-        if(year<1921 && year>2121){
+        if(year<2020 && year>2030){
             throw new IllegalArgumentException("The year is invalid.");
         }
         this.week = week;
@@ -55,7 +55,37 @@ public class Timetable {
 
     // check if the event already exists in eventList
     private boolean isDuplicateEvent(Event event){
-        return eventList.stream().anyMatch(e -> e.getDate().equals(event.getDate()) && e.getTimeStart().equals(event.getTimeStart()));
+        int eventStartTime = Integer.parseInt(event.getTimeStart().substring(0, 2));
+        int eventEndTime = Integer.parseInt(event.getTimeEnd().substring(0, 2));
+        if(eventEndTime == 0){
+            eventEndTime = 24;
+        }
+        String eventDate = event.getDate();
+        String eventTitle = event.getTitle();
+        for(Event e:eventList){
+            int eStartTime = Integer.parseInt(e.getTimeStart().substring(0, 2));
+            int eEndTime = Integer.parseInt(e.getTimeEnd().substring(0, 2));
+            if(eEndTime == 0){
+                eEndTime = 24;
+            }
+
+            if(eventDate.equals(e.getDate())){
+                return true;
+            }
+            else if(eventTitle.equals(e.getTitle())){
+                return true;
+            }
+            else if(eventEndTime > eStartTime && eventEndTime <= eEndTime){
+                return true;
+            }
+            else if(eventStartTime < eEndTime && eventStartTime >= eStartTime){
+                return true;
+            }
+            else if(eventStartTime < eStartTime && eventEndTime > eEndTime){
+                return true;
+            }
+        }
+        return false;
     }
 
     // get week of timetable

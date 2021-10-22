@@ -97,6 +97,11 @@ public class Event {
         return weekNumber;
     }
 
+    // returns year
+    public int getYear(){
+        return date.getYear();
+    }
+
     // returns day of week 1-7
     public int getDayOfWeek(){
         return date.getDayOfWeek().getValue();
@@ -128,7 +133,7 @@ public class Event {
     
 
     public static void main(String[] args) {
-        Event test = new Event("title", "desc", "09:00", "10:00", "29.04.2000");
+        Event test = new Event("title", "desc", "09:00", "10:00", "29.04.2022");
         System.out.println(test.getDayOfWeek());
     }
 
