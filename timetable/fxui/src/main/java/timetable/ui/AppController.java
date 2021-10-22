@@ -317,8 +317,10 @@ public class AppController {
                 newStartTime.setValue("23:00");
                 newEndTime.setValue("00:00" );
             }
-            newStartTime.setValue(Integer.toString(h) + ":00" );
-            newEndTime.setValue(Integer.toString(h+1) + ":00");
+            else{
+                newStartTime.setValue(Integer.toString(h) + ":00" );
+                newEndTime.setValue(Integer.toString(h+1) + ":00");
+            }
         }
         else{
             if(h<9){
