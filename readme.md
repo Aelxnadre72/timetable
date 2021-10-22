@@ -7,9 +7,7 @@ In timetable there is a folder for the logic of the app ([core](timetable/core))
 
 # Core 
 The core logic is implemented in [Timetable.java](timetable/core/src/main/java/timetable/core/Timetable.java). It has methods for adding and removing events from the lists of events.
-[Event.java](timetable/core/src/main/java/timetable/core/Event.java) is the event class, and contains gets and sets for an event object. And has methods for making event-objects with title, description, time and day.
-
-[User.java](timetable/core/src/main/java/timetable/core/User.java) .........
+[Event.java](timetable/core/src/main/java/timetable/core/Event.java) is the event class, and contains gets and sets for an event object. And has methods for making event-objects with title, description, time and day.[User.java](timetable/core/src/main/java/timetable/core/User.java) has methods for adding a timtable to timetableList, using keys constructed from a timeTable object. 
 
 ## Json, serializers and deserializers
 Writing and reading from Json files is implemented in [Json.java](timetable/core/src/main/java/timetable/core/Json.java), with the methods read and write. With the read method, the user reads all existing events and timetables with a hierarchy of deserializers; user [UserDeserializer.java](timetable/core/src/main/java/timetable/core/UserDeserializer.java), timetable [TimetableDeserializer.java](timetable/core/src/main/java/timetable/core/TimetableDeserializer.java), event [EventDeserializer.java](timetable/core/src/main/java/timetable/core/EventDeserializer.java). The deserializers gets initialized in [TimetableModuleRead.java](timetable/core/src/main/java/timetable/core/TimetableModuleRead.java). 
