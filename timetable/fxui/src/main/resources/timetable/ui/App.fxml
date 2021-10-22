@@ -141,7 +141,7 @@
                               </AnchorPane>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
-                                    <HBox prefHeight="531.0" prefWidth="883.0">
+                                    <HBox prefHeight="554.0" prefWidth="883.0">
                                        <children>
                                           <ListView fx:id="hours" onMouseClicked="#handleClickedHours" prefHeight="275.0" prefWidth="100.0" />
                                           <ListView fx:id="monday" layoutX="10.0" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />

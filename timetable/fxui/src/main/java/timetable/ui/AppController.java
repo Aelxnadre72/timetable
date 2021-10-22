@@ -196,7 +196,7 @@ public class AppController {
 
     private void initializeHoursListView(){
          if(hours.getItems().isEmpty()){
-            for(int i = 0; i<22; i++){
+            for(int i = 0; i<23; i++){
                 if(i>9){
                     hours.getItems().add(Integer.toString(i) + ":00-" + Integer.toString(i+1) + ":00");
                 }
@@ -216,7 +216,7 @@ public class AppController {
     private void resetDaysListView(){
         for(ListView<String> day : Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday)){
             day.getItems().clear();
-            day.getItems().addAll("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            day.getItems().addAll("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
         }
         selectedDay = monday;
     }
@@ -290,26 +290,29 @@ public class AppController {
         weekNumber.setText(Integer.toString(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)));
     }
 
+    //start 23 og slutt 00 git exception: Index 23 out of bounds for length 23
     //må endre slik at dersom feks 15 er valgt som start så vises kun 16 og senere på slutt. Bruk en onclick på start og slutt. og i lik verdien.
     private void initializeTimes(){
-        for(int i = 0; i<23; i++){
-            if(i>9){
-                newStartTime.getItems().add(Integer.toString(i) + ":00");
-                newEndTime.getItems().add(Integer.toString(i+1) + ":00");
-            }
-            else{
-                if(i<9){
-                    newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
-                    newEndTime.getItems().add("0" + Integer.toString(i+1) + ":00");
-                }
-                else{
-                    newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
+        if(newStartTime.valueProperty().getValue() == null){
+            for(int i = 0; i<23; i++){
+                if(i>9){
+                    newStartTime.getItems().add(Integer.toString(i) + ":00");
                     newEndTime.getItems().add(Integer.toString(i+1) + ":00");
                 }
+                else{
+                    if(i<9){
+                        newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
+                        newEndTime.getItems().add("0" + Integer.toString(i+1) + ":00");
+                    }
+                    else{
+                        newStartTime.getItems().add("0" + Integer.toString(i) + ":00");
+                        newEndTime.getItems().add(Integer.toString(i+1) + ":00");
+                    }
+                }
             }
+            newStartTime.getItems().add("23:00");
+            newEndTime.getItems().add("00:00");
         }
-        newStartTime.getItems().add("23:00");
-        newEndTime.getItems().add("00:00");
 
         int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if(h>9){
