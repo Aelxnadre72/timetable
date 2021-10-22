@@ -52,8 +52,5 @@ public class User {
         List<Timetable> l = new ArrayList<>(timetableMap.values());
         return l;
     }
-<<<<<<< HEAD
     
-=======
->>>>>>> 4a13a446b6d59da16a964d88ccac2935bc05e1c5
 }
