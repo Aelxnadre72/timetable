@@ -9,6 +9,7 @@ public class EventTest {
 
     @Test
     public void testSetTimeStart(){
+        //Event har ikke lenger Day, men date, Monday er derfor ikke gyldig argumenti konstruktør
         Event event = new Event("Work","At the office","08:00","09:00","Monday");
         event.setTimeStart("07:30");
         Assertions.assertEquals("07:30", event.getTimeStart());
@@ -46,7 +47,11 @@ public class EventTest {
         Assertions.assertEquals("09:00", event.getTimeEnd());
         Assertions.assertEquals("Work", event.getTitle());
         Assertions.assertEquals("At the office", event.getDescription());
+<<<<<<< HEAD
         Assertions.assertEquals("Monday", event.getDayOfWeek());
+=======
+        Assertions.assertEquals(1, event.getDayOfWeek());
+>>>>>>> 4a13a446b6d59da16a964d88ccac2935bc05e1c5
     }
 
     @Test
