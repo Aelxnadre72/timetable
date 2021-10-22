@@ -46,11 +46,11 @@ public class AppController {
 
     @FXML
     void initialize() {
-        timetable = new Timetable();
+      /*  timetable = new Timetable();
         initializeDay();
         initializeTime();
         initializeListViewTable();
-        initializeSavedEvents();
+        initializeSavedEvents();*/
     }
 
     @FXML
@@ -82,20 +82,20 @@ public class AppController {
 
     private void initializeSavedEvents(){
         for(Event event : timetable.getEventList()){
-            switch(event.getDay()) {
-                case "monday": // causes overflow if the description is too long. Will improve ui later.
+            switch(event.getDayOfWeek()) {
+                case 1: // causes overflow if the description is too long. Will improve ui later.
                     monday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "tuesday":
+                case 2:
                     tuesday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "wednesday":
+                case 3:
                     wednesday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "thursday":
+                case 4:
                     thursday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "friday":
+                case 5:
                     friday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());   
                     break;
                 default:

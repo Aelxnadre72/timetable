@@ -1,24 +1,25 @@
 package timetable.core;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 public class Event {
     private String title;
     private String description;
     private LocalTime timeStart;
     private LocalTime timeEnd;
-    private String day;
+    private LocalDate date;
     
-    public Event(String title, String description, String timeStart, String timeEnd, String day){
-        if(!isCorrectTimeFormat(timeStart) || !isCorrectTimeFormat(timeEnd)){
-            throw new IllegalArgumentException("Time is in incorrect format.");
-        }
+    public Event(String title, String description, String timeStart, String timeEnd, String date){
         this.title = title;
         this.description = description;
         this.timeStart = timeParser(timeStart);
         this.timeEnd = timeParser(timeEnd);
-        this.day = day;
+        this.date = dateParser(date);
     }
 
     // get title
@@ -43,58 +44,92 @@ public class Event {
 
     // get start time of event
     public String getTimeStart(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return timeStart.format(formatter);
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return timeStart.format(formatter);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // set start time of event
     public void setTimeStart(String startString){
-        if(!isCorrectTimeFormat(startString)){
-            throw new IllegalArgumentException("setTimeStart has been given an argument of incorrect format.");
-        }
         timeStart = timeParser(startString);
     }
 
     // get ending time of event
     public String getTimeEnd(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return timeEnd.format(formatter);
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return timeEnd.format(formatter);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
     // set ending time of event
     public void setTimeEnd(String endString){
-        if(!isCorrectTimeFormat(endString)){
-            throw new IllegalArgumentException("setTimeEnd has been given an argument of incorrect format.");
-        }
         timeEnd = timeParser(endString);
     }
 
     // set date of event
-    public void setDay(String day){
-        this.day = day;
+    public void setDate(String date){
+        this.date = dateParser(date);
     }
 
     // get date of event
-    public String getDay(){
-        return day;
+    public String getDate(){
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return date.format(formatter);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
+
+    // returns week number
+    public int getWeek(){
+        WeekFields weekFields = WeekFields.of(Locale.getDefault()); 
+        int weekNumber = date.get(weekFields.weekOfWeekBasedYear());
+        return weekNumber;
+    }
+
+    // returns day of week 1-7
+    public int getDayOfWeek(){
+        return date.getDayOfWeek().getValue();
+    }
+
+    // getmonth, getday, getdate?
 
     // converts from string to LocalTime format
     private static LocalTime timeParser(String s){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        return LocalTime.parse(s, formatter);
-    }
-    
-    // check that the time is in the correct format
-    private boolean isCorrectTimeFormat(String s){
-        // checks if String s is of length 5, contains a colon at index 2, every other character is a digit and the time is a valid time
-        return s.length() == 5 && s.substring(2, 3).equals(":") && s.replace(":", "").matches("[0-9]+") && Integer.parseInt(s.substring(0, 2))<24 && Integer.parseInt(s.substring(0, 2))>=0 && Integer.parseInt(s.substring(3, 5))<60 && Integer.parseInt(s.substring(3, 5))>=0;
-    }
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+            return LocalTime.parse(s, formatter);
+        } catch(DateTimeParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }    
+
+    // converts from string to LocalTime format
+    private static LocalDate dateParser(String s){
+        try{
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            return LocalDate.parse(s, formatter);
+        } catch(DateTimeParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }    
     
 
     public static void main(String[] args) {
-        Event test = new Event("title", "desc", "09:00", "10:00", "Monday");
-        System.out.println(test.getDay());
+        Event test = new Event("title", "desc", "09:00", "10:00", "29.04.2000");
+        System.out.println(test.getDayOfWeek());
     }
 
 }

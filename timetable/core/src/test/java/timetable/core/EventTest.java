@@ -46,7 +46,7 @@ public class EventTest {
         Assertions.assertEquals("09:00", event.getTimeEnd());
         Assertions.assertEquals("Work", event.getTitle());
         Assertions.assertEquals("At the office", event.getDescription());
-        Assertions.assertEquals("Monday", event.getDay());
+        Assertions.assertEquals("Monday", event.getDayOfWeek());
     }
 
     @Test
