@@ -344,7 +344,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Text layoutX="398.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMETABLE" wrappingWidth="162.936767578125">
+      <Text layoutX="397.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMETABLE" wrappingWidth="217.0">
          <font>
             <Font size="32.0" />
          </font>
