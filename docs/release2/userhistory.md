@@ -9,7 +9,7 @@ It's important for the app to show
 * time and day
 
 It's important that the app can
-* Add a lecture in a timetable
+* Add a lecture in a timetable 
 
 # US- 2
 ## A schedule for my year
