@@ -91,6 +91,14 @@ public class AppController {
     @FXML
     void initialize() {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      /*  timetable = new Timetable();
+        initializeDay();
+        initializeTime();
+        initializeListViewTable();
+        initializeSavedEvents();*/
+>>>>>>> 32b8522b01460f19f94a49853fe80f620cc97dd8
 /*         timetable = new Timetable();
         initializeDay();
         initializeTime();
@@ -188,26 +196,29 @@ public class AppController {
 
 <<<<<<< HEAD
     private void initializeSavedEvents(){
-        for(Event event : timetable.getEventList()){
+        /*for(Event event : timetable.getEventList()){
+            switch(event.getDayOfWeek()) {
+                case 1: // causes overflow if the description is too long. Will improve ui later.
             switch(event.getTitle()) {
                 case "monday": // causes overflow if the description is too long. Will improve ui later.
                     monday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "tuesday":
+                case 2:
                     tuesday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "wednesday":
+                case 3:
                     wednesday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "thursday":
+                case 4:
                     thursday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
                     break;
-                case "friday":
+                case 5:
                     friday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());   
                     break;
                 default:
                     break;
               }
+<<<<<<< HEAD
 =======
     private void initializeEvents(){
         user = new User("mainUser");
@@ -233,6 +244,10 @@ public class AppController {
             hours.getItems().add("23:00-00:00");
 >>>>>>> controller
         }
+=======
+            }
+        }*/
+>>>>>>> 32b8522b01460f19f94a49853fe80f620cc97dd8
     }
 
     private void resetDaysListView(){
