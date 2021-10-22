@@ -3,6 +3,7 @@ package timetable.ui;
 import java.util.Arrays;
 import java.util.Calendar;
 import timetable.core.Event;
+import timetable.core.Json;
 import timetable.core.Timetable;
 import timetable.core.User;
 import javafx.event.ActionEvent;
@@ -90,21 +91,6 @@ public class AppController {
 
     @FXML
     void initialize() {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-      /*  timetable = new Timetable();
-        initializeDay();
-        initializeTime();
-        initializeListViewTable();
-        initializeSavedEvents();*/
->>>>>>> 32b8522b01460f19f94a49853fe80f620cc97dd8
-/*         timetable = new Timetable();
-        initializeDay();
-        initializeTime();
-        initializeListViewTable();
-        initializeSavedEvents(); */
-=======
         // reads all the events and sets user
         initializeEvents();
         // initalizes start time and end time in choiceboxes
@@ -116,9 +102,7 @@ public class AppController {
         // initializes hours for listview "hours"
         initializeHoursListView();
         // resets all the different day-listviews and loads the events for the week
-/*         updateTimetableView(); */
-        //eksempler:        
-        //initializeSavedEvents();
+        updateTimetableView();
     }
 
     @FXML
@@ -133,14 +117,13 @@ public class AppController {
 
     @FXML
     void handleYear(ActionEvent event) {
-        /* updateTimetableView(); */
->>>>>>> controller
+        updateTimetableView();
     }
 
     //må ha en varselmelding dersom dato er satt til år over/under grensen, år 2010-2030
     @FXML
     void handleAddEvent(ActionEvent event) {
-/*         try{
+        try{
             Event ev = new Event(newTitle.getText(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
             timetable.addEvent(ev);
@@ -148,13 +131,13 @@ public class AppController {
             addEventWarning.setVisible(true);
             e.printStackTrace();
         }
-*/
+
         addEventWarning.setVisible(false);
         initializeTimes();
         newTitle.clear();
         newDescription.clear();
         newDate.getEditor().clear();
-        /* updateTimetableView(); */
+        updateTimetableView(); 
         
     }
 
@@ -194,36 +177,10 @@ public class AppController {
         }
     }
 
-<<<<<<< HEAD
-    private void initializeSavedEvents(){
-        /*for(Event event : timetable.getEventList()){
-            switch(event.getDayOfWeek()) {
-                case 1: // causes overflow if the description is too long. Will improve ui later.
-            switch(event.getTitle()) {
-                case "monday": // causes overflow if the description is too long. Will improve ui later.
-                    monday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
-                    break;
-                case 2:
-                    tuesday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
-                    break;
-                case 3:
-                    wednesday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
-                    break;
-                case 4:
-                    thursday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());
-                    break;
-                case 5:
-                    friday.getItems().set(Integer.parseInt(event.getTimeStart().substring(0, 2))-8, event.getTitle() + ": " + event.getDescription());   
-                    break;
-                default:
-                    break;
-              }
-<<<<<<< HEAD
-=======
     private void initializeEvents(){
         user = new User("mainUser");
-/*         Json RW = new Json();
-        RW.read(); */
+        Json RW = new Json();
+        RW.read(user);
     }
 
     private void initializeHoursListView(){

@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Json {
     
     // Method for reading from json file
-    public User read(User user, int week, int year) {
+    public User read(User user) {
         User tempUser = new User("1");
         ObjectMapper objectMapper = new ObjectMapper();
         TimetableModuleRead readModule = new TimetableModuleRead(); 
