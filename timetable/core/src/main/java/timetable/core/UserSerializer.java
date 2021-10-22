@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 
-import timetable.core.User;
+
 public class UserSerializer extends JsonSerializer<User>{
     
     @Override

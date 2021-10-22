@@ -1,10 +1,9 @@
-package timetable.json;
+package timetable.core;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
-import timetable.core.Event;
 
 import java.io.IOException;
 
@@ -19,9 +18,7 @@ public class EventSerializer extends JsonSerializer<Event> {
         jsonGenerator.writeStringField("time-start", event.getTimeStart());
         jsonGenerator.writeStringField("time-end", event.getTimeEnd());
         jsonGenerator.writeStringField("description", event.getDescription());
-        //jsonGenerator.writeStringField("week", event.getWeek()); 
         jsonGenerator.writeStringField("date", event.getDate());
-        // Serialize Event-object
         jsonGenerator.writeEndObject();
     
     }

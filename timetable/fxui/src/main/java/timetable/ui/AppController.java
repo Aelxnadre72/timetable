@@ -46,11 +46,11 @@ public class AppController {
 
     @FXML
     void initialize() {
-        timetable = new Timetable();
+      /*  timetable = new Timetable();
         initializeDay();
         initializeTime();
         initializeListViewTable();
-        initializeSavedEvents();
+        initializeSavedEvents();*/
     }
 
     @FXML
