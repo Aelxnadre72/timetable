@@ -90,6 +90,8 @@ public class AppController {
 
     private ListView<String> selectedDay;
 
+    private Json RW;
+
     @FXML
     void initialize() {
         // reads all the events and sets user
@@ -138,8 +140,9 @@ public class AppController {
         newTitle.clear();
         newDescription.clear();
         newDate.getEditor().clear();
-        updateTimetableView(); 
-        
+        updateTimetableView();
+
+        RW.write(user);
     }
 
     @FXML
@@ -180,7 +183,7 @@ public class AppController {
 
     private void initializeEvents(){
         user = new User("mainUser");
-        Json RW = new Json();
+        RW = new Json();
         RW.read(user);
     }
 
