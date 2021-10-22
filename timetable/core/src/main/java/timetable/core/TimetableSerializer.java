@@ -16,13 +16,20 @@ class TimetableSerializer extends JsonSerializer<Timetable> {
         jGenerator.writeStartObject();
         jGenerator.writeNumberField("week", timetable.getWeek());
         jGenerator.writeNumberField("year", timetable.getYear());
-        if (timetable instanceof Timetable) {
+
+/*         spotbugs ga bug på linjen timetable instanceof Timetable om at den var unødvendig, kommenterer den derfor ut:
+        [ERROR] Medium: instanceof will always return true for all non-null 
+        values in timetable.core.TimetableSerializer.serialize(Timetable, JsonGenerator, SerializerProvider), 
+        since all timetable.core.Timetable are instances of timetable.core.Timetable [timetable.core.TimetableSerializer] 
+        At TimetableSerializer.java:[line 19] BC_VACUOUS_INSTANCEOF */
+
+        //if (timetable instanceof Timetable) {
             jGenerator.writeArrayFieldStart("events");
             for (Event event : timetable.getEventList()) {
                 jGenerator.writeObject(event);
             }
             jGenerator.writeEndArray();
-        }
+        //}
         jGenerator.writeEndObject();
     }
     

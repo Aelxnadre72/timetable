@@ -18,17 +18,8 @@
         <skipUiTests>false</skipUiTests>
     </properties>
 
-<<<<<<< HEAD
-        
-
-
-        
-
-
-=======
 
     <dependencies>
->>>>>>> plugins
         <dependency>
             <groupId>it1901</groupId>
             <artifactId>core</artifactId>

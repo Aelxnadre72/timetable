@@ -16,10 +16,10 @@ public class Timetable {
         // reads and creates events from json and 
         // eventIO.read();
         // set week (53 because some years have 53 weeks)
-        if(week<1 && week>53){
+        if(week<1 || week>53){
             throw new IllegalArgumentException("The week number is invalid.");
         }
-        if(year<2020 && year>2030){
+        if(year<2020 || year>2030){
             throw new IllegalArgumentException("The year is invalid.");
         }
         this.week = week;

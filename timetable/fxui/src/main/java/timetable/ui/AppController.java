@@ -173,10 +173,10 @@ public class AppController {
         if(changed == false){
             selectedDay.getSelectionModel().select(index);
         }
-        if(selectedDay.getSelectionModel().getSelectedItem() != ""){
+        if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
             eventInfo.setText("Event information:");
             // set right event info later
-            user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
+            // user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
             title.setText(selectedDay.getSelectionModel().getSelectedItem());
         }
         else{
@@ -313,12 +313,12 @@ public class AppController {
 
         int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if(h>9){
+            if(h == 23){
+                newStartTime.setValue("23:00");
+                newEndTime.setValue("00:00" );
+            }
             newStartTime.setValue(Integer.toString(h) + ":00" );
             newEndTime.setValue(Integer.toString(h+1) + ":00");
-        }
-        else if(h == 23){
-            newStartTime.setValue("23:00");
-            newEndTime.setValue("00:00" );
         }
         else{
             if(h<9){
