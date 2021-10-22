@@ -19,7 +19,7 @@ public class Timetable {
         if(week<1 && week>53){
             throw new IllegalArgumentException("The week number is invalid.");
         }
-        if(year<1921 && year>2121){
+        if(year<2020 && year>2030){
             throw new IllegalArgumentException("The year is invalid.");
         }
         this.week = week;
