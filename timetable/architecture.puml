@@ -2,13 +2,29 @@
 
 component core{
     package timetable.core
+    package timetable.json
 }
 
-component fxui{
+timetable.core --> timetable.json
+
+component jackson {
+    timetable.json --> jackson
+}
+
+component fxui {
     package timetable.ui
 }
 
-timetable.ui ..> timetable.core
-timetable.ui ..> timetable.json
+timetable.ui --> timetable.core
+timetable.ui --> timetable.json
+
+component javafx { 
+    component fxml{
+
+    }
+}
+
+fxui --> javafx
+fxui --> fxml
 
 @enduml
