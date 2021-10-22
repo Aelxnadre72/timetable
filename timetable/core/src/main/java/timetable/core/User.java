@@ -43,8 +43,7 @@ public class User {
     // get timetable-object with key k
     public Timetable getTimetable(String k){
         if(!timetableMap.containsKey(k)){
-            Timetable timetable = new Timetable(Integer.parseInt(k.substring(0, k.length()-4)), Integer.parseInt(k.substring(k.length()-4)));
-            addTimetable(timetable);
+            return null;
         }
         return timetableMap.get(k);
     }

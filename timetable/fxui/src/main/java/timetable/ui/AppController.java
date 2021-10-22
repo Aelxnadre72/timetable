@@ -130,8 +130,14 @@ public class AppController {
         try{
             Event ev = new Event(newTitle.getText(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
+            if(timetable == null){
+                timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), Integer.parseInt(String.valueOf(ev.getYear())));
+                user.addTimetable(timetable);
+            }
             timetable.addEvent(ev);
         }catch(Exception e){
+            //må legge til warning og constraint dersom event med samme navn på samme dag eller ugyldig klokkeslett eller dato
+            // burde ha tilbakemelding på at event er lagt til
             addEventWarning.setVisible(true);
             e.printStackTrace();
         }
@@ -142,7 +148,7 @@ public class AppController {
         newDate.getEditor().clear();
         updateTimetableView();
 
-        RW.write(user);
+/*         RW.write(user); */
     }
 
     @FXML
@@ -169,10 +175,11 @@ public class AppController {
         }
         if(selectedDay.getSelectionModel().getSelectedItem() != ""){
             eventInfo.setText("Event information:");
+            // set right event info later
+            user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
             title.setText(selectedDay.getSelectionModel().getSelectedItem());
         }
         else{
-            //burde ha en display event metode som tar inn en timetable basert på hva som står i selecteditem. Hvis tom så sender inne null og setter alt til None.
             eventInfo.setText("Click on an event to get more information.");
             title.setText("");
             date.setText("");

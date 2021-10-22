@@ -20,6 +20,7 @@ public class Json {
         TimetableModuleRead readModule = new TimetableModuleRead(); 
         objectMapper.registerModule(readModule); 
         try {
+            // getClass().getClassLoader().getResource("Events.json").getFile() ?
             tempUser = objectMapper.readValue(new File("timetable\\core\\src\\main\\resources\\Events.json"), User.class);
             
         } catch (JsonProcessingException e) { 
