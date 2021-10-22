@@ -232,11 +232,21 @@
                                           <Insets top="3.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button mnemonicParsing="false" onAction="#handleAddEvent" prefHeight="20.0" prefWidth="134.0" text="ADD EVENT" textFill="#2980b9">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Button>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label prefHeight="17.0" prefWidth="146.0" />
+                                          <Button mnemonicParsing="false" onAction="#handleAddEvent" prefHeight="25.0" prefWidth="125.0" text="ADD EVENT" textAlignment="CENTER" textFill="#2980b9">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Text fx:id="addEventWarning" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The event can not overlap an existing event!" visible="false" wrappingWidth="146.63671875">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
@@ -361,6 +371,11 @@
                </font>
             </Label>
             <ChoiceBox fx:id="year" prefWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#handleYear" text="GO">
+               <HBox.margin>
+                  <Insets left="1.0" />
+               </HBox.margin>
+            </Button>
          </children></HBox>
    </children>
 </Pane>
