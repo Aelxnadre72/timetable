@@ -16,9 +16,6 @@ Writing and reading from Json files is implemented in [Json.java](timetable/core
 The write-method writes all timetables and events for the specific user using a hierarchy of serializers: user [UserSerializer.java](timetable/core/src/main/java/timetable/core/UserSerializer.java), timetable [TimetableSerializer.java](timetable/core/src/main/java/timetable/core/TimetableSerializer.java), event [EventSerializer.java](timetable/core/src/main/java/timetable/core/EventSerializer.java) The serializers gets initialized in [TimetableModuleWrite.java](timetable/core/src/main/java/timetable/core/TimetableModuleWrite.java).
 These methods for reading and writing gets called in the controller, and can be visible in the timetable gui.
 
-
-
-
 # fxui 
 
 ## Controller 
@@ -31,6 +28,8 @@ At the right hand side, an event will show up when it's clicked on on the the ti
 
 # Tests
 [EventTest.java](timetable/core/src/test/java/timetable/core/EventTest.java) have Junit tests that tests the event class (the constructor and the setters) and it also has exception tests.
+[TimetableTest.java](timetable/core/src/test/java/timetable/core/TimetableTest.java) have Junit tests that test the timetable class (the constructor and adding events to the timetable).
+[UserTest.java](timetable/core/src/test/java/timetable/core/UserTest.java) have junit tests that tests adding a timetable to a user. 
 
 We also implemnted other tools to check code quality:
 * Spotbugs
