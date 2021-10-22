@@ -1,5 +1,6 @@
 package timetable.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
 import timetable.core.Event;
@@ -123,6 +124,7 @@ public class AppController {
     //må ha en varselmelding dersom dato er satt til år over/under grensen, år 2010-2030
     @FXML
     void handleAddEvent(ActionEvent event) {
+        addEventWarning.setVisible(false);
         try{
             Event ev = new Event(newTitle.getText(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
@@ -132,7 +134,6 @@ public class AppController {
             e.printStackTrace();
         }
 
-        addEventWarning.setVisible(false);
         initializeTimes();
         newTitle.clear();
         newDescription.clear();
@@ -199,12 +200,7 @@ public class AppController {
                 }
             }
             hours.getItems().add("23:00-00:00");
->>>>>>> controller
         }
-=======
-            }
-        }*/
->>>>>>> 32b8522b01460f19f94a49853fe80f620cc97dd8
     }
 
     private void resetDaysListView(){
