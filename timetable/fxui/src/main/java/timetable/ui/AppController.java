@@ -59,6 +59,9 @@ public class AppController {
     private TextField newDescription;
 
     @FXML
+    private Text eventInfo;
+
+    @FXML
     private Text title;
 
     @FXML
@@ -81,13 +84,11 @@ public class AppController {
 
     private User user;
 
-    private Timetable timetable;
-
     private ListView<String> selectedDay;
 
     @FXML
     void initialize() {
-//        timetable = new Timetable();
+        initializeEvents();
         initializeTimes();
         initializeYear();
         initializeHoursListView();
@@ -151,8 +152,19 @@ public class AppController {
         }
         else{
             //burde ha en display event metode som tar inn en timetable basert på hva som står i selecteditem. Hvis tom så sender inne null og setter alt til None.
-            title.setText("None");
+            eventInfo.setText("Click on an event to get more information.");
+            title.setText("");
+            date.setText("");
+            time.setText("");
+            description.setText("");
+
         }
+    }
+
+    private void initializeEvents(){
+        user = new User("mainUser");
+/*         Json RW = new Json();
+        RW.read(); */
     }
 
     private void initializeHoursListView(){
@@ -183,6 +195,7 @@ public class AppController {
     }
 
     private void initializeSavedEvents(){
+
 /*         for(Event event : timetable.getEventList()){
             switch(event.getDay()) {
                 case "monday": // causes overflow if the description is too long. Will improve ui later.
@@ -210,7 +223,7 @@ public class AppController {
         // when choosing a new year, should display the week you were on for that year. week 53 should appear/dissappear 
         // depending on if the year has 53 weeks. if week 53 is selected, then 52 should be diplayed if the new year doesn have 53.
         // or maybe just start on the current week of the current year, but with the newly chosen year instead
-        for(int i = 2010; i<2031; i++){
+        for(int i = 2020; i<2031; i++){
             year.getItems().add(Integer.toString(i));
         }
         //should show the current year and current week timetable when launching app
