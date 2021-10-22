@@ -106,6 +106,9 @@ public class Event {
 
     // converts from string to LocalTime format
     private static LocalTime timeParser(String s){
+        if(!isValidTime(s)){
+            throw new IllegalArgumentException();
+        }
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
             return LocalTime.parse(s, formatter);
@@ -117,6 +120,9 @@ public class Event {
 
     // converts from string to LocalTime format
     private static LocalDate dateParser(String s){
+        if(!isValidDate(s)){
+            throw new IllegalArgumentException();
+        }
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             return LocalDate.parse(s, formatter);
@@ -124,11 +130,47 @@ public class Event {
             e.printStackTrace();
         }
         return null;
-    }    
+    } 
+    
+    private static boolean isValidDate(String date){
+        if (date.length()!=10){
+            return false;
+        }
+        else if(!(date.substring(2,3).equals(".") && date.substring(5,6).equals("."))){
+            return false;
+        }
+        else if(Integer.parseInt(date.substring(6, 10)) < 2020 || Integer.parseInt(date.substring(6, 10)) > 2030){
+            return false;
+        }
+        else if(!(Integer.parseInt(date.substring(0, 2)) < 32 && Integer.parseInt(date.substring(0, 2)) > 0|| Integer.parseInt(date.substring(3, 5)) > 0 && Integer.parseInt(date.substring(3, 5)) < 13)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+    private static boolean isValidTime(String time){
+        if (time.length()!=5){
+            return false;
+        }  
+        else if(!(time.substring(2,3).equals(":"))){
+            return false;
+        }
+        else if(Integer.parseInt(time.substring(0, 2)) < 0 || Integer.parseInt(time.substring(0, 2)) > 23){
+            return false;
+        }
+        else if(Integer.parseInt(time.substring(3, 5)) < 0 || Integer.parseInt(time.substring(3,5)) > 59) {
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     
 
     public static void main(String[] args) {
-        Event test = new Event("title", "desc", "09:00", "10:00", "29.04.2000");
+        Event test = new Event("title", "desc", "09:00", "10:00", "29.04.2020");
         System.out.println(test.getDayOfWeek());
     }
 
