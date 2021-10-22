@@ -71,5 +71,8 @@ public class EventTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work","At the office","four","20:00","Monday"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work","At the office","08:00","99:00","Monday"));
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> plugins
     } */
 }
