@@ -70,18 +70,17 @@ public class Timetable {
             }
 
             if(eventDate.equals(e.getDate())){
-                return true;
+                if(eventEndTime > eStartTime && eventEndTime <= eEndTime){
+                    return true;
+                }
+                else if(eventStartTime < eEndTime && eventStartTime >= eStartTime){
+                    return true;
+                }
+                else if(eventStartTime < eStartTime && eventEndTime > eEndTime){
+                    return true;
+                }
             }
             else if(eventTitle.equals(e.getTitle())){
-                return true;
-            }
-            else if(eventEndTime > eStartTime && eventEndTime <= eEndTime){
-                return true;
-            }
-            else if(eventStartTime < eEndTime && eventStartTime >= eStartTime){
-                return true;
-            }
-            else if(eventStartTime < eStartTime && eventEndTime > eEndTime){
                 return true;
             }
         }
