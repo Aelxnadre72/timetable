@@ -104,8 +104,6 @@ public class AppController {
 
     @FXML
     void initialize() {
-        // set default locale for datepicker
-        Locale.setDefault(Locale.UK);
         // reads all the events and sets user
         initializeEvents();
         // initalizes start time, end time and category choiceboxes
@@ -179,6 +177,10 @@ public class AppController {
             !newEndTime.getValue().equals("00:00")){
                 addEventWarning.setText("The chosen timeframe of the event is invalid!");
                 throw new IllegalArgumentException("The chosen timeframe of the event is invalid!");
+            }
+            else if(newTitle.getText() == "" || newDescription.getText() == ""){
+                addEventWarning.setText("Fields can not be empty!");
+                throw new IllegalArgumentException("One or more of the fields are empty!");
             }
             else{
                 // if timetable.addEvent throws exception because of overlapping events
@@ -386,6 +388,11 @@ public class AppController {
 
     // adds the hours to startTime and endTime combobox and adds the categories to the newCategory choicebox
     private void initializeChoiceboxes(){
+
+        // set default locale for datepicker and default value to todays date
+        Locale.setDefault(Locale.UK);
+        newDate.setValue(LocalDate.now());
+
         // sets the categories to choose from in the choicebox
         newCategory.getItems().setAll("social", "work", "exercise", "eat", "chores", "appointment", "school", "other");
         newCategory.setValue("social");
