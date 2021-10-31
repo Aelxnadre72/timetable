@@ -30,6 +30,7 @@ public class EventDeserializer extends JsonDeserializer<Event> {
     Event deserialize(JsonNode jNode) {
         if (jNode instanceof ObjectNode objNode) {
             String title = "";
+            String category = ""; //added this line after adding attribute category in event-class
             String desc = "";
             String timeStart = "";
             String timeEnd = "";
@@ -37,6 +38,11 @@ public class EventDeserializer extends JsonDeserializer<Event> {
             if (objNode.get("title") instanceof TextNode) {
                 JsonNode titleNode = objNode.get("title");
                 title = titleNode.asText();
+            }
+            //added this after adding attribute category in event-class
+            if (objNode.get("category") instanceof TextNode) {
+                JsonNode categoryNode = objNode.get("category");
+                category = categoryNode.asText();
             }
             if (objNode.get("description") instanceof TextNode) {
                 JsonNode descNode = objNode.get("description");
@@ -55,7 +61,8 @@ public class EventDeserializer extends JsonDeserializer<Event> {
                 JsonNode dateNode = objNode.get("date");
                 date = dateNode.asText();
             }
-            Event event = new Event(title, desc, timeStart, timeEnd, date);
+            //edtied this after adding attribute category in event-class
+            Event event = new Event(title, category, desc, timeStart, timeEnd, date);
                 
             return event;
         }

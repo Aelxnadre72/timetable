@@ -26,31 +26,26 @@ public class Timetable {
         this.year = year;
     }
 
-    // return complete list with events
+    // return a copy of EventList with all the events
     public List<Event> getEventList() {
-        return eventList;
-    }
-
-    // return last event in EventList
-    // used in eventIO.java after adding a new event from the ui
-    public Event getLastEvent(){
-        if(eventList.isEmpty()){
-            throw new IllegalStateException("The eventList is empty.");
-        }
-        return eventList.get(eventList.size()-1);
+        return new ArrayList<Event>(eventList);
     }
 
     // add new event in timetable
     public void addEvent(Event event) {
         if(isDuplicateEvent(event)){
-            throw new IllegalArgumentException("The event given to addEvent already exist.");
+            throw new IllegalArgumentException("The event given to addEvent is colliding (time and date) with an existing event.");
         }
         this.eventList.add(event);
     }
 
-    // remove event from timetable
-    public void removeEvent(Event event) {
-        this.eventList.remove(event);
+    // remove event with specific title, start time and date from eventList 
+    public void removeEvent(String timeStart, String date) {
+        for(Event ev : eventList){
+            if(timeStart.equals(ev.getTimeStart()) && date.equals(ev.getDate())){
+                this.eventList.remove(ev);
+            }
+        }
     }
 
     // check if the event already exists in eventList
@@ -61,7 +56,6 @@ public class Timetable {
             eventEndTime = 24;
         }
         String eventDate = event.getDate();
-        String eventTitle = event.getTitle();
         for(Event e:eventList){
             int eStartTime = Integer.parseInt(e.getTimeStart().substring(0, 2));
             int eEndTime = Integer.parseInt(e.getTimeEnd().substring(0, 2));
@@ -79,9 +73,6 @@ public class Timetable {
                 else if(eventStartTime < eStartTime && eventEndTime > eEndTime){
                     return true;
                 }
-            }
-            else if(eventTitle.equals(e.getTitle())){
-                return true;
             }
         }
         return false;

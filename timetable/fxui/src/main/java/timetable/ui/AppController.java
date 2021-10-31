@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Locale;
+
 import timetable.core.Event;
 import timetable.core.Json;
 import timetable.core.Timetable;
@@ -49,6 +52,9 @@ public class AppController {
     private TextField newTitle;
 
     @FXML
+    private ChoiceBox<String> newCategory;
+
+    @FXML
     private DatePicker newDate;
 
     @FXML
@@ -65,6 +71,9 @@ public class AppController {
 
     @FXML
     private Text title;
+
+    @FXML
+    private Text category;
 
     @FXML
     private Text date;
@@ -95,10 +104,12 @@ public class AppController {
 
     @FXML
     void initialize() {
+        // set default locale for datepicker
+        Locale.setDefault(Locale.UK);
         // reads all the events and sets user
         initializeEvents();
-        // initalizes start time and end time in choiceboxes
-        initializeTimes();
+        // initalizes start time, end time and category choiceboxes
+        initializeChoiceboxes();
         // initializes years in choicebox
         initializeYear();
         // initializes week number text
@@ -109,47 +120,90 @@ public class AppController {
         updateTimetableView();
     }
 
+    // sets the chosen week and updates the timetableview to show events for that week
     @FXML
     void handleWeeks(ActionEvent event) {
-        //should show the current year and current week timetable when launching app
-        //week 53 is not implemented, needs to check if week 53 exists for that year and set visbility
          if (event.getSource() instanceof Labeled w) {
             weekNumber.setText(w.getText());
             updateTimetableView();
          }
     }
 
+    // shows the previous week
+    @FXML
+    void handlePrevWeek(ActionEvent event) {
+        // if first week of the year, go to the last week of the year
+        if(weekNumber.getText().equals("1")){
+            if(extraWeek.isVisible()){
+                weekNumber.setText("53");
+            }
+            else{
+                weekNumber.setText("52");
+            }
+        }
+        else{
+            weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())-1));
+        }
+        updateTimetableView();
+    }
+
+    // shows the next week
+    @FXML
+    void handleNextWeek(ActionEvent event) {
+        // if last week of the year, go to first week of the year
+        if(extraWeek.isVisible() && weekNumber.getText().equals("53") ||
+        !extraWeek.isVisible() && weekNumber.getText().equals("52")){
+            weekNumber.setText("1");
+        }
+        else{
+            weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())+1));
+        }
+        updateTimetableView();
+    }
+
+    // updates the tableview to show the same week as before, but the new chosen year. Shows 52 or 53 weeks depending on the year
     @FXML
     void handleYear(ActionEvent event) {
         updateTimetableView();
         initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
 
-    //må ha en varselmelding dersom dato er satt til år over/under grensen, år 2010-2030
+    // adding a new event. Checks if time is valid and the new event does not overlap an existing event. Creates a new timetable for the week if does not already exist.
     @FXML
     void handleAddEvent(ActionEvent event) {
+        // hides the warning
         addEventWarning.setVisible(false);
         try{
-            Event ev = new Event(newTitle.getText(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+            // if end time is before or equal to start time, excluding when both start and end is 00:00, then set appropriate error message to addEventWarning
+            if(Integer.parseInt(newEndTime.getValue().substring(0, 2)) <= Integer.parseInt(newStartTime.getValue().substring(0, 2)) && 
+            !newEndTime.getValue().equals("00:00")){
+                addEventWarning.setText("The chosen timeframe of the event is invalid!");
+                throw new IllegalArgumentException("The chosen timeframe of the event is invalid!");
+            }
+            else{
+                // if timetable.addEvent throws exception because of overlapping events
+                addEventWarning.setText("The event can not overlap an existing event!");
+            }
+            
+            Event ev = new Event(newTitle.getText(), newCategory.getValue(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
+            // if the timetable for the week of the new event does not exist, then creates it and adds the timetable to user
             if(timetable == null){
                 timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), Integer.parseInt(String.valueOf(ev.getYear())));
                 user.addTimetable(timetable);
             }
             timetable.addEvent(ev);
         }catch(Exception e){
-            //må legge til warning og constraint dersom event med samme navn på samme dag eller ugyldig klokkeslett eller dato
-            // burde ha tilbakemelding på at event er lagt til
+            // shows the warning
             addEventWarning.setVisible(true);
             e.printStackTrace();
         }
 
-        initializeTimes();
+        initializeChoiceboxes();
         newTitle.clear();
+        newCategory.getSelectionModel().selectFirst();
         newDescription.clear();
-        newDate.getEditor().clear();
         updateTimetableView();
-
 /*         RW.write(user); */
     }
 
@@ -159,6 +213,7 @@ public class AppController {
         hours.getSelectionModel().clearSelection();
     }
 
+    // connects all the different listview days so only 1 cell i selected between all of the listviews. Shows the event info of the selected cell.
     @FXML
     void handleClickedEvent(MouseEvent event) {
         int index = selectedDay.getSelectionModel().getSelectedIndex();
@@ -176,6 +231,7 @@ public class AppController {
         if(changed == false){
             selectedDay.getSelectionModel().select(index);
         }
+        // display the event info of the selected event-cell
         if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
             eventInfo.setText("Event information:");
             // set right event info later
@@ -183,20 +239,24 @@ public class AppController {
             title.setText(selectedDay.getSelectionModel().getSelectedItem());
         }
         else{
+            // clears the event info if an empty cell is selected
             eventInfo.setText("Click on an event to get more information.");
             title.setText("");
+            category.setText("");
             date.setText("");
             time.setText("");
             description.setText("");
         }
     }
 
+    // reads all the events into user
     private void initializeEvents(){
         user = new User("mainUser");
         RW = new Json();
         RW.read(user);
     }
 
+    // adds all the hours into the hours-listview
     private void initializeHoursListView(){
          if(hours.getItems().isEmpty()){
             for(int i = 0; i<23; i++){
@@ -216,6 +276,7 @@ public class AppController {
         }
     }
 
+    // clears all the different day-listviews
     private void resetDaysListView(){
         for(ListView<String> day : Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday)){
             day.getItems().clear();
@@ -228,8 +289,23 @@ public class AppController {
         resetDaysListView();
         //get timetable with key weeknumber+year
         Timetable chosenWeek = user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
+
         if(chosenWeek != null){
-            for(Event event : chosenWeek.getEventList()){
+            // get a copy of a list with all the events in the chosen week
+            List<Event> chosenWeekEventList = chosenWeek.getEventList();
+            
+            if(chosenWeek.getWeek() == 53){
+                // get the timetable for week 53 for the next year because if a year has 53 weeks than roughly half of
+                // that week will technically be in the next year. Example: week 53 in year 2020 does have dates that
+                // is in 2021. 
+                Timetable weekNextYear = user.getTimetable(String.valueOf(chosenWeek.getWeek()) + String.valueOf(chosenWeek.getYear()+1));
+                if(weekNextYear != null){
+                    // solves problem by showing the events for week 53 for both the year with 53 weeks and the next year
+                    chosenWeekEventList.addAll(weekNextYear.getEventList());
+                }
+            }
+
+            for(Event event : chosenWeekEventList){
                 int eventTimeStart = Integer.parseInt(event.getTimeStart().substring(0, 2));
                 int eventTimeEnd = Integer.parseInt(event.getTimeEnd().substring(0, 2));
                 if(eventTimeEnd == 0){
@@ -237,39 +313,39 @@ public class AppController {
                 }
                 //rewrite so the same code is only written once
                 switch(event.getDayOfWeek()) {
-                    case 1: // causes overflow if the description is too long. Will improve ui later.
+                    case 1:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            monday.getItems().set(i, event.getTitle());
+                            monday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     case 2:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            tuesday.getItems().set(i, event.getTitle());
+                            tuesday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     case 3:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            wednesday.getItems().set(i, event.getTitle());
+                            wednesday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     case 4:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            thursday.getItems().set(i, event.getTitle());
+                            thursday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     case 5:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            friday.getItems().set(i, event.getTitle());
+                            friday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     case 6:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            saturday.getItems().set(i, event.getTitle());
+                            saturday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     case 7:
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            sunday.getItems().set(i, event.getTitle());
+                            sunday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
                         }
                         break;
                     default:
@@ -279,21 +355,19 @@ public class AppController {
         }
     }
 
+    // add the years 2020 to 2030 to the year-choicebox
     private void initializeYear(){
-        // when choosing a new year, should display the week you were on for that year. week 53 should appear/dissappear 
-        // depending on if the year has 53 weeks. if week 53 is selected, then 52 should be diplayed if the new year doesn have 53.
-        // or maybe just start on the current week of the current year, but with the newly chosen year instead
         for(int i = 2020; i<2031; i++){
             year.getItems().add(Integer.toString(i));
         }
-        //should show the current year and current week when launching app
+        //sets the default value of the year-choicebox to the current year
         String currentYear = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
         year.setValue(currentYear);
-
+        // shows the correct number of weeks of the current year (52 or 53)
         initializeNumberOfWeeks(currentYear);
     }
 
-    // shows 52 or 53 week-buttons in the scrollbar at the bottom depending on if the chosen year har 52 or 53 weeks
+    // shows 52 or 53 week-buttons in the scrollbar at the bottom depending on if the chosen year has 52 or 53 weeks
     private void initializeNumberOfWeeks(String year){
         Calendar c = Calendar.getInstance();
         c.set(Integer.parseInt(year), 11, 31);
@@ -310,9 +384,12 @@ public class AppController {
         weekNumber.setText(Integer.toString(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)));
     }
 
-    //start 23 og slutt 00 git exception: Index 23 out of bounds for length 23
-    //må endre slik at dersom feks 15 er valgt som start så vises kun 16 og senere på slutt. Bruk en onclick på start og slutt. og i lik verdien.
-    private void initializeTimes(){
+    // adds the hours to startTime and endTime combobox and adds the categories to the newCategory choicebox
+    private void initializeChoiceboxes(){
+        // sets the categories to choose from in the choicebox
+        newCategory.getItems().setAll("social", "work", "exercise", "eat", "chores", "appointment", "school", "other");
+        newCategory.setValue("social");
+
         if(newStartTime.valueProperty().getValue() == null){
             for(int i = 0; i<23; i++){
                 if(i>9){
@@ -334,6 +411,7 @@ public class AppController {
             newEndTime.getItems().add("00:00");
         }
 
+        // set the current time and current time + 1 hour as the default value for the time-choiceboxes
         int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if(h>9){
             if(h == 23){

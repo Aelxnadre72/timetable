@@ -8,7 +8,7 @@ public class TimetableTest {
     
     @Test
     public void testAddEvent(){
-        Event event = new Event("Homework", "At home", "14:00", "16:00", "22.11.2021");
+        Event event = new Event("Homework", "work", "At home", "14:00", "16:00", "22.11.2021");
         Timetable timetable = new Timetable(47, 2021);
         timetable.addEvent(event);
         Assertions.assertEquals(event, timetable.getEventList().get(0));
