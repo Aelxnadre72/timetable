@@ -1,5 +1,6 @@
 package timetable.ui;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -121,6 +122,7 @@ public class AppController {
     @FXML
     void handleYear(ActionEvent event) {
         updateTimetableView();
+        initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
 
     //må ha en varselmelding dersom dato er satt til år over/under grensen, år 2010-2030
@@ -151,6 +153,7 @@ public class AppController {
 /*         RW.write(user); */
     }
 
+    // Disables selecting a hours-cell (example 08:00-09:00) in the timetable
     @FXML
     void handleClickedHours(MouseEvent event) {
         hours.getSelectionModel().clearSelection();
@@ -232,6 +235,7 @@ public class AppController {
                 if(eventTimeEnd == 0){
                     eventTimeEnd = 24;
                 }
+                //rewrite so the same code is only written once
                 switch(event.getDayOfWeek()) {
                     case 1: // causes overflow if the description is too long. Will improve ui later.
                         for(int i = eventTimeStart; i < eventTimeEnd; i++){
@@ -282,10 +286,26 @@ public class AppController {
         for(int i = 2020; i<2031; i++){
             year.getItems().add(Integer.toString(i));
         }
-        //should show the current year and current week timetable when launching app
-        year.setValue(Integer.toString(Calendar.getInstance().get(Calendar.YEAR)));
+        //should show the current year and current week when launching app
+        String currentYear = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+        year.setValue(currentYear);
+
+        initializeNumberOfWeeks(currentYear);
     }
 
+    // shows 52 or 53 week-buttons in the scrollbar at the bottom depending on if the chosen year har 52 or 53 weeks
+    private void initializeNumberOfWeeks(String year){
+        Calendar c = Calendar.getInstance();
+        c.set(Integer.parseInt(year), 11, 31);
+        if(c.get(Calendar.WEEK_OF_YEAR) == 52){
+            extraWeek.setVisible(false);
+        }
+        else{
+            extraWeek.setVisible(true);
+        }
+    }
+
+    // sets the current week as the chosen week. The week number is displayed under the TIMETABLE header
     private void initializeWeekNumber(){
         weekNumber.setText(Integer.toString(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)));
     }
