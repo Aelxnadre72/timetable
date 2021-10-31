@@ -9,13 +9,15 @@ import java.util.Locale;
 
 public class Event {
     private String title;
+    private String category;
     private String description;
     private LocalTime timeStart;
     private LocalTime timeEnd;
     private LocalDate date;
     
-    public Event(String title, String description, String timeStart, String timeEnd, String date){
+    public Event(String title, String category, String description, String timeStart, String timeEnd, String date){
         this.title = title;
+        this.category = category;
         this.description = description;
         this.timeStart = timeParser(timeStart);
         this.timeEnd = timeParser(timeEnd);
@@ -30,6 +32,16 @@ public class Event {
     // set title
     public void setTitle(String title){
         this.title = title;
+    }
+
+    // get category
+    public String getCategory(){
+        return category;
+    }
+
+    // set category
+    public void setCategory(String category){
+        this.category = category;
     }
 
     // get description
@@ -175,7 +187,7 @@ public class Event {
     
 
     public static void main(String[] args) {
-        Event test = new Event("title", "desc", "09:00", "10:00", "29.04.2020");
+        Event test = new Event("title", "social", "desc", "09:00", "10:00", "29.04.2020");
         System.out.println(test.getDayOfWeek());
     }
 
