@@ -40,12 +40,8 @@ public class Timetable {
     }
 
     // remove event with specific title, start time and date from eventList 
-    public void removeEvent(String timeStart, String date) {
-        for(Event ev : eventList){
-            if(timeStart.equals(ev.getTimeStart()) && date.equals(ev.getDate())){
-                this.eventList.remove(ev);
-            }
-        }
+    public void removeEvent(Event event) {
+        eventList.remove(event);
     }
 
     // check if the event already exists in eventList
