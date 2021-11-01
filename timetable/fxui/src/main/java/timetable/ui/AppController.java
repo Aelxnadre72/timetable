@@ -2,10 +2,13 @@ package timetable.ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import timetable.core.Event;
 import timetable.core.Json;
@@ -102,8 +105,15 @@ public class AppController {
 
     private Json RW;
 
+    // list containing all of the listview-days
+    private List<ListView<String>> days;
+
+    // overview over events to show the selected event information 
+    private Map<ListView<String>, List<Event>> eventMap = new HashMap<>();
+
     @FXML
     void initialize() {
+        days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
         // reads all the events and sets user
         initializeEvents();
         // initalizes start time, end time and category choiceboxes
@@ -130,7 +140,7 @@ public class AppController {
     // shows the previous week
     @FXML
     void handlePrevWeek(ActionEvent event) {
-        // if first week of the year, go to the last week of the year
+        // if first week of the year, go to the last week of the year (52 or 53)
         if(weekNumber.getText().equals("1")){
             if(extraWeek.isVisible()){
                 weekNumber.setText("53");
@@ -139,6 +149,7 @@ public class AppController {
                 weekNumber.setText("52");
             }
         }
+        // else go to previous week
         else{
             weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())-1));
         }
@@ -153,6 +164,7 @@ public class AppController {
         !extraWeek.isVisible() && weekNumber.getText().equals("52")){
             weekNumber.setText("1");
         }
+        // else go to next week
         else{
             weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())+1));
         }
@@ -178,12 +190,13 @@ public class AppController {
                 addEventWarning.setText("The chosen timeframe of the event is invalid!");
                 throw new IllegalArgumentException("The chosen timeframe of the event is invalid!");
             }
-            else if(newTitle.getText() == "" || newDescription.getText() == ""){
+            // if title or description fields are empty
+            else if(newTitle.getText().equals("") || newDescription.getText().equals("")){
                 addEventWarning.setText("Fields can not be empty!");
                 throw new IllegalArgumentException("One or more of the fields are empty!");
             }
+            // if timetable.addEvent throws exception because of overlapping events
             else{
-                // if timetable.addEvent throws exception because of overlapping events
                 addEventWarning.setText("The event can not overlap an existing event!");
             }
             
@@ -200,13 +213,16 @@ public class AppController {
             addEventWarning.setVisible(true);
             e.printStackTrace();
         }
-
+        // resets the choiceboxes and datepicker
         initializeChoiceboxes();
         newTitle.clear();
         newCategory.getSelectionModel().selectFirst();
         newDescription.clear();
+        // updates the listviews for all the days
         updateTimetableView();
-/*         RW.write(user); */
+        // there is currently an issue with finding the path of the file to read and write to in json.java
+        // can comment out this line if you do not want to receive the error messages relating to this problem when running app, until the problem is resolved
+        RW.write(user); // should write every event in user to json (replacing the previous content of the json file)
     }
 
     // Disables selecting a hours-cell (example 08:00-09:00) in the timetable
@@ -220,7 +236,7 @@ public class AppController {
     void handleClickedEvent(MouseEvent event) {
         int index = selectedDay.getSelectionModel().getSelectedIndex();
         Boolean changed = false;
-        for(ListView<String> day : Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday)){
+        for(ListView<String> day : days){
             if(!(day.getSelectionModel().getSelectedItem() == null)){
                 if(selectedDay != day && changed == false){
                     selectedDay = day;
@@ -236,9 +252,13 @@ public class AppController {
         // display the event info of the selected event-cell
         if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
             eventInfo.setText("Event information:");
-            // set right event info later
-            // user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
-            title.setText(selectedDay.getSelectionModel().getSelectedItem());
+            // get the selected event from eventMap and display the information under Event information in ui
+            Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
+            title.setText(selectedEvent.getTitle());
+            category.setText(selectedEvent.getCategory());
+            date.setText(selectedEvent.getDate());
+            time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
+            description.setText(selectedEvent.getDescription());
         }
         else{
             // clears the event info if an empty cell is selected
@@ -255,7 +275,9 @@ public class AppController {
     private void initializeEvents(){
         user = new User("mainUser");
         RW = new Json();
-        RW.read(user);
+        // there is currently an issue with finding the path of the file to read and write to in json.java
+        // can comment out this line if you do not want to receive the error messages relating to this problem when running the app
+        RW.read(user); // should read every event to user
     }
 
     // adds all the hours into the hours-listview
@@ -278,11 +300,13 @@ public class AppController {
         }
     }
 
-    // clears all the different day-listviews
+    // clears all the different day-listviews and eventMap(-keeps track of events to display event info when selecting an event)
     private void resetDaysListView(){
-        for(ListView<String> day : Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday)){
+        eventMap.clear();
+        for(ListView<String> day:days){
             day.getItems().clear();
             day.getItems().addAll("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+            eventMap.put(day, Arrays.asList(null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
         }
         selectedDay = monday;
     }
@@ -313,46 +337,12 @@ public class AppController {
                 if(eventTimeEnd == 0){
                     eventTimeEnd = 24;
                 }
-                //rewrite so the same code is only written once
-                switch(event.getDayOfWeek()) {
-                    case 1:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            monday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    case 2:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            tuesday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    case 3:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            wednesday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    case 4:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            thursday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    case 5:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            friday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    case 6:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            saturday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    case 7:
-                        for(int i = eventTimeStart; i < eventTimeEnd; i++){
-                            sunday.getItems().set(i, event.getCategory() + ": " + event.getTitle());
-                        }
-                        break;
-                    default:
-                        break;
-                  }
+
+                // the day of of the current event from chosenWeekEventList
+                for(int i = eventTimeStart; i < eventTimeEnd; i++){
+                    days.get(event.getDayOfWeek()-1).getItems().set(i, event.getCategory() + ": " + event.getTitle());
+                    eventMap.get(days.get(event.getDayOfWeek()-1)).set(i, event);
+                }
             }
         }
     }
@@ -394,7 +384,7 @@ public class AppController {
         newDate.setValue(LocalDate.now());
 
         // sets the categories to choose from in the choicebox
-        newCategory.getItems().setAll("social", "work", "exercise", "eat", "chores", "appointment", "school", "other");
+        newCategory.getItems().setAll("social", "work", "exercise", "eat", "chore", "appointment", "school", "other");
         newCategory.setValue("social");
 
         if(newStartTime.valueProperty().getValue() == null){
