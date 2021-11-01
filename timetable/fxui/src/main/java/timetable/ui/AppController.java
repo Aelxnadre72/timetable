@@ -88,6 +88,9 @@ public class AppController {
     private Text description;
 
     @FXML
+    private Button deleteButton;
+
+    @FXML
     private Text weekNumber;
 
     @FXML
@@ -259,6 +262,7 @@ public class AppController {
             date.setText(selectedEvent.getDate());
             time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
             description.setText(selectedEvent.getDescription());
+            deleteButton.setVisible(true);
         }
         else{
             // clears the event info if an empty cell is selected
@@ -268,7 +272,25 @@ public class AppController {
             date.setText("");
             time.setText("");
             description.setText("");
+            deleteButton.setVisible(false);
         }
+    }
+    
+    // deletes the selected event, updates the timetable and removes the event information and hides the delete button
+    @FXML
+    void handleDeleteEvent(ActionEvent event){
+        Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
+        user.getTimetable(String.valueOf(selectedEvent.getWeek()) + String.valueOf(selectedEvent.getYear())).removeEvent(selectedEvent);
+        //updates the listView-days and the eventMap that keep track of the events to show info of selected event
+        updateTimetableView();
+        // clears the information to the selected event that got deleted
+        eventInfo.setText("Click on an event to get more information.");
+        title.setText("");
+        category.setText("");
+        date.setText("");
+        time.setText("");
+        description.setText("");
+        deleteButton.setVisible(false);
     }
 
     // reads all the events into user
@@ -311,6 +333,7 @@ public class AppController {
         selectedDay = monday;
     }
 
+    // resets and updates the listview-days and eventMap
     private void updateTimetableView(){
         resetDaysListView();
         //get timetable with key weeknumber+year
