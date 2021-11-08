@@ -11,9 +11,9 @@ import java.util.Locale;
 import java.util.Map;
 
 import timetable.core.Event;
-import timetable.core.Json;
 import timetable.core.Timetable;
 import timetable.core.User;
+import timetable.json.Json;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

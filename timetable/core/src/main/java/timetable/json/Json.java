@@ -1,4 +1,4 @@
-package timetable.core;
+package timetable.json;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,6 +10,13 @@ import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
+import timetable.core.Event;
+import timetable.core.Timetable;
+import timetable.core.User;
+import timetable.json.serialization.TimetableModule;
+
+
+
 
 public class Json {
     
@@ -17,7 +24,7 @@ public class Json {
     public User read(User user) {
         User tempUser = new User("1");
         ObjectMapper objectMapper = new ObjectMapper();
-        TimetableModuleRead readModule = new TimetableModuleRead(); 
+        TimetableModule readModule = new TimetableModule(true); 
         objectMapper.registerModule(readModule); 
         try {
             // getClass().getClassLoader().getResource("Events.json").getFile() ?
@@ -43,7 +50,7 @@ public class Json {
     // Method for writing to json file
     public void write(User user) {
         ObjectMapper objectMapper = new ObjectMapper();
-        TimetableModuleWrite writeModule = new TimetableModuleWrite();
+        TimetableModule writeModule = new TimetableModule(true);
         objectMapper.registerModule(writeModule);
         try {
             objectMapper.writeValue(new File("timetable\\core\\src\\main\\resources\\Events.json"), user);
