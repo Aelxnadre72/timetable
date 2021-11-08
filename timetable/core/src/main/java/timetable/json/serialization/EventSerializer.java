@@ -1,9 +1,12 @@
-package timetable.core;
+package timetable.json.serialization;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
+import timetable.core.Event;
+import timetable.core.Timetable;
+import timetable.core.User;
 
 import java.io.IOException;
 

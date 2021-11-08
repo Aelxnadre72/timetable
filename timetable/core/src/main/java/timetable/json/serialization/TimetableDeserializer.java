@@ -1,4 +1,4 @@
-package timetable.core;
+package timetable.json.serialization;
 
 import java.io.IOException;
 
@@ -10,6 +10,11 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+
+import timetable.core.Event;
+import timetable.core.Timetable;
+
 
 
 class TimetableDeserializer extends JsonDeserializer<Timetable>{
