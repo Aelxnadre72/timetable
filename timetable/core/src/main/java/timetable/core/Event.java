@@ -184,11 +184,5 @@ public class Event {
             return true;
         }
     }
-    
-
-    public static void main(String[] args) {
-        Event test = new Event("title", "social", "desc", "09:00", "10:00", "29.04.2020");
-        System.out.println(test.getDayOfWeek());
-    }
 
 }

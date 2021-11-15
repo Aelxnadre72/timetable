@@ -41,6 +41,15 @@ public class EventTest {
 
     }
 
+
+
+    @Test
+    public void testSetCategory(){
+        Event event = new Event("Work", "work","At the office","08:00","09:00","01.04.2022");
+        event.setCategory("social");
+        Assertions.assertEquals("social", event.getCategory());
+    }
+
     @Test
     public void testDate(){
         Event event = new Event("Work", "work","At the office","08:00","09:00","01.04.2022");
@@ -75,6 +84,9 @@ public class EventTest {
         Assertions.assertEquals("At the office", event.getDescription());
         Assertions.assertEquals("01.04.2022", event.getDate());
         Assertions.assertEquals(5, event.getDayOfWeek());
+        Assertions.assertEquals("work", event.getCategory());
+        Assertions.assertEquals(2022, event.getYear());
+        Assertions.assertEquals(13, event.getWeek());
     }
 
     @Test
@@ -82,10 +94,17 @@ public class EventTest {
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","01.04.2018"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","20004:00","01.04.2022"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","81:81","09:00","01.04.2022"));
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","1:00","01.04.2022"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","1:000","01.04.2022"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","five","01.04.2022"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","four","20:00","01.04.2022"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","99:00","01.04.2022"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","2022.04.02"));
         Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","1.4.18"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","01.11.2050"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:61","01.11.2022"));
+        //Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","01.14.2022"));
+        //Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","34.14.2022"));
+        //Assertions.assertThrows(IllegalArgumentException.class, () -> new Event("Work", "work","At the office","08:00","09:00","34.11.2022"));
     }
+ 
 }

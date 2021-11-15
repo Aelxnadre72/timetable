@@ -84,7 +84,4 @@ public class Timetable {
         return year;
     }
 
-    public static void main(String[] args) {
-        
-    }
 }
