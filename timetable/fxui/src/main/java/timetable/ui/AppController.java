@@ -2,7 +2,6 @@ package timetable.ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -89,6 +88,18 @@ public class AppController {
 
     @FXML
     private Button deleteButton;
+    
+    @FXML
+    private Button addEventButton;
+
+    @FXML
+    private Button prevWeekButton;
+
+    @FXML
+    private Button nextWeekButton;
+
+    @FXML
+    private Button goButton;
 
     @FXML
     private Text weekNumber;
@@ -114,6 +125,9 @@ public class AppController {
     // overview over events to show the selected event information 
     private Map<ListView<String>, List<Event>> eventMap = new HashMap<>();
 
+    // Does not read or write if isTest is true. Is set to true when getEventMap is used by AppTest.java
+    private boolean isTest = false;
+
     @FXML
     void initialize() {
         days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
@@ -137,6 +151,7 @@ public class AppController {
          if (event.getSource() instanceof Labeled w) {
             weekNumber.setText(w.getText());
             updateTimetableView();
+            clearSelectedEventInfo();
          }
     }
 
@@ -157,6 +172,7 @@ public class AppController {
             weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())-1));
         }
         updateTimetableView();
+        clearSelectedEventInfo();
     }
 
     // shows the next week
@@ -172,12 +188,14 @@ public class AppController {
             weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())+1));
         }
         updateTimetableView();
+        clearSelectedEventInfo();
     }
 
     // updates the tableview to show the same week as before, but the new chosen year. Shows 52 or 53 weeks depending on the year
     @FXML
     void handleYear(ActionEvent event) {
         updateTimetableView();
+        clearSelectedEventInfo();
         initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
 
@@ -225,7 +243,11 @@ public class AppController {
         updateTimetableView();
         // there is currently an issue with finding the path of the file to read and write to in json.java
         // can comment out this line if you do not want to receive the error messages relating to this problem when running app, until the problem is resolved
-        RW.write(user); // should write every event in user to json (replacing the previous content of the json file)
+        
+        // checks if it is AppTest.java that runs the app or not. Does not write if it is a test.
+        if(!isTest){
+            RW.write(user); // should write every event in user to json (replacing the previous content of the json file)
+        }
     }
 
     // Disables selecting a hours-cell (example 08:00-09:00) in the timetable
@@ -265,15 +287,19 @@ public class AppController {
             deleteButton.setVisible(true);
         }
         else{
-            // clears the event info if an empty cell is selected
-            eventInfo.setText("Click on an event to get more information.");
-            title.setText("");
-            category.setText("");
-            date.setText("");
-            time.setText("");
-            description.setText("");
-            deleteButton.setVisible(false);
+            clearSelectedEventInfo();
         }
+    }
+
+    // clears the event info that is shown when selecting a valid event
+    private void clearSelectedEventInfo(){
+        eventInfo.setText("Click on an event to get more information.");
+        title.setText("");
+        category.setText("");
+        date.setText("");
+        time.setText("");
+        description.setText("");
+        deleteButton.setVisible(false);
     }
     
     // deletes the selected event, updates the timetable and removes the event information and hides the delete button
@@ -284,13 +310,7 @@ public class AppController {
         //updates the listView-days and the eventMap that keep track of the events to show info of selected event
         updateTimetableView();
         // clears the information to the selected event that got deleted
-        eventInfo.setText("Click on an event to get more information.");
-        title.setText("");
-        category.setText("");
-        date.setText("");
-        time.setText("");
-        description.setText("");
-        deleteButton.setVisible(false);
+        clearSelectedEventInfo();
     }
 
     // reads all the events into user
@@ -453,6 +473,22 @@ public class AppController {
                 newEndTime.setValue(Integer.toString(h+1) + ":00");
             }
         }
+    }
+
+    // Method for testing UI. Get map of events.
+    Map<ListView<String>, List<Event>> getEventMap(){
+        isTest = true;
+        return eventMap;
+    }
+    // Method for testing UI. Get list of days (used as keys in eventMap).
+    List<ListView<String>> getDays(){
+        return days;
+    }
+
+    // Method for testing UI. Sets a user without any events and updates the view to clear any old events
+    void clearUserForTest(){
+        user = new User("testUser");
+        updateTimetableView();
     }
 
 }
