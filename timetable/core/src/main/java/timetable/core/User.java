@@ -24,7 +24,8 @@ public class User {
         timetableMap.put(k, timetable);
     }
 
-    // get timetable-object with key k
+    
+    //get timetable-object with key k
     public Timetable getTimetable(String k){
         if(!timetableMap.containsKey(k)){
             return null;
