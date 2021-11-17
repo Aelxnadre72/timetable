@@ -13,6 +13,14 @@ import jakarta.ws.rs.core.MediaType;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+<<<<<<< HEAD
+//import todolist.core.AbstractTodoList;
+//import todolist.core.TodoList;
+//import todolist.core.TodoModel;
+//import todolist.json.TodoPersistence;
+
+
+=======
 import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.TimetablePersistance;
@@ -116,3 +124,4 @@ public class TimetableResource {
    */
 
 }
+>>>>>>> eba5aec95e7dbdd055a296aabec432584c8ddca8
