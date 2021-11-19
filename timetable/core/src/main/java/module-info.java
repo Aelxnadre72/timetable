@@ -1,5 +1,5 @@
 module timetableModule.core {
-
+    
     exports timetable.core;
     exports timetable.json;
     

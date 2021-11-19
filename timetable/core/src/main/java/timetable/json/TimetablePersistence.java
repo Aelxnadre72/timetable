@@ -15,12 +15,12 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import timetable.json.serialization.TimetableModule;
 import timetable.core.User;
 
-public class TimetablePersistance {
+public class TimetablePersistence {
     private ObjectMapper mapper;
     private Path filePath = null;
     
 
-    public TimetablePersistance() {
+    public TimetablePersistence() {
         mapper = createMapper();
     }
     //create module
