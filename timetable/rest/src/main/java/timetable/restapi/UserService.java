@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import timetable.core.User;
 import timetable.core.Timetable;
-import timetable.json.TimetablePersistance;
+import timetable.json.TimetablePersistence;
 
 
 /**
@@ -29,7 +29,7 @@ public class UserService {
   private User user;  //todoModel
 
   @Context
-  private TimetablePersistance timetablePersistence;
+  private TimetablePersistence timetablePersistence;
 
 /**
    * The root resource, i.e. /timetable
