@@ -283,7 +283,7 @@ public class AppController {
             category.setText(selectedEvent.getCategory());
             date.setText(selectedEvent.getDate());
             time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
-            description.setText(selectedEvent.getWeek());
+            description.setText(String.valueOf(selectedEvent.getWeek()));
             deleteButton.setVisible(true);
         }
         else{
