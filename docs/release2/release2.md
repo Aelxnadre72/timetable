@@ -10,5 +10,3 @@ Also the UML in [architecture.puml](timetable/architecture.puml) doesn't show th
 
 ## workflow and workhabits
 For this release we worked more together as a group and the communication was significantly better then for the previous release. The first couple of days we spent on planning the app and further extensions, how we should do it and assigned tasks. We had weekly meetings and regularly checkups. But due to illness in the group we were delayed in the work. Therefore, we had to work efficiently individually and communicate over zoom the last couple of days. 
-
-
