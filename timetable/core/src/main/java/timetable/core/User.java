@@ -18,7 +18,7 @@ public class User {
     // add timetable-object to timetableList. Key is week + year.
     public void addTimetable(Timetable timetable){
         String k = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
-        if(timetableMap.containsKey(k)){
+        if(hasTimetable(k)){
             throw new IllegalArgumentException("The timetable with this specific key already exist.");
         }
         timetableMap.put(k, timetable);
@@ -36,6 +36,13 @@ public class User {
     public List<Timetable> getTimetableList(){
         List<Timetable> l = new ArrayList<>(timetableMap.values());
         return l;
+    }
+
+    public boolean hasTimetable(String k) {
+        if (timetableMap.containsKey(k)) {
+            return true;
+        }
+        return false;
     }
     
 }
