@@ -24,6 +24,21 @@ In [App.fxml](timetable/fxui/src/main/resources/timetable/ui/App.fxml) the GUI f
 There are Textfield-boxes for the user to fill in a title and description. There is a datepicker for choosing a date, and a choicebox to pick start and end time. At the bottom there is a button "Add event", which adds the event to the timetable. Each of these items have an id, which is used in the controller.
 At the right hand side, an event will show up when it's clicked on on the the timetable. It shows the title, date, time and description. The defaulot text is "None". 
 
+# rest
+[rest](timetable/rest) is the folder for the rest logic. .....
+
+## restapi
+[restapi](timetable/rest/src/main/java/timetable/restapi)
+
+[TimetableResource.java](timetable/rest/src/main/java/timetable/restapi/TimetableResource.java)...
+[UserService.java](timetable/rest/src/main/java/timetable/restapi/UserService.java) ....
+
+## restserver
+[restserver](timetable/rest/src/main/java/timetable/restserver) ....
+[Config.java](timetable/rest/src/main/java/timetable/restserver/Config.java)....
+[UserMapperProvider.java](timetable/rest/src/main/java/timetable/restserver/UserMapperProvider.java)
+
+
 # Tests
 [EventTest.java](timetable/core/src/test/java/timetable/core/EventTest.java) have Junit tests that tests the event class (the constructor and the setters) and it also has exception tests.
 [TimetableTest.java](timetable/core/src/test/java/timetable/core/TimetableTest.java) have Junit tests that test the timetable class (the constructor and adding events to the timetable).
