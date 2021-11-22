@@ -452,7 +452,12 @@ public class AppController {
         }
 
         // set the current time and current time + 1 hour as the default value for the time-choiceboxes
-        int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        Calendar cal = Calendar.getInstance();
+        int h = cal.get(Calendar.HOUR_OF_DAY);
+        if(!cal.getTimeZone().getDisplayName().equals("Central European Standard Time")){
+            h += 1;
+        }
+        
         if(h>9){
             if(h == 23){
                 newStartTime.setValue("23:00");
