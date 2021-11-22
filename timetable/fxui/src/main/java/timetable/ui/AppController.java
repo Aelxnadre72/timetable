@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
+import java.util.TimeZone;
 import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
@@ -423,7 +423,7 @@ public class AppController {
     private void initializeChoiceboxes(){
 
         // set default locale for datepicker and default value to todays date
-        Locale.setDefault(Locale.UK);
+        Locale.setDefault(new Locale("no", "NO"));
         newDate.setValue(LocalDate.now());
 
         // sets the categories to choose from in the choicebox
@@ -453,10 +453,8 @@ public class AppController {
 
         // set the current time and current time + 1 hour as the default value for the time-choiceboxes
         Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
         int h = cal.get(Calendar.HOUR_OF_DAY);
-        if(!cal.getTimeZone().getDisplayName().equals("Central European Standard Time")){
-            h += 1;
-        }
         
         if(h>9){
             if(h == 23){
