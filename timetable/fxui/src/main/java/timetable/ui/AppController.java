@@ -23,6 +23,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 
 public class AppController {
 
@@ -130,6 +131,8 @@ public class AppController {
 
     @FXML
     void initialize() {
+        // converts the format of the datepicker
+        convertDatePicker();
         days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
         // reads all the events and sets user
         initializeEvents();
@@ -311,6 +314,32 @@ public class AppController {
         updateTimetableView();
         // clears the information to the selected event that got deleted
         clearSelectedEventInfo();
+    }
+
+    // converts the format of the datepicker
+    private void convertDatePicker(){
+        String pattern = "dd.MM.yyyy";
+        StringConverter converter = new StringConverter<LocalDate>() {
+            DateTimeFormatter dateFormatter = 
+            DateTimeFormatter.ofPattern(pattern);
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, dateFormatter);
+                } else {
+                    return null;
+                }
+            }
+        }; 
+        newDate.setConverter(converter);
     }
 
     // reads all the events into user
