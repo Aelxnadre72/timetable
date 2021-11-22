@@ -319,7 +319,7 @@ public class AppController {
     // converts the format of the datepicker
     private void convertDatePicker(){
         String pattern = "dd.MM.yyyy";
-        StringConverter converter = new StringConverter<LocalDate>() {
+        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
             DateTimeFormatter dateFormatter = 
             DateTimeFormatter.ofPattern(pattern);
             @Override
