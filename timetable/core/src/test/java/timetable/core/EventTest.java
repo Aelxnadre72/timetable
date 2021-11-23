@@ -75,7 +75,6 @@ public class EventTest {
         Assertions.assertEquals(5, event.getDayOfWeek());
         Assertions.assertEquals("work", event.getCategory());
         Assertions.assertEquals(2022, event.getYear());
-        Assertions.assertEquals(13, event.getWeek());
     }
 
     @Test
