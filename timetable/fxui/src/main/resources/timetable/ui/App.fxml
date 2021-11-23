@@ -15,75 +15,79 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="timetable.ui.AppController">
    <children>
-      <Label layoutX="58.0" layoutY="501.0" text="Weeks: ">
-         <font>
-            <Font size="16.0" />
-         </font>
-      </Label>
-      <ScrollPane layoutX="114.0" layoutY="499.0" prefHeight="41.0" prefWidth="805.0">
-         <content>
-            <HBox alignment="TOP_CENTER" prefHeight="26.0" prefWidth="1597.0">
-               <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="1" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="2" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="3" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="4" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="5" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="6" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="7" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="8" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="9" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="10" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="11" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="12" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="13" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="14" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="15" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="16" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="17" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="18" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="19" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="20" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="21" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="22" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="23" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="25" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="25" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="26" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="27" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="28" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="29" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="30" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="31" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="32" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="33" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="34" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="35" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="36" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="37" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="38" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="39" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="40" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="41" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="42" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="43" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="44" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="45" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="46" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="47" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="48" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="49" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="50" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="51" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="52" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="32.0" text="53" />
-               </children>
-            </HBox>
-         </content>
-      </ScrollPane>
-      <AnchorPane layoutX="29.0" layoutY="83.0" prefHeight="392.0" prefWidth="900.0">
+      <HBox layoutX="43.0" layoutY="559.0" prefHeight="41.0" prefWidth="879.0">
+         <children>
+            <Label text="Weeks: ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ScrollPane prefHeight="41.0" prefWidth="805.0">
+               <content>
+                  <HBox alignment="TOP_CENTER" prefHeight="26.0" prefWidth="1597.0">
+                     <children>
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="1" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="2" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="3" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="4" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="5" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="6" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="7" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="8" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="9" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="10" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="11" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="12" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="13" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="14" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="15" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="16" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="17" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="18" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="19" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="20" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="21" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="22" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="23" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="25" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="25" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="26" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="27" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="28" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="29" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="30" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="31" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="32" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="33" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="34" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="35" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="36" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="37" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="38" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="39" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="40" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="41" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="42" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="43" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="44" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="45" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="46" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="47" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="48" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="49" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="50" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="51" textAlignment="CENTER" />
+                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="52" textAlignment="CENTER" />
+                        <Button fx:id="extraWeek" minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="53" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+      <AnchorPane layoutX="29.0" layoutY="83.0" prefHeight="461.0" prefWidth="900.0">
          <children>
             <VBox prefHeight="350.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -95,42 +99,42 @@
                                  <children>
                                     <HBox layoutX="71.0" layoutY="-41.0" prefHeight="18.0" prefWidth="884.0" style="-fx-background-color: #D4E6F1;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <children>
-                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="65.0" text="Time">
+                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="100.0" text="Time">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="117.0" text="Monday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="112.0" text="Monday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" layoutX="109.0" layoutY="10.0" prefHeight="17.0" prefWidth="117.0" text="Tuesday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" layoutX="109.0" layoutY="10.0" prefHeight="17.0" prefWidth="112.0" text="Tuesday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" layoutX="208.0" layoutY="10.0" prefHeight="17.0" prefWidth="117.0" text="Wednesday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" layoutX="208.0" layoutY="10.0" prefHeight="17.0" prefWidth="112.0" text="Wednesday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" layoutX="308.0" layoutY="10.0" prefHeight="17.0" prefWidth="117.0" text="Thursday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" layoutX="308.0" layoutY="10.0" prefHeight="17.0" prefWidth="112.0" text="Thursday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" layoutX="407.0" layoutY="10.0" prefHeight="17.0" prefWidth="117.0" text="Friday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" layoutX="407.0" layoutY="10.0" prefHeight="17.0" prefWidth="112.0" text="Friday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" text="Saturday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Saturday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
                                           </Label>
-                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="117.0" text="Sunday" textAlignment="CENTER">
+                                          <Label alignment="CENTER" prefHeight="17.0" prefWidth="112.0" text="Sunday" textAlignment="CENTER">
                                              <font>
                                                 <Font name="System Bold" size="12.0" />
                                              </font>
@@ -141,16 +145,16 @@
                               </AnchorPane>
                               <ScrollPane prefHeight="200.0" prefWidth="200.0">
                                  <content>
-                                    <HBox prefHeight="366.0" prefWidth="884.0">
+                                    <HBox prefHeight="554.0" prefWidth="883.0">
                                        <children>
-                                          <ListView fx:id="hours" prefHeight="275.0" prefWidth="65.0" />
-                                          <ListView fx:id="monday" layoutX="10.0" layoutY="10.0" prefHeight="275.0" prefWidth="117.0" />
-                                          <ListView fx:id="tuesday" layoutX="110.0" layoutY="10.0" prefHeight="275.0" prefWidth="117.0" />
-                                          <ListView fx:id="wednesday" layoutX="210.0" layoutY="10.0" prefHeight="275.0" prefWidth="117.0" />
-                                          <ListView fx:id="thursday" layoutX="310.0" layoutY="10.0" prefHeight="275.0" prefWidth="117.0" />
-                                          <ListView fx:id="friday" layoutX="410.0" layoutY="10.0" prefHeight="212.0" prefWidth="117.0" />
-                                          <ListView fx:id="saturday" prefHeight="212.0" prefWidth="117.0" />
-                                          <ListView fx:id="sunday" prefHeight="212.0" prefWidth="117.0" />
+                                          <ListView fx:id="hours" onMouseClicked="#handleClickedHours" prefHeight="275.0" prefWidth="100.0" />
+                                          <ListView fx:id="monday" layoutX="10.0" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
+                                          <ListView fx:id="tuesday" layoutX="110.0" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
+                                          <ListView fx:id="wednesday" layoutX="210.0" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
+                                          <ListView fx:id="thursday" layoutX="310.0" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
+                                          <ListView fx:id="friday" layoutX="410.0" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
+                                          <ListView fx:id="saturday" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
+                                          <ListView fx:id="sunday" onMouseClicked="#handleClickedEvent" prefHeight="275.0" prefWidth="112.0" />
                                        </children>
                                     </HBox>
                                  </content>
@@ -159,7 +163,7 @@
                         </VBox>
                      </children>
                   </AnchorPane>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="203.0" prefWidth="900.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="262.0" prefWidth="900.0">
                      <children>
                         <HBox alignment="TOP_CENTER" prefHeight="197.5" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
@@ -177,7 +181,20 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="title" prefHeight="20.0" prefWidth="175.0" />
+                                          <TextField fx:id="newTitle" prefHeight="20.0" prefWidth="175.0" />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="23.0" prefWidth="578.0">
+                                       <children>
+                                          <Label text="Category: ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox fx:id="newCategory" prefHeight="25.0" prefWidth="203.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
@@ -190,7 +207,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <DatePicker fx:id="date" prefHeight="20.0" />
+                                          <DatePicker fx:id="newDate" prefHeight="20.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
@@ -203,7 +220,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox fx:id="time" prefHeight="25.0" prefWidth="207.0" />
+                                          <ChoiceBox fx:id="newStartTime" prefHeight="25.0" prefWidth="207.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
@@ -216,8 +233,11 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <ChoiceBox fx:id="time1" prefHeight="25.0" prefWidth="200.0" />
+                                          <ChoiceBox fx:id="newEndTime" prefHeight="25.0" prefWidth="200.0" />
                                        </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="20.0" layoutY="88.0" prefHeight="23.0" prefWidth="578.0">
                                        <children>
@@ -226,17 +246,30 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <TextField fx:id="description" prefHeight="20.0" prefWidth="217.0" />
+                                          <TextField fx:id="newDescription" prefHeight="20.0" prefWidth="217.0" />
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
                                        </VBox.margin>
                                     </HBox>
-                                    <Button mnemonicParsing="false" onAction="#handleAdd" prefHeight="20.0" prefWidth="134.0" text="ADD EVENT" textFill="#2980b9">
-                                       <font>
-                                          <Font name="System Bold" size="12.0" />
-                                       </font>
-                                    </Button>
+                                    <HBox prefHeight="100.0" prefWidth="200.0">
+                                       <children>
+                                          <Label prefHeight="17.0" prefWidth="146.0" />
+                                          <Button mnemonicParsing="false" onAction="#handleAddEvent" prefHeight="25.0" prefWidth="125.0" text="ADD EVENT" textAlignment="CENTER" textFill="#2980b9">
+                                             <font>
+                                                <Font name="System Bold" size="12.0" />
+                                             </font>
+                                          </Button>
+                                          <Text fx:id="addEventWarning" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="The event can not overlap an existing event!" visible="false" wrappingWidth="146.63671875">
+                                             <HBox.margin>
+                                                <Insets left="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </HBox>
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
@@ -246,7 +279,7 @@
                                  <children>
                                     <HBox alignment="TOP_CENTER" prefHeight="24.0" prefWidth="311.0">
                                        <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Event" textAlignment="CENTER" wrappingWidth="61.00152587890625">
+                                          <Text fx:id="eventInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Click on an event to get more information" textAlignment="CENTER" wrappingWidth="309.00152587890625">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
@@ -260,15 +293,26 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
+                                          <Text fx:id="title" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.13666343688965">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
                                           </Text>
                                        </children>
-                                       <VBox.margin>
-                                          <Insets top="3.0" />
-                                       </VBox.margin>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="23.0" prefWidth="578.0">
+                                       <children>
+                                          <Label text="Category: ">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <Text fx:id="category" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="177.1032772064209">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
                                     </HBox>
                                     <HBox alignment="CENTER" layoutX="20.0" layoutY="62.0" prefHeight="23.0" prefWidth="578.0">
                                        <children>
@@ -277,7 +321,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
+                                          <Text fx:id="date" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.13666343688965">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -294,7 +338,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="150.13666343688965">
+                                          <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.13666343688965">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
@@ -311,16 +355,27 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Label>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="None" wrappingWidth="189.6032772064209">
+                                          <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="189.6032772064209">
                                              <font>
                                                 <Font size="14.0" />
                                              </font>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
                                           </Text>
                                        </children>
                                        <VBox.margin>
                                           <Insets top="3.0" />
                                        </VBox.margin>
                                     </HBox>
+                                    <Button fx:id="deleteButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleDeleteEvent" text="DELETE EVENT" textFill="#ff5858" visible="false">
+                                       <VBox.margin>
+                                          <Insets top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Button>
                                  </children>
                                  <padding>
                                     <Insets bottom="10.0" left="10.0" right="10.0" top="8.0" />
@@ -334,23 +389,36 @@
             </VBox>
          </children>
       </AnchorPane>
-      <Text layoutX="398.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMETABLE" wrappingWidth="162.936767578125">
+      <Text layoutX="397.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMETABLE" wrappingWidth="217.0">
          <font>
             <Font size="32.0" />
          </font>
       </Text>
-      <HBox alignment="CENTER" layoutX="407.0" layoutY="53.0" prefHeight="30.0" prefWidth="173.0">
+      <HBox alignment="CENTER" layoutX="351.0" layoutY="53.0" prefHeight="30.0" prefWidth="247.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#handlePrevWeek" text="&lt;" textFill="#1b76ff">
+               <HBox.margin>
+                  <Insets right="30.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
             <Label text="Week: ">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="46.4417781829834">
+            <Text fx:id="weekNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="00" wrappingWidth="46.4417781829834">
                <font>
                   <Font size="16.0" />
                </font>
             </Text>
+            <Button mnemonicParsing="false" onAction="#handleNextWeek" text="&gt;" textFill="#1b76ff">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutX="-1.0" layoutY="19.0" prefHeight="30.0" prefWidth="263.0">
@@ -360,7 +428,12 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <ChoiceBox prefWidth="150.0" />
+            <ChoiceBox fx:id="year" prefWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#handleYear" text="GO" textFill="#253aa4">
+               <HBox.margin>
+                  <Insets left="1.0" />
+               </HBox.margin>
+            </Button>
          </children></HBox>
    </children>
 </Pane>

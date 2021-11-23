@@ -43,7 +43,7 @@ public class User {
     // get timetable-object with key k
     public Timetable getTimetable(String k){
         if(!timetableMap.containsKey(k)){
-            throw new IllegalArgumentException("The timetable with this specific key does not exist.");
+            return null;
         }
         return timetableMap.get(k);
     }
@@ -52,4 +52,5 @@ public class User {
         List<Timetable> l = new ArrayList<>(timetableMap.values());
         return l;
     }
+    
 }
