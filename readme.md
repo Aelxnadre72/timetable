@@ -57,3 +57,6 @@ To try out the projects, cd into the corrosponding folder.
 * test with mvn test
 * run mvn javfx:run (inside fxui)
 * check code quality with mvn verify
+
+# An image of the apps interface
+![](interface.png)
