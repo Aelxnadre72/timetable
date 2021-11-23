@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import timetable.core.Timetable;
 import timetable.core.User;
-import timetable.json.TimetablePersistance;
+import timetable.json.TimetablePersistence;
 
 public class RemoteUserAccess implements UserAccess{
     
@@ -22,7 +22,7 @@ public class RemoteUserAccess implements UserAccess{
     private final URI baseUri;
     public RemoteUserAccess(URI uri) {
         this.baseUri = uri;
-        mapper = TimetablePersistance.createMapper();
+        mapper = TimetablePersistence.createMapper();
     }
 
     @Override
