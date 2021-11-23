@@ -159,7 +159,7 @@ public class Event {
         else if(Integer.parseInt(date.substring(6, 10)) < 2020 || Integer.parseInt(date.substring(6, 10)) > 2030){
             return false;
         }
-        else if(!(Integer.parseInt(date.substring(0, 2)) < 32 && Integer.parseInt(date.substring(0, 2)) > 0|| Integer.parseInt(date.substring(3, 5)) > 0 && Integer.parseInt(date.substring(3, 5)) < 13)){
+        else if(Integer.parseInt(date.substring(0, 2)) >= 32 || Integer.parseInt(date.substring(0, 2)) <= 0 || Integer.parseInt(date.substring(3, 5)) <= 0 || Integer.parseInt(date.substring(3, 5)) >= 13){
             return false;
         }
         else{
@@ -183,12 +183,6 @@ public class Event {
         else{
             return true;
         }
-    }
-    
-
-    public static void main(String[] args) {
-        Event test = new Event("title", "social", "desc", "09:00", "10:00", "29.04.2020");
-        System.out.println(test.getDayOfWeek());
     }
 
 }
