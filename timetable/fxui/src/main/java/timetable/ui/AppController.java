@@ -287,21 +287,20 @@ public class AppController {
     // also connects all the different listview days so only 1 cell is selected between all of the listviews. Shows the event info of the selected cell.
     private void initializeListViewListeners(){
         ChangeListener<? super String> cl = (obs, oldSelection, newSelection) -> {
-            int index = selectedDay.getSelectionModel().getSelectedIndex();
-            Boolean changed = false;
             for(ListView<String> day : days){
-                if(!(day.getSelectionModel().getSelectedItem() == null)){
-                    if(selectedDay != day && changed == false){
+                if(day.getSelectionModel().getSelectedItem() != null){
+                    if(day != selectedDay){
+                        selectedDay.getSelectionModel().clearSelection();
                         selectedDay = day;
-                        changed = true;
+                        continue;
+                    }
+                    else{
                         continue;
                     }
                 }
                 day.getSelectionModel().clearSelection();
             }
-            if(changed == false){
-                selectedDay.getSelectionModel().select(index);
-            }
+
             // display the event info of the selected event-cell
             if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
                 eventInfo.setText("Event information:");
