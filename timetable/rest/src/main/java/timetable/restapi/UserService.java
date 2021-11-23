@@ -21,7 +21,7 @@ import timetable.json.TimetablePersistence;
 
 public class UserService {
 
-  public static final String USER_SERVICE_PATH = "user"; //todo 
+  public static final String USER_SERVICE_PATH = "user"; 
 
   private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
@@ -37,25 +37,12 @@ public class UserService {
    * @return the timetable (User??)   //todomodel
    */
   @GET
-  public User getUser() {    //getTodoModel
-    LOG.debug("getUser: " + user);  //henter fra UserResource 
-    return user;   //return todomodel
+  public User getUser() {   
+    LOG.debug("getUser: " + user);  
+    return user;   
   }
 
-  
-  /**
-   * USIKKER, har ikke denne modulen
-   *The root resource, i.e. /timetable    //todo
-   *
-   * @return the timetable        //TodoModel
-   */
-   /*
-  @Path("/settings")
-  public TodoSettingsResource getTodoSettings() {
-    LOG.debug("Sub-resource for TodoSettings");
-    return new TodoSettingsResource(todoModel);
-  }
-  */
+
 
 
 /**
@@ -66,11 +53,11 @@ public class UserService {
    *
    * @param id the id of the user/timetable
    */
-  @Path("/{id}")  //"/list/{@week+@year}"
-  public TimetableResource getUser(@PathParam("id") String id) {
-    Timetable timetable = getUser().getTimetable(id);    //AbstractTodoList todoList = getTodoModel().getTodoList(name);
-    LOG.debug("Sub-resource for User " + id + ": " + user);
-    TimetableResource timetableResource = new TimetableResource(timetable, user, id); //Timetable timetable, User user, String id
+  @Path("/timetable/{weekYear}")  //"/list/{@week+@year}"
+  public TimetableResource getTimetable(@PathParam("weekYear") String weekYear) {
+    Timetable timetable = getUser().getTimetable(weekYear);    //AbstractTodoList todoList = getTodoModel().getTodoList(name);
+    LOG.debug("Sub-resource for Timetable " + weekYear + ": " + timetable);
+    TimetableResource timetableResource = new TimetableResource(timetable, user, weekYear); //Timetable timetable, User user, String id
     timetableResource.setTimetablePersistence(timetablePersistence);
     return timetableResource;
   }

@@ -41,18 +41,20 @@ public class TimetableResource {
         this.id = id; 
     }
 
-    private void checkUser(){ //check timetable or user?
+    private void checkTimetable(){ //check timetable or user?
         if (this.user == null) {
             throw new IllegalArgumentException("No timetable has id \"" + id + "\"");
         }
     }
 
+    
+    
 
     @GET
-    public User getUSer(){ //timetable eller user?
-        checkUser();
-        LOG.debug("getUser({})", id);
-        return this.user; //timetable/user?
+    public Timetable getTimetable(){ //timetable eller user?
+        checkTimetable();
+        LOG.debug("getTimetable({})", id);
+        return this.timetable; //timetable/user?
     }
 
     private void autoSaveUser(){
@@ -66,53 +68,54 @@ public class TimetableResource {
     }
 
   /**
-   * Replaces or adds a User/timetable (?)
-   * IKKE FERDIG
-   * @param userArg the todoList to add
+   * Replaces or adds a timetable (?)
+   * 
+   * @param userArg timelist to add
    * @return true if it was added, false if it replaced
    */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean putUser(User userArg){
-        LOG.debug("putUser({})", userArg);     //putTodoList(): Replaces an existing TodoList with the same name, or adds it.
-        //User oldUser = this.user.putUser(userArg);     //putUser(userArg);
+    public boolean putTimetable(Timetable timetableArg){
+        LOG.debug("putTimetable({})", timetableArg);     //putTodoList(): Replaces an existing TodoList with the same name, or adds it.
+        Timetable oldTimetable = this.user.putTimetable(timetableArg);     //putUser(userArg);
         autoSaveUser();
-        //return oldUser == null;
-        return false;
+        return oldTimetable == null;
+        
     }
 
    /**
-    * Adds a User with the given id, if it doesn't exist already.
+    * Adds a timetable, if it doesn't exist already.
     *
     * @return true if it was added, false if it replaced
     */
     @PUT
-    public boolean putUser(){
-        return putUser(new User(id));
+    public boolean putTimetable(){
+        if (timetable != null) {
+            return putTimetable(timetable);
+        }
+        else {  
+            //split id into numbers
+            String[] idArray = id.split("", 3);
+            int week = Integer.parseInt(idArray[0]);
+            int year = Integer.parseInt(idArray[1] + idArray[2]);
+            return putTimetable(new Timetable(week, year));
+        }
     }
 
-  /**
-   * Renames the User/Timetable.
-   * skal vi ha dette?
-   * @param newName the new name
+    /**
+   * Removes the TodoList.
    */
+  @DELETE
+  public boolean removeTodoList() {
+    checkTimetable();
+    this.user.removeTimetable(id);
+    autoSaveUser();
+    return true;
+  }
+
+  
   
 
 
-
- /**
-   * Removes the TodoList.
-   * skal vi ha delete?
-   */
-
-  /* @DELETE
-    public boolean removeTodoList() {
-        checkTodoList();
-        this.todoModel.removeTodoList(this.todoList);
-        autoSaveTodoModel();
-        return true;
-  }
-
-   */
 
 }

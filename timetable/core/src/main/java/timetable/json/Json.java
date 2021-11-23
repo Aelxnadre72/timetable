@@ -22,7 +22,7 @@ public class Json {
     
     // Method for reading from json file
     public User read(User user) {
-        User tempUser = new User("1");
+        User tempUser = new User();
         ObjectMapper objectMapper = new ObjectMapper();
         TimetableModule readModule = new TimetableModule(true); 
         objectMapper.registerModule(readModule); 

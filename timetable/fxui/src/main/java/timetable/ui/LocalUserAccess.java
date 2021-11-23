@@ -11,19 +11,27 @@ public class LocalUserAccess implements UserAccess {
     }
     
     @Override
-    public boolean hasTimetable(int week, int year) {
-        return user.hasTimetable(String.valueOf(week) + String.valueOf(year));
+    public boolean hasTimetable(String weekYear) {
+        return this.user.hasTimetable(weekYear);
     }
 
     @Override
-    public void addTimetable(Timetable timetable) {
-        this.user.addTimetable(timetable);
+    public void putTimetable(Timetable timetable) {
+        this.user.putTimetable(timetable);
     }
 
     @Override
-    public Timetable getTimetable(int week, int year) {
-        return user.getTimetable(String.valueOf(week) + String.valueOf(year));
+    public Timetable getTimetable(String weekYear) {
+        return this.user.getTimetable(weekYear);
     }
     
-    
+    @Override
+    public void removeTimetable(String weekYear) {
+        this.user.removeTimetable(weekYear);
+    }
+
+    @Override
+    public void notifyTimetableChanged(Timetable timetable) {
+        putTimetable(timetable);
+    }
 }

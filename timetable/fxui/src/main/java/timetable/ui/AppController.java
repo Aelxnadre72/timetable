@@ -1,5 +1,7 @@
 package timetable.ui;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -112,12 +114,15 @@ public class AppController {
 
     @FXML
     private Text addEventWarning;
+    
+    @FXML
+    String endpointUri;
 
     private User user;
 
     private ListView<String> selectedDay;
 
-    private Json RW;
+    //private Json RW;
 
     // list containing all of the listview-days
     private List<ListView<String>> days;
@@ -126,13 +131,43 @@ public class AppController {
     private Map<ListView<String>, List<Event>> eventMap = new HashMap<>();
 
     // Does not read or write if isTest is true. Is set to true when getEventMap is used by AppTest.java
-    private boolean isTest = false;
+    //private boolean isTest = false;
+
+    
+    UserAccess userAccess;
+
+
+    /**
+     * Sets userAccess as remote if endpointUri exists, locally else
+     * 
+     */
+    private void setUserAccess() {
+        if (endpointUri != null) {
+            RemoteUserAccess remoteAccess = null;
+            try {
+                System.out.println("Using remote endpoint @ " + endpointUri);
+                remoteAccess = new RemoteUserAccess(new URI(endpointUri));
+                userAccess = remoteAccess;
+            } catch (URISyntaxException e) {
+                System.err.println(e);
+            
+            } 
+        }
+        else {
+            this.user = new User();
+            LocalUserAccess localAccess = new LocalUserAccess(this.user);
+            userAccess = localAccess;
+
+        }
+    
+    }
 
     @FXML
     void initialize() {
+         
         days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
-        // reads all the events and sets user
-        initializeEvents();
+        // sets useraccess, and reads all the events 
+        setUserAccess(); //initializeEvents();
         // initalizes start time, end time and category choiceboxes
         initializeChoiceboxes();
         // initializes years in choicebox
@@ -143,6 +178,7 @@ public class AppController {
         initializeHoursListView();
         // resets all the different day-listviews and loads the events for the week
         updateTimetableView();
+        
     }
 
     // sets the chosen week and updates the timetableview to show events for that week
@@ -222,13 +258,13 @@ public class AppController {
             }
             
             Event ev = new Event(newTitle.getText(), newCategory.getValue(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
-            Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
+            Timetable timetable = userAccess.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
             // if the timetable for the week of the new event does not exist, then creates it and adds the timetable to user
             if(timetable == null){
                 timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), Integer.parseInt(String.valueOf(ev.getYear())));
-                user.addTimetable(timetable);
             }
             timetable.addEvent(ev);
+            userAccess.notifyTimetableChanged(timetable); 
         }catch(Exception e){
             // shows the warning
             addEventWarning.setVisible(true);
@@ -245,9 +281,9 @@ public class AppController {
         // can comment out this line if you do not want to receive the error messages relating to this problem when running app, until the problem is resolved
         
         // checks if it is AppTest.java that runs the app or not. Does not write if it is a test.
-        if(!isTest){
-            RW.write(user); // should write every event in user to json (replacing the previous content of the json file)
-        }
+        //if(!isTest){
+            //RW.write(user); // should write every event in user to json (replacing the previous content of the json file)
+        //}
     }
 
     // Disables selecting a hours-cell (example 08:00-09:00) in the timetable
@@ -306,7 +342,9 @@ public class AppController {
     @FXML
     void handleDeleteEvent(ActionEvent event){
         Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
-        user.getTimetable(String.valueOf(selectedEvent.getWeek()) + String.valueOf(selectedEvent.getYear())).removeEvent(selectedEvent);
+        Timetable timetable = userAccess.getTimetable(String.valueOf(selectedEvent.getWeek()) + String.valueOf(selectedEvent.getYear()));
+        timetable.removeEvent(selectedEvent);
+        userAccess.notifyTimetableChanged(timetable);
         //updates the listView-days and the eventMap that keep track of the events to show info of selected event
         updateTimetableView();
         // clears the information to the selected event that got deleted
@@ -314,13 +352,13 @@ public class AppController {
     }
 
     // reads all the events into user
-    private void initializeEvents(){
-        user = new User("mainUser");
+    /*private void initializeEvents(){
+        user = new User();
         RW = new Json();
         // there is currently an issue with finding the path of the file to read and write to in json.java
         // can comment out this line if you do not want to receive the error messages relating to this problem when running the app
         RW.read(user); // should read every event to user
-    }
+    }*/
 
     // adds all the hours into the hours-listview
     private void initializeHoursListView(){
@@ -477,7 +515,7 @@ public class AppController {
 
     // Method for testing UI. Get map of events.
     Map<ListView<String>, List<Event>> getEventMap(){
-        isTest = true;
+        //isTest = true;
         return eventMap;
     }
     // Method for testing UI. Get list of days (used as keys in eventMap).
@@ -487,7 +525,7 @@ public class AppController {
 
     // Method for testing UI. Sets a user without any events and updates the view to clear any old events
     void clearUserForTest(){
-        user = new User("testUser");
+        user = new User();
         updateTimetableView();
     }
 
