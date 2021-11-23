@@ -18,6 +18,8 @@ We continued to work with the user story for release 2 but added some extensions
 
 Userstory 3.1: As a user I want to plan my year. I want to go back and forth in years to see what I have planned in earlier years and my curent plans for this year.
 
-Userstory 3.2: As a user I would like to delete events that got cancelled.
+Userstory 3.2: Read the event information of an event when selected in the listview.
 
-You can read more about the user story for release 3 here [userstory3.md](release3/userstory3.md)
+Userstory 3.3: As a user I would like to delete events that got cancelled.
+
+You can read more about the user stories for release 3 here [userstory3.md](release3/userstory3.md)
