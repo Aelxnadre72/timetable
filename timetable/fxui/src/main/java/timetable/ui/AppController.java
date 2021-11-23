@@ -134,7 +134,8 @@ public class AppController {
     void initialize() {
         // converts the format of the datepicker
         convertDatePicker();
-        days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);     
+        days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+        // adds listeners to the days-listviews selectionmodels    
         initializeListViewListeners();
         // reads all the events and sets user
         initializeEvents();
@@ -302,20 +303,21 @@ public class AppController {
             }
 
             // display the event info of the selected event-cell
-            if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
-                eventInfo.setText("Event information:");
-                // get the selected event from eventMap and display the information under Event information in ui
-                Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
-                title.setText(selectedEvent.getTitle());
-                category.setText(selectedEvent.getCategory());
-                date.setText(selectedEvent.getDate());
-                time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
-                description.setText(selectedEvent.getDescription());
-                deleteButton.setVisible(true);
-            }
-            else{
-                clearSelectedEventInfo();
-            }
+            if(selectedDay.getSelectionModel().getSelectedItem() != null){
+                    if(!selectedDay.getSelectionModel().getSelectedItem().equals("")){
+                    eventInfo.setText("Event information:");
+                    // get the selected event from eventMap and display the information under Event information in ui
+                    Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
+                    title.setText(selectedEvent.getTitle());
+                    category.setText(selectedEvent.getCategory());
+                    date.setText(selectedEvent.getDate());
+                    time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
+                    description.setText(selectedEvent.getDescription());
+                    deleteButton.setVisible(true);
+                    return;
+                    }
+                }
+            clearSelectedEventInfo();
         };
         
         // adds the listener to every listview day

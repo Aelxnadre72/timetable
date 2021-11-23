@@ -37,7 +37,7 @@
                         <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="7" textAlignment="CENTER" />
                         <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="8" textAlignment="CENTER" />
                         <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="9" textAlignment="CENTER" />
-                        <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="10" textAlignment="CENTER" />
+                        <Button fx:id="weekTen" minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="10" textAlignment="CENTER" />
                         <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="11" textAlignment="CENTER" />
                         <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="12" textAlignment="CENTER" />
                         <Button minHeight="26.0" minWidth="35.0" mnemonicParsing="false" onAction="#handleWeeks" prefHeight="26.0" prefWidth="45.0" text="13" textAlignment="CENTER" />
