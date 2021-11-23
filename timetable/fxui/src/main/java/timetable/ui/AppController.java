@@ -13,6 +13,7 @@ import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.Json;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,6 +24,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 
 public class AppController {
 
@@ -130,7 +132,10 @@ public class AppController {
 
     @FXML
     void initialize() {
-        days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
+        // converts the format of the datepicker
+        convertDatePicker();
+        days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);     
+        initializeListViewListeners();
         // reads all the events and sets user
         initializeEvents();
         // initalizes start time, end time and category choiceboxes
@@ -256,44 +261,9 @@ public class AppController {
         hours.getSelectionModel().clearSelection();
     }
 
-    // connects all the different listview days so only 1 cell i selected between all of the listviews. Shows the event info of the selected cell.
-    @FXML
-    void handleClickedEvent(MouseEvent event) {
-        int index = selectedDay.getSelectionModel().getSelectedIndex();
-        Boolean changed = false;
-        for(ListView<String> day : days){
-            if(!(day.getSelectionModel().getSelectedItem() == null)){
-                if(selectedDay != day && changed == false){
-                    selectedDay = day;
-                    changed = true;
-                    continue;
-                }
-            }
-            day.getSelectionModel().clearSelection();
-        }
-        if(changed == false){
-            selectedDay.getSelectionModel().select(index);
-        }
-        // display the event info of the selected event-cell
-        if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
-            eventInfo.setText("Event information:");
-            // get the selected event from eventMap and display the information under Event information in ui
-            Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
-            title.setText(selectedEvent.getTitle());
-            category.setText(selectedEvent.getCategory());
-            date.setText(selectedEvent.getDate());
-            time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
-            description.setText(selectedEvent.getDescription());
-            deleteButton.setVisible(true);
-        }
-        else{
-            clearSelectedEventInfo();
-        }
-    }
-
     // clears the event info that is shown when selecting a valid event
     private void clearSelectedEventInfo(){
-        eventInfo.setText("Click on an event to get more information.");
+        eventInfo.setText("Click on an event to get more information");
         title.setText("");
         category.setText("");
         date.setText("");
@@ -312,6 +282,74 @@ public class AppController {
         // clears the information to the selected event that got deleted
         clearSelectedEventInfo();
     }
+
+    // adds a listener to the listview days that listens to the selectionmodel
+    // also connects all the different listview days so only 1 cell is selected between all of the listviews. Shows the event info of the selected cell.
+    private void initializeListViewListeners(){
+        ChangeListener<? super String> cl = (obs, oldSelection, newSelection) -> {
+            for(ListView<String> day : days){
+                if(day.getSelectionModel().getSelectedItem() != null){
+                    if(day != selectedDay){
+                        selectedDay.getSelectionModel().clearSelection();
+                        selectedDay = day;
+                        continue;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                day.getSelectionModel().clearSelection();
+            }
+
+            // display the event info of the selected event-cell
+            if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
+                eventInfo.setText("Event information:");
+                // get the selected event from eventMap and display the information under Event information in ui
+                Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
+                title.setText(selectedEvent.getTitle());
+                category.setText(selectedEvent.getCategory());
+                date.setText(selectedEvent.getDate());
+                time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
+                description.setText(selectedEvent.getDescription());
+                deleteButton.setVisible(true);
+            }
+            else{
+                clearSelectedEventInfo();
+            }
+        };
+        
+        // adds the listener to every listview day
+        for(ListView<String> day : days){
+            day.getSelectionModel().selectedItemProperty().addListener(cl);
+        }
+    }
+
+    // converts the format of the datepicker
+    private void convertDatePicker(){
+        String pattern = "dd.MM.yyyy";
+        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+            DateTimeFormatter dateFormatter = 
+            DateTimeFormatter.ofPattern(pattern);
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, dateFormatter);
+                } else {
+                    return null;
+                }
+            }
+        }; 
+        newDate.setConverter(converter);
+    }
+
 
     // reads all the events into user
     private void initializeEvents(){
@@ -483,7 +521,7 @@ public class AppController {
         isTest = true;
         return eventMap;
     }
-    // Method for testing UI. Get list of days (used as keys in eventMap).
+    // Method for testing UI. Get listviews of days (also used as keys in eventMap).
     List<ListView<String>> getDays(){
         return days;
     }
