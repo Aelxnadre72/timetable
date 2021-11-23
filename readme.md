@@ -25,12 +25,19 @@ The core logic is implemented in [Timetable.java](timetable/core/src/main/java/t
 [UserDesializer.java](timetable/core/src/main/java/timetable/core/UserDeserializer.java) .........
 
 
+[Event.java](timetable/core/src/main/java/timetable/core/Event.java) is the event class, and contains gets and sets for an event object. And has methods for making event-objects with title, description, time and day.[User.java](timetable/core/src/main/java/timetable/core/User.java) has methods for adding a timtable to timetableList, using keys constructed from a timeTable object. 
 
-# json
-[EventIO.java](timetable/core/src/main/java/timetable/core/EventIO.java) saves the event information the user added, which can be read and become an event-object. The even-object can then appear in the timetable gui.  
-
+## Json, serializers and deserializers
+Writing and reading from Json files is implemented in [Json.java](timetable/core/src/main/java/timetable/core/Json.java), with the methods read and write. With the read method, the user reads all existing events and timetables with a hierarchy of deserializers; user [UserDeserializer.java](timetable/core/src/main/java/timetable/core/UserDeserializer.java), timetable [TimetableDeserializer.java](timetable/core/src/main/java/timetable/core/TimetableDeserializer.java), event [EventDeserializer.java](timetable/core/src/main/java/timetable/core/EventDeserializer.java). The deserializers gets initialized in [TimetableModuleRead.java](timetable/core/src/main/java/timetable/core/TimetableModuleRead.java). 
+The write-method writes all timetables and events for the specific user using a hierarchy of serializers: user [UserSerializer.java](timetable/core/src/main/java/timetable/core/UserSerializer.java), timetable [TimetableSerializer.java](timetable/core/src/main/java/timetable/core/TimetableSerializer.java), event [EventSerializer.java](timetable/core/src/main/java/timetable/core/EventSerializer.java) The serializers gets initialized in [TimetableModuleWrite.java](timetable/core/src/main/java/timetable/core/TimetableModuleWrite.java).
+These methods for reading and writing gets called in the controller, and can be visible in the timetable gui.
 
 # fxui 
+
+# fxui 
+
+## Controller 
+[AppController.java](timetable/fxui/src/main/java/timetable/ui/AppController.java) is the controller, which combines the core logic with the ui.
 
 ## Controller 
 [AppController.java](timetable/fxui/src/main/java/timetable/ui/AppController.java) is the controller, which combines the core logic with the ui.
