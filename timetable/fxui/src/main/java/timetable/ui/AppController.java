@@ -151,7 +151,10 @@ public class AppController {
         updateTimetableView();
     }
 
-    // sets the chosen week and updates the timetableview to show events for that week
+    /**
+     * sets the chosen week and updates the timetableview to show events for that week
+     * @param event 
+     */
     @FXML
     void handleWeeks(ActionEvent event) {
          if (event.getSource() instanceof Labeled w) {
@@ -161,7 +164,10 @@ public class AppController {
          }
     }
 
-    // shows the previous week
+    /**
+     * shows the previous week
+     * @param event
+     */
     @FXML
     void handlePrevWeek(ActionEvent event) {
         // if first week of the year, go to the last week of the year (52 or 53)
@@ -181,7 +187,10 @@ public class AppController {
         clearSelectedEventInfo();
     }
 
-    // shows the next week
+    /**
+     * shows the next week
+     * @param event
+     */
     @FXML
     void handleNextWeek(ActionEvent event) {
         // if last week of the year, go to first week of the year
@@ -197,7 +206,10 @@ public class AppController {
         clearSelectedEventInfo();
     }
 
-    // updates the tableview to show the same week as before, but the new chosen year. Shows 52 or 53 weeks depending on the year
+    /**
+     * updates the tableview to show the same week as before, but the new chosen year. Shows 52 or 53 weeks depending on the year
+     * @param event
+     */
     @FXML
     void handleYear(ActionEvent event) {
         updateTimetableView();
@@ -205,7 +217,10 @@ public class AppController {
         initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
 
-    // adding a new event. Checks if time is valid and the new event does not overlap an existing event. Creates a new timetable for the week if does not already exist.
+    /**
+     * adding a new event. Checks if time is valid and the new event does not overlap an existing event. Creates a new timetable for the week if does not already exist.
+     * @param event
+     */
     @FXML
     void handleAddEvent(ActionEvent event) {
         // hides the warning
@@ -256,13 +271,17 @@ public class AppController {
         }
     }
 
-    // Disables selecting a hours-cell (example 08:00-09:00) in the timetable
+    /**
+     * Disables selecting a hours-cell (example 08:00-09:00) in the timetable
+     */
     @FXML
     void handleClickedHours(MouseEvent event) {
         hours.getSelectionModel().clearSelection();
     }
 
-    // clears the event info that is shown when selecting a valid event
+    /**
+     * clears the event info that is shown when selecting a valid event
+     */
     private void clearSelectedEventInfo(){
         eventInfo.setText("Click on an event to get more information");
         title.setText("");
@@ -273,7 +292,10 @@ public class AppController {
         deleteButton.setVisible(false);
     }
     
-    // deletes the selected event, updates the timetable and removes the event information and hides the delete button
+    /**
+     * deletes the selected event, updates the timetable and removes the event information and hides the delete button
+     * @param event
+     */
     @FXML
     void handleDeleteEvent(ActionEvent event){
         Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
@@ -284,8 +306,10 @@ public class AppController {
         clearSelectedEventInfo();
     }
 
-    // adds a listener to the listview days that listens to the selectionmodel
-    // also connects all the different listview days so only 1 cell is selected between all of the listviews. Shows the event info of the selected cell.
+    /**
+     * adds a listener to the listview days that listens to the selectionmodel
+     * also connects all the different listview days so only 1 cell is selected between all of the listviews. Shows the event info of the selected cell.
+    */
     private void initializeListViewListeners(){
         ChangeListener<? super String> cl = (obs, oldSelection, newSelection) -> {
             for(ListView<String> day : days){
@@ -353,7 +377,9 @@ public class AppController {
     }
 
 
-    // reads all the events into user
+    /**
+     * reads all the events into user
+     */
     private void initializeEvents(){
         user = new User("mainUser");
         RW = new Json();
@@ -362,7 +388,9 @@ public class AppController {
         RW.read(user); // should read every event to user
     }
 
-    // adds all the hours into the hours-listview
+    /**
+     * adds all the hours into the hours-listview
+     */
     private void initializeHoursListView(){
          if(hours.getItems().isEmpty()){
             for(int i = 0; i<23; i++){
@@ -382,7 +410,9 @@ public class AppController {
         }
     }
 
-    // clears all the different day-listviews and eventMap(-keeps track of events to display event info when selecting an event)
+    /**
+     * clears all the different day-listviews and eventMap(-keeps track of events to display event info when selecting an event)
+     */
     private void resetDaysListView(){
         eventMap.clear();
         for(ListView<String> day:days){
@@ -393,7 +423,9 @@ public class AppController {
         selectedDay = monday;
     }
 
-    // resets and updates the listview-days and eventMap
+    /**
+     * resets and updates the listview-days and eventMap
+     */
     private void updateTimetableView(){
         resetDaysListView();
         //get timetable with key weeknumber+year
@@ -430,7 +462,9 @@ public class AppController {
         }
     }
 
-    // add the years 2020 to 2030 to the year-choicebox
+    /**
+     * add the years 2020 to 2030 to the year-choicebox
+     */
     private void initializeYear(){
         for(int i = 2020; i<2031; i++){
             year.getItems().add(Integer.toString(i));
@@ -442,7 +476,9 @@ public class AppController {
         initializeNumberOfWeeks(currentYear);
     }
 
-    // shows 52 or 53 week-buttons in the scrollbar at the bottom depending on if the chosen year has 52 or 53 weeks
+    /**
+     * shows 52 or 53 week-buttons in the scrollbar at the bottom depending on if the chosen year has 52 or 53 weeks
+     */
     private void initializeNumberOfWeeks(String year){
         Calendar c = Calendar.getInstance();
         c.set(Integer.parseInt(year), 11, 31);
@@ -454,12 +490,16 @@ public class AppController {
         }
     }
 
-    // sets the current week as the chosen week. The week number is displayed under the TIMETABLE header
+    /**
+     * sets the current week as the chosen week. The week number is displayed under the TIMETABLE header
+     */
     private void initializeWeekNumber(){
         weekNumber.setText(Integer.toString(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)));
     }
 
-    // adds the hours to startTime and endTime combobox and adds the categories to the newCategory choicebox
+    /**
+     * adds the hours to startTime and endTime combobox and adds the categories to the newCategory choicebox
+     */
     private void initializeChoiceboxes(){
 
         // set default locale for datepicker and default value to todays date
@@ -518,17 +558,25 @@ public class AppController {
         }
     }
 
-    // Method for testing UI. Get map of events.
+    /**
+     * Method for testing UI. 
+     * @return returns the map of events
+     */
     Map<ListView<String>, List<Event>> getEventMap(){
         isTest = true;
         return eventMap;
     }
-    // Method for testing UI. Get listviews of days (also used as keys in eventMap).
+    /**
+     * Method for testing UI
+     * @return returns the listviews of days (also used as keys in eventMap).
+     */
     List<ListView<String>> getDays(){
         return days;
     }
 
-    // Method for testing UI. Sets a user without any events and updates the view to clear any old events
+    /**
+     * Method for testing UI. Sets a user without any events and updates the view to clear any old events
+     */
     void clearUserForTest(){
         user = new User("testUser");
         updateTimetableView();

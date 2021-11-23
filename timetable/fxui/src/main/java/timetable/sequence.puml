@@ -8,7 +8,8 @@ TimetableController -> "~#newDate: DatePicker": getValue
 TimetableController -> "~#newStartTime: Choicebox": getValue
 TimetableController -> "~#newEndTime: Choicebox": getValue
 TimetableController -> "~#newDescription: TextField": getText
-TimetableController -> "Timetable": addEvent
-TimetableController -> "Timetable": updateTimetableView
+TimetableController -> "User.TimetableMap": addEvent
+User.TimetableMap -> "TimetableController": updateTimetableView
+
 
 @enduml

@@ -39,7 +39,9 @@ public class RemoteUserAccess implements UserAccess{
         return baseUri.resolve("?").resolve(nameEncode(name));
         
     }
-    // private method to fetch remote user
+    /**
+     * private method to fetch remote user
+     */
     private User getRemoteUser() {
         if (this.user == null) { //load remote user
             HttpRequest request = HttpRequest.newBuilder(baseUri)

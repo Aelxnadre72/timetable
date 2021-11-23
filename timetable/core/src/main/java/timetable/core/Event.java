@@ -24,37 +24,54 @@ public class Event {
         this.date = dateParser(date);
     }
 
-    // get title
+    /**
+     * @return gets the title of event
+     */
     public String getTitle(){
         return title;
     }
 
-    // set title
+    /**
+     * sets title of event
+     * @param title
+     */
     public void setTitle(String title){
         this.title = title;
     }
 
-    // get category
+    /** 
+     * @return gets category of event
+     */
     public String getCategory(){
         return category;
     }
 
-    // set category
+    /**
+     * sets category of event
+     * @param category
+     */
     public void setCategory(String category){
         this.category = category;
     }
 
-    // get description
+    /**
+     * @return gets description of event
+     */
     public String getDescription(){
         return description;
     }
 
-    // set description
+    /**
+     * sets description of event
+     * @param description
+     */
     public void setDescription(String description){
         this.description = description;
     }
 
-    // get start time of event
+    /**
+     * @return gets start time of event
+     */
     public String getTimeStart(){
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -65,12 +82,17 @@ public class Event {
         return null;
     }
 
-    // set start time of event
+    /**
+     * sets start time of event
+     * @param startString
+     */
     public void setTimeStart(String startString){
         timeStart = timeParser(startString);
     }
 
-    // get ending time of event
+    /**
+     * @return gets ending time of event
+     */
     public String getTimeEnd(){
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -81,17 +103,25 @@ public class Event {
         return null;
     }
 
-    // set ending time of event
+    /**
+     * set ending time of event
+     * @param endString
+     */
     public void setTimeEnd(String endString){
         timeEnd = timeParser(endString);
     }
 
-    // set date of event
+    /**
+     * set date of event
+     * @param date
+     */
     public void setDate(String date){
         this.date = dateParser(date);
     }
 
-    // get date of event
+    /**
+     * @return get date of event
+     */
     public String getDate(){
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -102,26 +132,36 @@ public class Event {
         return null;
     }
 
-    // returns week number
+    /** 
+     * @return returns week number
+     */
     public int getWeek(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault()); 
         int weekNumber = date.get(weekFields.weekOfWeekBasedYear());
         return weekNumber;
     }
 
-    // returns year
+    /**
+     * @return returns year of event
+     */
     public int getYear(){
         return date.getYear();
     }
 
-    // returns day of week 1-7
+    /**
+     * @return returns day of week 1-7
+     */
     public int getDayOfWeek(){
         return date.getDayOfWeek().getValue();
     }
 
-    // getmonth, getday, getdate?
+    
 
-    // converts from string to LocalTime format
+    /**
+     * converts from string to LocalTime format
+     * @param s
+     * @return returns the LocalTime format of string s
+     */
     private static LocalTime timeParser(String s){
         if(!isValidTime(s)){
             throw new IllegalArgumentException();
@@ -135,7 +175,11 @@ public class Event {
         return null;
     }    
 
-    // converts from string to LocalTime format
+    /**
+     * converts from string to LocalDate format
+     * @param s
+     * @return returns the LocalDate format of string s
+     */
     private static LocalDate dateParser(String s){
         if(!isValidDate(s)){
             throw new IllegalArgumentException();
@@ -149,6 +193,11 @@ public class Event {
         return null;
     } 
     
+    /**
+     * Checks if the date is valid 
+     * @param date
+     * @return true if the date is valid and false if its unvalid
+     */
     private static boolean isValidDate(String date){
         if (date.length()!=10){
             return false;
@@ -166,7 +215,11 @@ public class Event {
             return true;
         }
     }
-
+    /**
+     * Checks if the time is valid
+     * @param time
+     * @return returns true if the time is valid and false if its unvalid
+     */
     private static boolean isValidTime(String time){
         if (time.length()!=5){
             return false;

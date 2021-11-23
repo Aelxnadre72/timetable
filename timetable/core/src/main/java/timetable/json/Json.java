@@ -20,7 +20,9 @@ import timetable.json.serialization.TimetableModule;
 
 public class Json {
     
-    // Method for reading from json file
+    /**
+     * Method for reading from json file
+     */
     public User read(User user) {
         User tempUser = new User("1");
         ObjectMapper objectMapper = new ObjectMapper();
@@ -47,7 +49,9 @@ public class Json {
         return user;
     }
     
-    // Method for writing to json file
+    /**
+     * Method for writing to json file
+     */
     public void write(User user) {
         ObjectMapper objectMapper = new ObjectMapper();
         TimetableModule writeModule = new TimetableModule(true);

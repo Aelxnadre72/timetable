@@ -8,7 +8,7 @@ public class Timetable {
     private List<Event> eventList = new ArrayList<>();
     private int week;
     private int year;
-    // private EventIO eventIO;
+    
 
     public Timetable(int week, int year) {
         // initialize an EventIO object
@@ -26,12 +26,18 @@ public class Timetable {
         this.year = year;
     }
 
-    // return a copy of EventList with all the events
+    
+    /**
+     * @return return a copy of EventList with all the events
+     */
     public List<Event> getEventList() {
         return new ArrayList<Event>(eventList);
     }
 
-    // add new event in timetable
+    /**
+     * add new event in timetable
+     * @param event
+     */
     public void addEvent(Event event) {
         if(isDuplicateEvent(event)){
             throw new IllegalArgumentException("The event given to addEvent is colliding (time and date) with an existing event.");
@@ -39,12 +45,18 @@ public class Timetable {
         this.eventList.add(event);
     }
 
-    // remove event with specific title, start time and date from eventList 
+    /**
+     * removes event with specific title, start time and date from eventList
+     * @param event
+     */ 
     public void removeEvent(Event event) {
         eventList.remove(event);
     }
 
-    // check if the event already exists in eventList
+    /**
+     * checks if the event already exists in eventList
+     * @return returns true if it's in the list and false if it's not
+     */
     private boolean isDuplicateEvent(Event event){
         int eventStartTime = Integer.parseInt(event.getTimeStart().substring(0, 2));
         int eventEndTime = Integer.parseInt(event.getTimeEnd().substring(0, 2));
@@ -74,12 +86,19 @@ public class Timetable {
         return false;
     }
 
-    // get week of timetable
+    
+    /**
+     * get week of timetable
+     * @return week 
+     */
     public int getWeek(){
         return week;
     }
 
-    // get year of timetable
+    /**
+     * get year of timetable
+     * @return year
+     */
     public int getYear(){
         return year;
     }

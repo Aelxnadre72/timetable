@@ -15,7 +15,10 @@ public class User {
         this.id = id;
     }
 
-    // add timetable-object to timetableList. Key is week + year.
+    /**
+     * add timetable-object to timetableList. Key is week + year.
+     * @param timetable
+     */
     public void addTimetable(Timetable timetable){
         String k = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
         if(hasTimetable(k)){
@@ -25,7 +28,11 @@ public class User {
     }
 
     
-    //get timetable-object with key k
+    /**
+     * get timetable-object in timetableMap with key k
+     * @param k the key of the object
+     * @return the object with the corresponding key
+     */
     public Timetable getTimetable(String k){
         if(!timetableMap.containsKey(k)){
             return null;

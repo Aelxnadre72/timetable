@@ -1,4 +1,4 @@
-@startuml
+@startuml architecture
 
 component core{
     package timetable.core
@@ -27,4 +27,12 @@ component javafx {
 fxui --> javafx
 fxui --> fxml
 
+component rest {
+    package timetable.restapi
+    package timetable.restserver
+}
+
+timetable.restapi --> timetable.core
+timetable.restserver --> timetable.json
+timetable.restserver --> timetable.restapi
 @enduml
