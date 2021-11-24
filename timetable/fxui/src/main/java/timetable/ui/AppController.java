@@ -183,7 +183,7 @@ public class AppController {
         // adds listeners to the days-listviews selectionmodels    
         initializeListViewListeners();
         // reads all the events and sets user
-        initializeEvents();
+        //initializeEvents();
         // initalizes start time, end time and category choiceboxes
         initializeChoiceboxes();
         // initializes years in choicebox
