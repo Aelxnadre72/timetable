@@ -42,7 +42,7 @@ public class User {
 
     public List<Timetable> getTimetableList(){
         List<Timetable> l = new ArrayList<>(timetableMap.values());
-        return l;
+        return l; 
     }
 
     public boolean hasTimetable(String k) {
