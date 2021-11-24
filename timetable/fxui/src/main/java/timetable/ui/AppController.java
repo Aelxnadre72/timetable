@@ -212,9 +212,9 @@ public class AppController {
      */
     @FXML
     void handleYear(ActionEvent event) {
+        initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
         updateTimetableView();
         clearSelectedEventInfo();
-        initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
 
     /**
@@ -246,11 +246,18 @@ public class AppController {
             Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
             // if the timetable for the week of the new event does not exist, then creates it and adds the timetable to user
             if(timetable == null){
-                timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), Integer.parseInt(String.valueOf(ev.getYear())));
+                timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), ev.getYear());
                 user.addTimetable(timetable);
+                if(ev.getWeek() == 53 && Integer.parseInt(ev.getDate().substring(0, 2)) <= 7){
+                    Timetable fiftythree = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()-1));
+                    if(fiftythree == null){
+                        fiftythree = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), ev.getYear()-1);
+                        user.addTimetable(fiftythree);
+                    }
+                }
             }
             timetable.addEvent(ev);
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
             // shows the warning
             addEventWarning.setVisible(true);
             e.printStackTrace();
@@ -428,6 +435,7 @@ public class AppController {
      */
     private void updateTimetableView(){
         resetDaysListView();
+
         //get timetable with key weeknumber+year
         Timetable chosenWeek = user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
 
@@ -484,6 +492,9 @@ public class AppController {
         c.set(Integer.parseInt(year), 11, 31);
         if(c.get(Calendar.WEEK_OF_YEAR) == 52){
             extraWeek.setVisible(false);
+            if(weekNumber.getText().equals("53")){
+                weekNumber.setText("52");
+            }
         }
         else{
             extraWeek.setVisible(true);
