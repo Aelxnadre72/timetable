@@ -35,6 +35,11 @@ public class TimetablePersistence {
         this.filePath = Paths.get(System.getProperty("user.home"), file);
     }
 
+    public Path getSaveFilePath() {
+        return this.filePath;
+    }
+    
+
     // register mapper
     public static ObjectMapper createMapper() {
         return new ObjectMapper()
