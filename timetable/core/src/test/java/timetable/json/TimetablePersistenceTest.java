@@ -1,7 +1,6 @@
 package timetable.json;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import java.io.IOException;
@@ -9,8 +8,6 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-//import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Iterator;
 import org.junit.jupiter.api.Test;
 import timetable.core.User;
@@ -37,14 +34,14 @@ public class TimetablePersistenceTest {
         return user;
     }
 
-    //Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
+    
     private void checkSampleUser(User user, User user1){
         Iterator<Timetable> time = user.getTimetableList().iterator();
         Iterator<Timetable> time1 = user1.getTimetableList().iterator();
         assertTrue(time.hasNext());
         assertTrue(time1.hasNext());
 
-        //Timetable timetable = user.getTimetable(String.valueOf(ev.getWeek() + String.valueOf((ev.getYear()))));//it.next(); //usikker
+ 
         Timetable timetable = time.next();
         Timetable timetable1 = time1.next();
         assertEquals(timetable.getWeek(), timetable1.getWeek());
@@ -72,7 +69,7 @@ public class TimetablePersistenceTest {
     @Test
     public void testSerializersDeserializers_SaveFiles() {
         User user = createSamplUser();
-        //set unique save file path
+        
         timetablePersistence.setFilePath("user-" + System.currentTimeMillis() + ".json");
         Path savePath = timetablePersistence.getSaveFilePath();
         try {

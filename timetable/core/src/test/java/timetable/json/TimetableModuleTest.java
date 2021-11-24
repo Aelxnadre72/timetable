@@ -3,12 +3,8 @@ package timetable.json;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.sql.Time;
-//import java.sql.Time;
-import java.time.LocalDateTime;
 import java.util.Iterator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
@@ -81,6 +77,7 @@ public class TimetableModuleTest {
 
             Iterator<Event> events = timetable.getEventList().iterator();
             assertTrue(events.hasNext());
+            
         } catch (JsonProcessingException e) {
             fail(e.getMessage());
         }
