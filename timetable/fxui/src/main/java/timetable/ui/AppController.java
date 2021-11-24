@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-
+import java.util.TimeZone;
 import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.Json;
-import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Labeled;
 import javafx.scene.text.Text;
+import javafx.util.StringConverter;
 
 public class AppController {
 
@@ -165,6 +166,7 @@ public class AppController {
 
     @FXML
     void initialize() {
+        // converts the format of the datepicker
         if (endpointUri != null) {
             RemoteUserAccess remoteAccess = null;
             try {
@@ -176,9 +178,12 @@ public class AppController {
             
             } 
         }
+        convertDatePicker();
         days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
-        // sets useraccess, and reads all the events 
-        //initializeEvents();
+        // adds listeners to the days-listviews selectionmodels    
+        initializeListViewListeners();
+        // reads all the events and sets user
+        initializeEvents();
         // initalizes start time, end time and category choiceboxes
         initializeChoiceboxes();
         // initializes years in choicebox
@@ -251,11 +256,10 @@ public class AppController {
     // updates the tableview to show the same week as before, but the new chosen year. Shows 52 or 53 weeks depending on the year
     @FXML
     void handleYear(ActionEvent event) {
-        
+        initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
         updateTimetableView();
         
         clearSelectedEventInfo();
-        initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
 
     // adding a new event. Checks if time is valid and the new event does not overlap an existing event. Creates a new timetable for the week if does not already exist.
@@ -284,11 +288,20 @@ public class AppController {
             Timetable timetable = userAccess.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
             // if the timetable for the week of the new event does not exist, then creates it and adds the timetable to user
             if(timetable == null){
-                timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), Integer.parseInt(String.valueOf(ev.getYear())));
+                timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), ev.getYear());
+                userAccess.addTimetable(timetable);
+                userAccess.notifyTimetableChanged(timetable);
+                if(ev.getWeek() == 53 && Integer.parseInt(ev.getDate().substring(0, 2)) <= 7){
+                    Timetable fiftythree = userAccess.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()-1));
+                    if(fiftythree == null){
+                        fiftythree = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), ev.getYear()-1);
+                        userAccess.addTimetable(fiftythree);
+                        userAccess.notifyTimetableChanged(fiftythree);
+                    }
+                }
             }
             timetable.addEvent(ev);
-            userAccess.notifyTimetableChanged(timetable); 
-        }catch(Exception e){
+        }catch(IllegalArgumentException e){
             // shows the warning
             addEventWarning.setVisible(true);
             e.printStackTrace();
@@ -317,44 +330,9 @@ public class AppController {
         hours.getSelectionModel().clearSelection();
     }
 
-    // connects all the different listview days so only 1 cell i selected between all of the listviews. Shows the event info of the selected cell.
-    @FXML
-    void handleClickedEvent(MouseEvent event) {
-        int index = selectedDay.getSelectionModel().getSelectedIndex();
-        Boolean changed = false;
-        for(ListView<String> day : days){
-            if(!(day.getSelectionModel().getSelectedItem() == null)){
-                if(selectedDay != day && changed == false){
-                    selectedDay = day;
-                    changed = true;
-                    continue;
-                }
-            }
-            day.getSelectionModel().clearSelection();
-        }
-        if(changed == false){
-            selectedDay.getSelectionModel().select(index);
-        }
-        // display the event info of the selected event-cell
-        if(!(selectedDay.getSelectionModel().getSelectedItem().equals(""))){
-            eventInfo.setText("Event information:");
-            // get the selected event from eventMap and display the information under Event information in ui
-            Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
-            title.setText(selectedEvent.getTitle());
-            category.setText(selectedEvent.getCategory());
-            date.setText(selectedEvent.getDate());
-            time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
-            description.setText(selectedEvent.getDescription());
-            deleteButton.setVisible(true);
-        }
-        else{
-            clearSelectedEventInfo();
-        }
-    }
-
     // clears the event info that is shown when selecting a valid event
     private void clearSelectedEventInfo(){
-        eventInfo.setText("Click on an event to get more information.");
+        eventInfo.setText("Click on an event to get more information");
         title.setText("");
         category.setText("");
         date.setText("");
@@ -377,6 +355,75 @@ public class AppController {
         // clears the information to the selected event that got deleted
         clearSelectedEventInfo();
     }
+
+    // adds a listener to the listview days that listens to the selectionmodel
+    // also connects all the different listview days so only 1 cell is selected between all of the listviews. Shows the event info of the selected cell.
+    private void initializeListViewListeners(){
+        ChangeListener<? super String> cl = (obs, oldSelection, newSelection) -> {
+            for(ListView<String> day : days){
+                if(day.getSelectionModel().getSelectedItem() != null){
+                    if(day != selectedDay){
+                        selectedDay.getSelectionModel().clearSelection();
+                        selectedDay = day;
+                        continue;
+                    }
+                    else{
+                        continue;
+                    }
+                }
+                day.getSelectionModel().clearSelection();
+            }
+
+            // display the event info of the selected event-cell
+            if(selectedDay.getSelectionModel().getSelectedItem() != null){
+                    if(!selectedDay.getSelectionModel().getSelectedItem().equals("")){
+                    eventInfo.setText("Event information:");
+                    // get the selected event from eventMap and display the information under Event information in ui
+                    Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
+                    title.setText(selectedEvent.getTitle());
+                    category.setText(selectedEvent.getCategory());
+                    date.setText(selectedEvent.getDate());
+                    time.setText(selectedEvent.getTimeStart() + "-" + selectedEvent.getTimeEnd());
+                    description.setText(selectedEvent.getDescription());
+                    deleteButton.setVisible(true);
+                    return;
+                    }
+                }
+            clearSelectedEventInfo();
+        };
+        
+        // adds the listener to every listview day
+        for(ListView<String> day : days){
+            day.getSelectionModel().selectedItemProperty().addListener(cl);
+        }
+    }
+
+    // converts the format of the datepicker
+    private void convertDatePicker(){
+        String pattern = "dd.MM.yyyy";
+        StringConverter<LocalDate> converter = new StringConverter<LocalDate>() {
+            DateTimeFormatter dateFormatter = 
+            DateTimeFormatter.ofPattern(pattern);
+            @Override
+            public String toString(LocalDate date) {
+                if (date != null) {
+                    return dateFormatter.format(date);
+                } else {
+                    return "";
+                }
+            }
+            @Override
+            public LocalDate fromString(String string) {
+                if (string != null && !string.isEmpty()) {
+                    return LocalDate.parse(string, dateFormatter);
+                } else {
+                    return null;
+                }
+            }
+        }; 
+        newDate.setConverter(converter);
+    }
+
 
     // reads all the events into user
     /*private void initializeEvents(){
@@ -421,6 +468,7 @@ public class AppController {
     // resets and updates the listview-days and eventMap
     private void updateTimetableView(){
         resetDaysListView();
+
         //get timetable with key weeknumber+year
         
         Timetable chosenWeek = userAccess.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
@@ -476,6 +524,9 @@ public class AppController {
         c.set(Integer.parseInt(year), 11, 31);
         if(c.get(Calendar.WEEK_OF_YEAR) == 52){
             extraWeek.setVisible(false);
+            if(weekNumber.getText().equals("53")){
+                weekNumber.setText("52");
+            }
         }
         else{
             extraWeek.setVisible(true);
@@ -491,7 +542,7 @@ public class AppController {
     private void initializeChoiceboxes(){
 
         // set default locale for datepicker and default value to todays date
-        Locale.setDefault(Locale.UK);
+        Locale.setDefault(new Locale("no", "NO"));
         newDate.setValue(LocalDate.now());
 
         // sets the categories to choose from in the choicebox
@@ -519,8 +570,11 @@ public class AppController {
             newEndTime.getItems().add("00:00");
         }
 
-        // set the current time and current time + 1 hour as the default value for the time-choiceboxes
-        int h = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        // set the timezone, current time and current time + 1 hour as the default value for the time-choiceboxes
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
+        int h = cal.get(Calendar.HOUR_OF_DAY);
+
         if(h>9){
             if(h == 23){
                 newStartTime.setValue("23:00");
@@ -548,7 +602,7 @@ public class AppController {
         //isTest = true;
         return eventMap;
     }
-    // Method for testing UI. Get list of days (used as keys in eventMap).
+    // Method for testing UI. Get listviews of days (also used as keys in eventMap).
     List<ListView<String>> getDays(){
         return days;
     }

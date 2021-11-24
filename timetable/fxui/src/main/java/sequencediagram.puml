@@ -1,0 +1,14 @@
+@startuml
+actor User
+User -> "ADD EVENT: Button" as addevent: click
+addevent -> TimetableController: handleAddEvent
+TimetableController -> "~#newTitle: TextField": getText
+TimetableController -> "~#newCategory: Choicebox": getValue
+TimetableController -> "~#newDate: DatePicker": getValue
+TimetableController -> "~#newStartTime: Choicebox": getValue
+TimetableController -> "~#newEndTime: Choicebox": getValue
+TimetableController -> "~#newDescription: TextField": getText
+TimetableController -> "Timetable": addEvent
+TimetableController -> "Timetable": updateTimetableView
+
+@enduml
