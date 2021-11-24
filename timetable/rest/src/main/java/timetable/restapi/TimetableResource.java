@@ -42,7 +42,7 @@ public class TimetableResource {
     }
 
     private void checkTimetable(){ //check timetable or user?
-        if (this.user == null) {
+        if (this.timetable == null) {
             throw new IllegalArgumentException("No timetable has id \"" + id + "\"");
         }
     }

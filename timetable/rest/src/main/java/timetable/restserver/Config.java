@@ -28,7 +28,12 @@ public class Config extends ResourceConfig{
     public Config(User user) {
         setUser(user);
         persistence = new TimetablePersistence();
-        //persistence.setFilePath("server.json");
+        persistence.setFilePath("server.json");
+        try {
+            persistence.saveUser(createTestUser()); // legge inn testbruker i serverfilen for å sjekke om det nås fra klienten
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         register(UserService.class);
         register(UserMapperProvider.class);
         register(JacksonFeature.class);
@@ -55,10 +60,10 @@ public class Config extends ResourceConfig{
     private static User createTestUser() {
         Event event = new Event("math", "school", "description", "09:00", "10:00", "01.10.2021" );
         Event event3 = new Event("norwegian", "school","description", "09:00", "10:00", "02.10.2021" );
-        Event event1 = new Event("english", "school","description1", "09:00", "10:00", "08.10.2021" );
-        Event event2 = new Event("physics", "school","description1", "09:00", "10:00", "09.10.2021" );
+        Event event1 = new Event("english", "school","description1", "09:00", "10:00", "24.11.2021" );
+        Event event2 = new Event("physics", "school","description1", "09:00", "10:00", "23.11.2021" );
         Timetable timetable = new Timetable(39, 2021);
-        Timetable timetable1 = new Timetable(40, 2021);
+        Timetable timetable1 = new Timetable(47, 2021);
         User user = new User();
         timetable.addEvent(event);
         timetable.addEvent(event3);

@@ -13,7 +13,7 @@
 
     <properties>
         <slf4jVersion>1.7.25</slf4jVersion>
-        <jerseyVersion>3.0.3</jerseyVersion>
+        <jerseyVersion>3.0.1</jerseyVersion>
     </properties>
 
     <dependencies>

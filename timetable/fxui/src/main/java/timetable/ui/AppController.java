@@ -15,6 +15,7 @@ import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.Json;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -141,7 +142,7 @@ public class AppController {
      * Sets userAccess as remote if endpointUri exists, locally else
      * 
      */
-    private void setUserAccess() {
+    /*private void setUserAccess() {
         if (endpointUri != null) {
             RemoteUserAccess remoteAccess = null;
             try {
@@ -158,16 +159,26 @@ public class AppController {
             LocalUserAccess localAccess = new LocalUserAccess(this.user);
             userAccess = localAccess;
 
-        }
+        }*/
     
-    }
+    //}
 
     @FXML
     void initialize() {
-         
+        if (endpointUri != null) {
+            RemoteUserAccess remoteAccess = null;
+            try {
+                System.out.println("Using remote endpoint @ " + endpointUri);
+                remoteAccess = new RemoteUserAccess(new URI(endpointUri));
+                userAccess = remoteAccess;
+            } catch (URISyntaxException e) {
+                System.err.println(e);
+            
+            } 
+        }
         days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
         // sets useraccess, and reads all the events 
-        setUserAccess(); //initializeEvents();
+        //initializeEvents();
         // initalizes start time, end time and category choiceboxes
         initializeChoiceboxes();
         // initializes years in choicebox
@@ -177,7 +188,12 @@ public class AppController {
         // initializes hours for listview "hours"
         initializeHoursListView();
         // resets all the different day-listviews and loads the events for the week
+        
         updateTimetableView();
+        
+        
+  
+        
         
     }
 
@@ -207,7 +223,10 @@ public class AppController {
         else{
             weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())-1));
         }
+
+        
         updateTimetableView();
+        
         clearSelectedEventInfo();
     }
 
@@ -223,14 +242,18 @@ public class AppController {
         else{
             weekNumber.setText(String.valueOf(Integer.parseInt(weekNumber.getText())+1));
         }
+        
         updateTimetableView();
+        
         clearSelectedEventInfo();
     }
 
     // updates the tableview to show the same week as before, but the new chosen year. Shows 52 or 53 weeks depending on the year
     @FXML
     void handleYear(ActionEvent event) {
+        
         updateTimetableView();
+        
         clearSelectedEventInfo();
         initializeNumberOfWeeks(year.getSelectionModel().getSelectedItem());
     }
@@ -276,7 +299,9 @@ public class AppController {
         newCategory.getSelectionModel().selectFirst();
         newDescription.clear();
         // updates the listviews for all the days
+        
         updateTimetableView();
+        
         // there is currently an issue with finding the path of the file to read and write to in json.java
         // can comment out this line if you do not want to receive the error messages relating to this problem when running app, until the problem is resolved
         
@@ -346,7 +371,9 @@ public class AppController {
         timetable.removeEvent(selectedEvent);
         userAccess.notifyTimetableChanged(timetable);
         //updates the listView-days and the eventMap that keep track of the events to show info of selected event
+        
         updateTimetableView();
+        
         // clears the information to the selected event that got deleted
         clearSelectedEventInfo();
     }
@@ -395,7 +422,10 @@ public class AppController {
     private void updateTimetableView(){
         resetDaysListView();
         //get timetable with key weeknumber+year
-        Timetable chosenWeek = user.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
+        
+        Timetable chosenWeek = userAccess.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
+        
+        
 
         if(chosenWeek != null){
             // get a copy of a list with all the events in the chosen week
@@ -405,7 +435,7 @@ public class AppController {
                 // get the timetable for week 53 for the next year because if a year has 53 weeks than roughly half of
                 // that week will technically be in the next year. Example: week 53 in year 2020 does have dates that
                 // is in 2021. 
-                Timetable weekNextYear = user.getTimetable(String.valueOf(chosenWeek.getWeek()) + String.valueOf(chosenWeek.getYear()+1));
+                Timetable weekNextYear = userAccess.getTimetable(String.valueOf(chosenWeek.getWeek()) + String.valueOf(chosenWeek.getYear()+1));
                 if(weekNextYear != null){
                     // solves problem by showing the events for week 53 for both the year with 53 weeks and the next year
                     chosenWeekEventList.addAll(weekNextYear.getEventList());

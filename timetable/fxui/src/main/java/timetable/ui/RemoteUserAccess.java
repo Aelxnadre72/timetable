@@ -36,7 +36,7 @@ public class RemoteUserAccess implements UserAccess{
     }
 
     private URI timetableUri(String name) {
-        return baseUri.resolve("?").resolve(nameEncode(name));
+        return baseUri.resolve("timetable").resolve(nameEncode(name));
         
     }
     /**
@@ -78,17 +78,24 @@ public class RemoteUserAccess implements UserAccess{
     @Override
     public Timetable getTimetable(String weekYear) {
         String key = (weekYear);
+        System.out.println("gets " + weekYear); // for å sjekke programflyt
         HttpRequest request = HttpRequest.newBuilder(timetableUri(key))
         .header("Accept", "application/json")
         .GET()
         .build();
+        System.out.println(request); // printer ut requesten i terminalen
         try{
             HttpResponse<String> response =
             HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
             String responseStr = response.body();
-            Timetable timetable = mapper.readValue(responseStr, Timetable.class);
-            this.user.addTimetable(timetable);
-            return timetable;
+            System.out.println(responseStr);
+            if (responseStr.contains("Not Found") == false) {
+              Timetable timetable = mapper.readValue(responseStr, Timetable.class);
+              this.user.addTimetable(timetable);
+              return timetable;
+            }
+            return null;
+            
         }
         catch (IOException | InterruptedException e) {
             throw new RuntimeException();
@@ -98,6 +105,7 @@ public class RemoteUserAccess implements UserAccess{
 
     @Override
     public void putTimetable(Timetable timetable) {
+      System.out.println("puts " + String.valueOf(timetable.getWeek())); // sjekke programflyt
         String weekYear = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
         if (hasTimetable(weekYear)) {   
             removeTimetable(weekYear);
@@ -112,6 +120,7 @@ public class RemoteUserAccess implements UserAccess{
             final HttpResponse<String> response =
                 HttpClient.newBuilder().build().send(request, HttpResponse.BodyHandlers.ofString());
             String responseStr = response.body();
+            System.out.println(responseStr); // printe ut responsen, "Not Found" i message-feltet
             Boolean added = mapper.readValue(responseStr, Boolean.class);
             if (added != null) {
                 this.user.putTimetable(timetable);
@@ -125,6 +134,7 @@ public class RemoteUserAccess implements UserAccess{
 
     @Override
   public void removeTimetable(String weekYear) {
+    System.out.println("removes " + weekYear); // programflyt
     try {
       HttpRequest request = HttpRequest.newBuilder(timetableUri(weekYear))
           .header("Accept", "application/json")

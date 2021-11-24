@@ -12,7 +12,13 @@
     </parent>
 
     <artifactId>rest</artifactId>
+    
+    <properties>
+        <slf4jVersion>2.0.0-alpha5</slf4jVersion>
+        <jerseyVersion>3.0.3</jerseyVersion>
+    </properties>
 
+    
     <dependencies>
         <dependency>
             <groupId>it1901</groupId>
@@ -37,6 +43,12 @@
         </dependency>
         
        
+       <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
