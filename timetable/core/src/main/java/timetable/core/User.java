@@ -19,7 +19,11 @@ public class User {
     }
 
     
-    //get timetable-object with key k
+    /**
+     * get timetable-object in timetableMap with key k
+     * @param k the key of the object
+     * @return the object with the corresponding key
+     */
     public Timetable getTimetable(String k){
         if(!timetableMap.containsKey(k)){
             return null;
