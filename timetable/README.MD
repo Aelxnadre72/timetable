@@ -9,6 +9,7 @@ The goal for this release is that the app can handle several weeks, not just one
 # Release 3, final app
 The goal for this release is that the app can handle several years, in addition to categorized events. The app can also display more detailed information about an event when clicked on, and delete the event if wanted.
 
+You can read more about the user stories for each release in the docs folder. 
 
 
 # Architecture diagrams of the app
