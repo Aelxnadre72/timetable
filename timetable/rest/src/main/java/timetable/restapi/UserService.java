@@ -26,7 +26,7 @@ public class UserService {
   private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
   @Context
-  private User user;  //todoModel
+  private User user;  
 
   @Context
   private TimetablePersistence timetablePersistence;

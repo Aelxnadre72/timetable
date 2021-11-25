@@ -165,10 +165,10 @@
                         </goals>
                         <configuration>
                             <skipTests>${skipUiTests}</skipTests>
-                            <!-- System.getProperty("todo.port") gir riktig port -->
+                            <!-- System.getProperty("user.port") gir riktig port -->
                             <systemPropertyVariables>
                                 <headless>${headlessTests}</headless>
-                                <todo.port>${jetty.port}</todo.port>
+                                <user.port>${jetty.port}</user.port>
                             </systemPropertyVariables>
                         </configuration>
                     </execution>

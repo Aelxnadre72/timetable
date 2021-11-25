@@ -14,7 +14,6 @@ import java.util.TimeZone;
 import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
-import timetable.json.Json;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -120,11 +119,7 @@ public class AppController {
     @FXML
     String endpointUri;
 
-    private User user;
-
     private ListView<String> selectedDay;
-
-    //private Json RW;
 
     // list containing all of the listview-days
     private List<ListView<String>> days;
@@ -132,10 +127,6 @@ public class AppController {
     // overview over events to show the selected event information 
     private Map<ListView<String>, List<Event>> eventMap = new HashMap<>();
 
-    // Does not read or write if isTest is true. Is set to true when getEventMap is used by AppTest.java
-    //private boolean isTest = false;
-
-    
     UserAccess userAccess;
 
 
@@ -166,18 +157,23 @@ public class AppController {
 
     @FXML
     void initialize() {
-        // converts the format of the datepicker
         if (endpointUri != null) {
             RemoteUserAccess remoteAccess = null;
             try {
                 System.out.println("Using remote endpoint @ " + endpointUri);
                 remoteAccess = new RemoteUserAccess(new URI(endpointUri));
+                remoteAccess.getInitialUser();
                 userAccess = remoteAccess;
+                
             } catch (URISyntaxException e) {
                 System.err.println(e);
-            
             } 
         }
+        else {
+            userAccess = new LocalUserAccess();
+        }
+
+        // converts the format of the datepicker
         convertDatePicker();
         days = Arrays.asList(monday, tuesday, wednesday, thursday, friday, saturday, sunday);
         // adds listeners to the days-listviews selectionmodels    
@@ -285,22 +281,27 @@ public class AppController {
             }
             
             Event ev = new Event(newTitle.getText(), newCategory.getValue(), newDescription.getText(), newStartTime.getValue(), newEndTime.getValue(), newDate.getValue().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
+            
             Timetable timetable = userAccess.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()));
             // if the timetable for the week of the new event does not exist, then creates it and adds the timetable to user
             if(timetable == null){
-                timetable = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), ev.getYear());
+                timetable = new Timetable(ev.getWeek(), ev.getYear());
+                timetable.addEvent(ev);
                 userAccess.addTimetable(timetable);
-                userAccess.notifyTimetableChanged(timetable);
                 if(ev.getWeek() == 53 && Integer.parseInt(ev.getDate().substring(0, 2)) <= 7){
                     Timetable fiftythree = userAccess.getTimetable(String.valueOf(ev.getWeek()) + String.valueOf(ev.getYear()-1));
                     if(fiftythree == null){
-                        fiftythree = new Timetable(Integer.parseInt(String.valueOf(ev.getWeek())), ev.getYear()-1);
+                        fiftythree = new Timetable(ev.getWeek(), ev.getYear()-1);
                         userAccess.addTimetable(fiftythree);
-                        userAccess.notifyTimetableChanged(fiftythree);
+                        //userAccess.notifyTimetableChanged(fiftythree);
                     }
                 }
             }
-            timetable.addEvent(ev);
+            else {
+                timetable.addEvent(ev);
+                userAccess.addTimetable(timetable);
+            }
+        // notify?          
         }catch(IllegalArgumentException e){
             // shows the warning
             addEventWarning.setVisible(true);
@@ -346,10 +347,9 @@ public class AppController {
     void handleDeleteEvent(ActionEvent event){
         Event selectedEvent = eventMap.get(selectedDay).get(selectedDay.getSelectionModel().getSelectedIndex());
         Timetable timetable = userAccess.getTimetable(String.valueOf(selectedEvent.getWeek()) + String.valueOf(selectedEvent.getYear()));
-        timetable.removeEvent(selectedEvent);
-        userAccess.notifyTimetableChanged(timetable);
+        userAccess.removeEvent(timetable, selectedEvent);
+
         //updates the listView-days and the eventMap that keep track of the events to show info of selected event
-        
         updateTimetableView();
         
         // clears the information to the selected event that got deleted
@@ -470,10 +470,7 @@ public class AppController {
         resetDaysListView();
 
         //get timetable with key weeknumber+year
-        
         Timetable chosenWeek = userAccess.getTimetable(weekNumber.getText() + year.getSelectionModel().getSelectedItem());
-        
-        
 
         if(chosenWeek != null){
             // get a copy of a list with all the events in the chosen week
@@ -482,7 +479,7 @@ public class AppController {
             if(chosenWeek.getWeek() == 53){
                 // get the timetable for week 53 for the next year because if a year has 53 weeks than roughly half of
                 // that week will technically be in the next year. Example: week 53 in year 2020 does have dates that
-                // is in 2021. 
+                // is in 2021.
                 Timetable weekNextYear = userAccess.getTimetable(String.valueOf(chosenWeek.getWeek()) + String.valueOf(chosenWeek.getYear()+1));
                 if(weekNextYear != null){
                     // solves problem by showing the events for week 53 for both the year with 53 weeks and the next year
@@ -599,7 +596,6 @@ public class AppController {
 
     // Method for testing UI. Get map of events.
     Map<ListView<String>, List<Event>> getEventMap(){
-        //isTest = true;
         return eventMap;
     }
     // Method for testing UI. Get listviews of days (also used as keys in eventMap).
@@ -609,8 +605,8 @@ public class AppController {
 
     // Method for testing UI. Sets a user without any events and updates the view to clear any old events
     void clearUserForTest(){
-        user = new User();
         updateTimetableView();
     }
+
 
 }

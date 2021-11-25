@@ -1,13 +1,14 @@
 package timetable.ui;
 
+import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 
 public class LocalUserAccess implements UserAccess {
     private final User user;
 
-    public LocalUserAccess(User user) {
-        this.user = user;
+    public LocalUserAccess() {
+        this.user = new User();
     }
     
     @Override
@@ -16,8 +17,8 @@ public class LocalUserAccess implements UserAccess {
     }
 
     @Override
-    public void putTimetable(Timetable timetable) {
-        this.user.putTimetable(timetable);
+    public void addTimetable(Timetable timetable) {
+        this.user.addTimetable(timetable);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class LocalUserAccess implements UserAccess {
     }
 
     @Override
-    public void notifyTimetableChanged(Timetable timetable) {
-        putTimetable(timetable);
+    public void removeEvent(Timetable timetable, Event event) {
+        timetable.removeEvent(event);
     }
 }

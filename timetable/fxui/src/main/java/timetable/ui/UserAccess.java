@@ -1,5 +1,6 @@
 package timetable.ui;
 
+import timetable.core.Event;
 import timetable.core.Timetable;
 
 public interface UserAccess {
@@ -17,7 +18,7 @@ public interface UserAccess {
      *  updates timetable if it exists.
      * 
      */ 
-    public void putTimetable(Timetable timetable);
+    public void addTimetable(Timetable timetable);
 
     /** 
      * get timetable with @year and @week
@@ -35,5 +36,5 @@ public interface UserAccess {
      * Initilizes putTimetable when timetable has been edited
      * 
      */
-    public void notifyTimetableChanged(Timetable timetable);
+    public void removeEvent(Timetable timetable, Event event);
 }

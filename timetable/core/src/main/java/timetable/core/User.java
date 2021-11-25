@@ -16,12 +16,12 @@ public class User {
     }*/
 
     // add timetable-object to timetableList. Key is week + year.
-    public void addTimetable(Timetable timetable){
+    public Timetable addTimetable(Timetable timetable){
         String k = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
         if(hasTimetable(k)){
             throw new IllegalArgumentException("The timetable with this specific key already exist.");
         }
-        timetableMap.put(k, timetable);
+        return timetableMap.put(k, timetable);
     }
 
     
@@ -54,11 +54,11 @@ public class User {
         }
     }
 
-    public Timetable putTimetable(Timetable timetable) {
+/*     public Timetable putTimetable(Timetable timetable) {
         String key = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
         return timetableMap.put(key, timetable);    
         
-    }
+    } */
     
     
 }

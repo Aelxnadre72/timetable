@@ -2,15 +2,9 @@ package timetable.json;
 
 import java.io.File;
 import java.io.IOException;
-
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-
-import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.serialization.TimetableModule;

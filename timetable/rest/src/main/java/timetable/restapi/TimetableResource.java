@@ -3,11 +3,8 @@ package timetable.restapi;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
-import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
-import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -20,9 +17,7 @@ import timetable.json.TimetablePersistence;
 
 @Produces(MediaType.APPLICATION_JSON)
 public class TimetableResource {
-
     private static final Logger LOG = LoggerFactory.getLogger(TimetableResource.class);
-
     private final User user;
     private final String id;
     private final Timetable timetable;
@@ -75,9 +70,9 @@ public class TimetableResource {
    */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
-    public boolean putTimetable(Timetable timetableArg){
-        LOG.debug("putTimetable({})", timetableArg);     //putTodoList(): Replaces an existing TodoList with the same name, or adds it.
-        Timetable oldTimetable = this.user.putTimetable(timetableArg);     //putUser(userArg);
+    public boolean addTimetable(Timetable timetableArg){
+        LOG.debug("addTimetable({})", timetableArg);     //timetable(): Replaces an existing timetable with the same name, or adds it.
+        Timetable oldTimetable = this.user.addTimetable(timetableArg);     //putUser(userArg);
         autoSaveUser();
         return oldTimetable == null;
         
@@ -89,24 +84,24 @@ public class TimetableResource {
     * @return true if it was added, false if it replaced
     */
     @PUT
-    public boolean putTimetable(){
+    public boolean addTimetable(){
         if (timetable != null) {
-            return putTimetable(timetable);
+            return addTimetable(timetable);
         }
         else {  
             //split id into numbers
             String[] idArray = id.split("", 3);
             int week = Integer.parseInt(idArray[0]);
             int year = Integer.parseInt(idArray[1] + idArray[2]);
-            return putTimetable(new Timetable(week, year));
+            return addTimetable(new Timetable(week, year));
         }
     }
 
     /**
-   * Removes the TodoList.
+   * Removes the timetable.
    */
   @DELETE
-  public boolean removeTodoList() {
+  public boolean removeTimetable() {
     checkTimetable();
     this.user.removeTimetable(id);
     autoSaveUser();

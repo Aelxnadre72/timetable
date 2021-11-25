@@ -2,6 +2,7 @@ package timetable.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Timetable {
     
@@ -41,7 +42,9 @@ public class Timetable {
 
     // remove event with specific title, start time and date from eventList 
     public void removeEvent(Event event) {
-        eventList.remove(event);
+        List<Event> ev = eventList.stream()
+        .filter(e -> e.getDayOfWeek() == event.getDayOfWeek() && e.getTimeStart().equals(event.getTimeStart())).collect(Collectors.toList());
+        eventList.remove(ev.get(0));
     }
 
     // check if the event already exists in eventList
