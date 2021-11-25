@@ -11,17 +11,17 @@ The goal for this release is that the app can handle several years, in addition 
 
 
 
-## Architecture diagrams of the app
-# UML diagram
+# Architecture diagrams of the app
+## UML diagram
 ![](architecture.PNG)
 
-# Sequencediagram
+## Sequencediagram
 ![](sequence.PNG)
 
-# Classdiagram
+## Classdiagram
 ![](classdiagram.PNG)
 
-# An image of the apps interface
+## An image of the apps interface
 ![](interface.png)
 
 

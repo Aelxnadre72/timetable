@@ -50,10 +50,25 @@ To start the server (before running the application), write "mvn -pl integration
 
 
 # Tests
+## core tests
+### core
 [EventTest.java](timetable/core/src/test/java/timetable/core/EventTest.java) have Junit tests that tests the event class (the constructor and the setters) and it also has exception tests.
 [TimetableTest.java](timetable/core/src/test/java/timetable/core/TimetableTest.java) have Junit tests that test the timetable class (the constructor and adding events to the timetable).
 [UserTest.java](timetable/core/src/test/java/timetable/core/UserTest.java) have junit tests that tests adding a timetable to a user.
+
+### json
+[TimetableModuleTest.java](timetable/core/src/test/java/timetable/json/TimetableModuleTest.java) have junit tests that tests the serializers and desiarlizers. 
+[TimetablePersistenceTest.java](timetable/core/src/test/java/timetable/json/TimetablePersistenceTest.java) have junit tests to test TimetablePersistence. 
+
+## fxui tests
 [AppTest.java] (timetable\fxui\src\test\java\timetable\ui\AppTest.java) have ui tests that recreates a users behaviour when using the app. There is two test for adding an event and viewing it in the the correct year and week. It also checks that the event was added into the user. There is a test that deletes an added event and checks the listviews and the eventmap before and each deletion to ensure that the delete functionality is working.
+
+## rest tests
+..............FYLL inn.....
+
+## Integrationtests
+............FYLL inn ....
+
 
 We also implemnted other tools to check code quality:
 * Spotbugs
