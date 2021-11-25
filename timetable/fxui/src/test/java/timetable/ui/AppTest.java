@@ -120,7 +120,6 @@ public class AppTest extends ApplicationTest{
 
     @Test
     public void testAddEventRestrictions(){
-       
         assertEquals(true, checkEmptyTimetable());
         clickOn("#newTitle").write("Workout");
         clickOn("#newCategory");

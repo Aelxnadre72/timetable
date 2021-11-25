@@ -41,8 +41,6 @@ public class RemoteUserAccess implements UserAccess{
 
     private URI timetableUri(String name) {
         URI a = URI.create(baseUri.toString() + "/timetable/" + name);
-        System.out.println(a);
-        System.out.println("lololololoollololo");
         return a;
         
     }
@@ -54,7 +52,6 @@ public class RemoteUserAccess implements UserAccess{
     
     private User getRemoteUser() {
         if (this.user == null) { //load remote user
-          System.out.println(baseUri);
           HttpRequest request = HttpRequest.newBuilder(baseUri)
           .header("Accept", "application/json")
           .GET()
@@ -62,8 +59,6 @@ public class RemoteUserAccess implements UserAccess{
           try {
               final HttpResponse<String> response =
                 client.send(request, HttpResponse.BodyHandlers.ofString());
-              System.out.println(response.body());
-              System.out.println("jfkdshjfksdfklsdjklkfjdslakl");
               this.user = mapper.readValue(response.body(), User.class);
             } catch (IOException | InterruptedException e) {
               throw new RuntimeException(e);
@@ -95,7 +90,6 @@ public class RemoteUserAccess implements UserAccess{
         .GET()
         .build();
         System.out.println(request); // printer ut requesten i terminalen
-        System.out.println("jsgskdsl");
         try{
           HttpResponse<String> response = 
           client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -103,8 +97,6 @@ public class RemoteUserAccess implements UserAccess{
             System.out.println(responseStr);
             if (responseStr.contains("Not Found") == false && responseStr.contains("Request failed") == false) {
               Timetable timetable = mapper.readValue(responseStr, Timetable.class);
-/*               this.user.removeTimetable(weekYear);
-              this.user.addTimetable(timetable); */
               return timetable;
             }
             return null;
@@ -134,7 +126,6 @@ public class RemoteUserAccess implements UserAccess{
             final HttpResponse<String> response =
             client.send(request, HttpResponse.BodyHandlers.ofString());
             String responseStr = response.body();
-            System.out.println(responseStr); // printe ut responsen, "Not Found" i message-feltet
             Boolean added = mapper.readValue(responseStr, Boolean.class);
             if (added != null) {
                 this.user.addTimetable(timetable);

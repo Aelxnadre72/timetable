@@ -6,14 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
-    
-    //private String id;
 
     private Map<String, Timetable> timetableMap = new HashMap<>();
-
-    /*public User(String id){
-        this.id = id;
-    }*/
 
     // add timetable-object to timetableList. Key is week + year.
     public Timetable addTimetable(Timetable timetable){
@@ -52,13 +46,6 @@ public class User {
         else {
             throw new IllegalArgumentException("There is no timetable with this key.");
         }
-    }
-
-/*     public Timetable putTimetable(Timetable timetable) {
-        String key = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
-        return timetableMap.put(key, timetable);    
-        
-    } */
-    
+    }   
     
 }

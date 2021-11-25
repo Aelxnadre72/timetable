@@ -34,7 +34,7 @@ public class UserService {
 /**
    * The root resource, i.e. /timetable
    *
-   * @return the timetable (User??)   //todomodel
+   * @return the user
    */
   @GET
   public User getUser() {   
@@ -49,14 +49,14 @@ public class UserService {
    * Returns the Timetable with the provided id
    * (as a resource to support chaining path elements).
    * This supports all requests referring to Timetable by id.
-   * Note that the TodoList needn't exist, since it can be a PUT. ???
+   * Note that the timetable needn't exist, since it can be a PUT.
    *
    * @param id the id of the user/timetable
    */
-  @Path("/timetable/{weekYear}")  //"/list/{@week+@year}"
+  @Path("/timetable/{weekYear}") //"/list/{@week+@year}"
   public TimetableResource getTimetable(@PathParam("weekYear") String weekYear) {
     System.out.println("got " + weekYear); // programflyt
-    Timetable timetable = getUser().getTimetable(weekYear);    //AbstractTodoList todoList = getTodoModel().getTodoList(name);
+    Timetable timetable = getUser().getTimetable(weekYear);
     LOG.debug("Sub-resource for Timetable " + weekYear + ": " + timetable);
     TimetableResource timetableResource = new TimetableResource(timetable, user, weekYear); //Timetable timetable, User user, String id
     timetableResource.setTimetablePersistence(timetablePersistence);

@@ -28,12 +28,11 @@ public interface UserAccess {
 
     /**
      * Private method for removing timetable
-     * Used to overwrite existing old timetables
      * 
      */
     void removeTimetable(String weekYear);
     /**
-     * Initilizes putTimetable when timetable has been edited
+     * remove event from timetable
      * 
      */
     public void removeEvent(Timetable timetable, Event event);
