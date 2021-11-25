@@ -6,7 +6,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpRequest.BodyPublishers;
-import java.util.List;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -79,7 +78,6 @@ public class RemoteUserAccess implements UserAccess{
     *
     * @return 
     */
-
     @Override
     public Timetable getTimetable(String weekYear) {
         String key = (weekYear);

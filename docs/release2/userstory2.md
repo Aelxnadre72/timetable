@@ -10,5 +10,5 @@ It's important for the app to show
 * when a week is picked by the user, the timetable with the associated events for that specific week will appear
 
 It's important that the app can
-* handle several weeks (1 to 52/53)
+* handle several weeks (1 to 52)
 * add an event in the right week, right day and right time of day
