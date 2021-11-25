@@ -52,6 +52,7 @@ public class Config extends ResourceConfig{
     Event event3 = new Event("norwegian", "school", "description", "09:00", "10:00", "02.10.2021");
     Event event1 = new Event("english", "school", "description1", "09:00", "10:00", "24.11.2021");
     Event event2 = new Event("physics", "school", "description1", "09:00", "10:00", "23.11.2021");
+    Event event4 = new Event("yoga", "school", "description1", "05:00", "07:00", "23.11.2021");
     Timetable timetable = new Timetable(39, 2021);
     Timetable timetable1 = new Timetable(47, 2021);
     User user = new User();
@@ -59,6 +60,7 @@ public class Config extends ResourceConfig{
     timetable.addEvent(event3);
     timetable1.addEvent(event1);
     timetable1.addEvent(event2);
+    timetable1.addEvent(event4);
     user.addTimetable(timetable);
     user.addTimetable(timetable1);
     return user;

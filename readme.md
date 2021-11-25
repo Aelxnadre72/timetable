@@ -32,7 +32,8 @@ At the right hand side, an event will show up when it's selected/clicked on in t
 When an event is selected/clicked on, then the corresponding information will show up, as well as a delete event button for deleting the event.
 
 # rest
-[rest](timetable/rest) is the folder for the rest logic. .....
+[rest](timetable/rest) is one of the two folders (together with integrationtests) containing the code to run our rest server.
+To start the server (before running the application), write "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder. To terminate the server, type ctrl+c in the same terminal.
 
 ## restapi
 [restapi](timetable/rest/src/main/java/timetable/restapi)
@@ -61,11 +62,15 @@ We used these tools to check for bugs, errors and test coverage to optimalize th
 
 # Trying it out
 To try out the projects, cd into the corrosponding folder (timetable).
-* mvn clean install to get mvn to work when running the project for the first time
-* compile with mvn compile
-* test with mvn test
-* check test coverage with mvn test first, and then mvn jacoco:report. The coverage is shown in index.html inside target/site/jacoco. There is one for each module core and fxui.
-* run mvn javfx:run (inside timetable/fxui)
+* "mvn clean install" to get mvn to work when running the project for the first time
+* compile with "mvn compile"
+* test with "mvn test"
+* check test coverage with "mvn test" first, and then "mvn jacoco:report". The coverage is shown in index.html inside target/site/jacoco. There is one for each module core and fxui.
+* Start the rest-api server with the command 'mvn -pl integrationtests jetty:run -D"jetty.port=8999"'.
+It is advisable to run the server command and the javafx:run command from two different terminals.
+* Our relative paths to see what's stored on the server is /user (all timetables) and /user/timetable/weeknumber+year (specific timetable, for example: /user/timetable/472021). Only timetable weeks with events will have information on the site. The others will have a Request failed message. If you are running it with localhost, our relative paths are http://localhost:8999/user and http://localhost:8999/user/timetable/week+year
+* To terminate the server you can use ctrl+c to stop the terminal where your server is running from.
+* run "mvn javfx:run" (inside timetable/fxui) or mvn -pl fxui javafx:run from the timetable folder.
 * check code quality with mvn verify
 
 # An image of the apps interface

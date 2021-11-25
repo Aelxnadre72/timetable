@@ -15,7 +15,8 @@ The goal for this release is that the app can handle several years, in addition 
 See the UML diagram for the app here [architecture.puml](architecture.puml)
 See the sequence diagram for the app [sequencediagram.png](fxui/src/main/java/sequence.PNG)
 
-
+# An image of the apps interface
+![](interface.png)
 
 
 
