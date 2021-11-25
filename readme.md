@@ -1,4 +1,4 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://amethyst-rhinoceros-wehnmdtx.ws.gitpod.stud.ntnu.no/)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://lime-asp-hlza29ou.ws.gitpod.stud.ntnu.no/)
 
 # timetable 
 Timetable [timetable](timetable) is the main folder for our group project in the subject IT1901. 
