@@ -78,7 +78,7 @@ It is advisable to run the server command and the javafx:run command from two di
 # Shippable product
 * The project can be created into an exe file to install the application on your computer.
 * Steps to create a shippable product:
-1. Download wix311.exe from https://github.com/wixtoolset/wix3/releases/tag/wix3112rtm and run the program an install wix.
+1. If you are on windows, if not then skip this step: Download wix311.exe from https://github.com/wixtoolset/wix3/releases/tag/wix3112rtm and run the program an install wix.
 2. Run "mvn -pl fxui clean compile javafx:jlink jpackage:jpackage" from the timetable folder. This will create a zip file at timetable\fxui\target\timetablefx.zip and an exe file at timetable\fxui\target\dist\TimetableFX-1.0.0.exe.
 3. Install the TimetableFX-1.0.0.exe file. The application/program (timetablefx) will be installed on your computer under programs.
 4. start the server by running "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder.
