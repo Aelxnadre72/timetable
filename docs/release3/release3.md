@@ -4,6 +4,7 @@ We also needed to continue to implement (from release2) and extend the funcional
 
 ## core
 Added categories to Event.java. Rewrote the method getEventList in Timetable.java to preserve the encapsulation.
+We were advised to move the converters in event.java, that converts time and date from string to localtime or localdate objects, to anoter class and change the event constructor and get'ers and set'ers to be localtime and localdate instead of string. And then use the converter class to convert the objects to string and vice versa. We agree that it would be better that way, however, we did not have enough time to do it. Our rest-api had alot of complications, so we did not manage to finish it until the very end. This made it difficult for those on the group that was not working on the rest-api at the time to rewrite event.java, as those working on the rest-api was using event.java frequently. The group chose to prioritize the rest-api and work together to finish it in time.
 
 The core now has a user.java that has a timetable which contains timetables for each week that has events. The timetables has a eventlist with events in that week.
 
