@@ -1,5 +1,7 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://lime-asp-hlza29ou.ws.gitpod.stud.ntnu.no/)
 
+# Instructions for running the application is at the bottom of this readme file.
+
 # timetable 
 Timetable [timetable](timetable) is the main folder for our group project in the subject IT1901. 
 The goal for our app is for the user to add events, with title, a date, time of day and a description. The event will then appear in a timetable. The user can also choose between several years and weeks, with the right number of weeks in each year. 
@@ -72,6 +74,15 @@ It is advisable to run the server command and the javafx:run command from two di
 * To terminate the server you can use ctrl+c to stop the terminal where your server is running from.
 * run "mvn javfx:run" (inside timetable/fxui) or mvn -pl fxui javafx:run from the timetable folder.
 * check code quality with mvn verify
+
+# Shippable product
+* The project can be created into an exe file to install the application on your computer.
+* Steps to create a shippable product:
+1. If you are on windows, if not then skip this step: Download wix311.exe from https://github.com/wixtoolset/wix3/releases/tag/wix3112rtm and run the program an install wix.
+2. Run "mvn -pl fxui clean compile javafx:jlink jpackage:jpackage" from the timetable folder. This will create a zip file at timetable\fxui\target\timetablefx.zip and an exe file at timetable\fxui\target\dist\TimetableFX-1.0.0.exe.
+3. Install the TimetableFX-1.0.0.exe file. The application/program (timetablefx) will be installed on your computer under programs.
+4. start the server by running "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder.
+5. Open the timetablefx program on your computer.
 
 # An image of the apps interface
 ![](interface.png)
