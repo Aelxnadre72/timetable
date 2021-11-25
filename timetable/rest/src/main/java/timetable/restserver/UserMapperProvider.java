@@ -1,18 +1,17 @@
 package timetable.restserver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.Provider;
 import timetable.json.TimetablePersistence;
-import timetable.core.Timetable;
-import timetable.json.Json;
+
 /**
- * Jackson-module provider for serialization
- */
+* Jackson-module provider for serialization.
+*/
+
 @Provider
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

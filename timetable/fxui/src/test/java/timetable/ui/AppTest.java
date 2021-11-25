@@ -33,7 +33,6 @@ public class AppTest extends ApplicationTest{
         this.controller = fxmlLoader.getController();
         this.eventMap = controller.getEventMap();
         this.days = controller.getDays();
-        controller.clearUserForTest();
         stage.setScene(new Scene(parent));
         stage.show();
     }
@@ -121,7 +120,6 @@ public class AppTest extends ApplicationTest{
 
     @Test
     public void testAddEventRestrictions(){
-       
         assertEquals(true, checkEmptyTimetable());
         clickOn("#newTitle").write("Workout");
         clickOn("#newCategory");

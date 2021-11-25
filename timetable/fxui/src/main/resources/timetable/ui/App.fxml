@@ -14,9 +14,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import java.lang.String?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="timetable.ui.AppController">
+   
    <children>
+      <fx:define>
+         <String fx:id="endpointUri" fx:value="http://localhost:8999/user"/> 
+      </fx:define>
       <HBox layoutX="43.0" layoutY="559.0" prefHeight="41.0" prefWidth="879.0">
          <children>
             <Label text="Weeks: ">

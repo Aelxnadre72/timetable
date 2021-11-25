@@ -1,18 +1,19 @@
 package timetable.ui;
 
+import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 
 public class LocalUserAccess implements UserAccess {
     private final User user;
 
-    public LocalUserAccess(User user) {
-        this.user = user;
+    public LocalUserAccess() {
+        this.user = new User();
     }
     
     @Override
-    public boolean hasTimetable(int week, int year) {
-        return user.hasTimetable(String.valueOf(week) + String.valueOf(year));
+    public boolean hasTimetable(String weekYear) {
+        return this.user.hasTimetable(weekYear);
     }
 
     @Override
@@ -21,9 +22,17 @@ public class LocalUserAccess implements UserAccess {
     }
 
     @Override
-    public Timetable getTimetable(int week, int year) {
-        return user.getTimetable(String.valueOf(week) + String.valueOf(year));
+    public Timetable getTimetable(String weekYear) {
+        return this.user.getTimetable(weekYear);
     }
     
-    
+    @Override
+    public void removeTimetable(String weekYear) {
+        this.user.removeTimetable(weekYear);
+    }
+
+    @Override
+    public void removeEvent(Timetable timetable, Event event) {
+        timetable.removeEvent(event);
+    }
 }
