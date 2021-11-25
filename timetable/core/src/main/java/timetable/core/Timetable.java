@@ -2,19 +2,15 @@ package timetable.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Timetable {
     
     private List<Event> eventList = new ArrayList<>();
     private int week;
     private int year;
-    
 
     public Timetable(int week, int year) {
-        // initialize an EventIO object
-        // eventIO = new EventIO(this);
-        // reads and creates events from json and 
-        // eventIO.read();
         // set week (53 because some years have 53 weeks)
         if(week<1 || week>53){
             throw new IllegalArgumentException("The week number is invalid.");
@@ -50,7 +46,9 @@ public class Timetable {
      * @param event
      */ 
     public void removeEvent(Event event) {
-        eventList.remove(event);
+        List<Event> ev = eventList.stream()
+        .filter(e -> e.getDayOfWeek() == event.getDayOfWeek() && e.getTimeStart().equals(event.getTimeStart())).collect(Collectors.toList());
+        eventList.remove(ev.get(0));
     }
 
     /**
