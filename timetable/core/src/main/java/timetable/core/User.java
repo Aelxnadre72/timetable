@@ -6,22 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 public class User {
-    
-    private String id;
 
     private Map<String, Timetable> timetableMap = new HashMap<>();
 
-    public User(String id){
-        this.id = id;
-    }
-
     // add timetable-object to timetableList. Key is week + year.
-    public void addTimetable(Timetable timetable){
+    public Timetable addTimetable(Timetable timetable){
         String k = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
         if(hasTimetable(k)){
             throw new IllegalArgumentException("The timetable with this specific key already exist.");
         }
-        timetableMap.put(k, timetable);
+        return timetableMap.put(k, timetable);
     }
 
     
@@ -44,5 +38,14 @@ public class User {
         }
         return false;
     }
+
+    public void removeTimetable(String k) {
+        if (timetableMap.containsKey(k)) {
+            timetableMap.remove(k);
+        }
+        else {
+            throw new IllegalArgumentException("There is no timetable with this key.");
+        }
+    }   
     
 }

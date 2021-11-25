@@ -30,7 +30,7 @@ public class UserDeserializer extends JsonDeserializer<User>{
 
     User deserialize(JsonNode treeNode) {
         if (treeNode instanceof ObjectNode objNode) { 
-            User user = new User("1");
+            User user = new User();
             JsonNode timetablesNode = objNode.get("timetables");
             if (timetablesNode instanceof ArrayNode arrayNode) { 
                 for (JsonNode elemNode : arrayNode) {
