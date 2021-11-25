@@ -22,7 +22,7 @@ public class AppTest extends ApplicationTest{
     private AppController controller;
     private Map<ListView<String>, List<Event>> eventMap;
     private List<ListView<String>> days;
-    private Event event1, event2;
+    private Event event1, event2, event3, event4;
     private int currentYear;
     private int currentHour;
     
@@ -33,7 +33,6 @@ public class AppTest extends ApplicationTest{
         this.controller = fxmlLoader.getController();
         this.eventMap = controller.getEventMap();
         this.days = controller.getDays();
-        controller.clearUserForTest();
         stage.setScene(new Scene(parent));
         stage.show();
     }
@@ -54,8 +53,9 @@ public class AppTest extends ApplicationTest{
     }
 
     @Test
-    public void testAddEvent1() throws InterruptedException{
+    public void testAddEvent1(){
         //Test for event nr1
+        assertEquals(true, checkEmptyTimetable());
         clickOn("#newTitle").write("Night shift");
         clickOn("#newCategory");
         type(KeyCode.DOWN);
@@ -67,12 +67,14 @@ public class AppTest extends ApplicationTest{
         selectChoiceBox("#newEndTime", 6, currentHour+1);
         clickOn("#newDescription").write("At the hospital");
         clickOn("#addEventButton");
+        assertEquals(false, checkEmptyTimetable());
         checkEvent(event1);
     }
 
     @Test
-    public void testAddEvent2() throws InterruptedException{
+    public void testAddEvent2(){
         //Test for event nr2
+        assertEquals(true, checkEmptyTimetable());
         clickOn("#newTitle").write("Workout");
         clickOn("#newCategory");
         type(KeyCode.DOWN);
@@ -85,14 +87,108 @@ public class AppTest extends ApplicationTest{
         selectChoiceBox("#newEndTime", 7, currentHour+1);
         clickOn("#newDescription").write("At the gym");
         clickOn("#addEventButton");
+        assertEquals(false, checkEmptyTimetable());
         checkEvent(event2);
     }
 
     @Test
-    public void testSelectAndDelete() throws InterruptedException{
-        if(checkEmptyTimetable() != true){
-            assertEquals(true, checkEmptyTimetable());
-        }
+    public void testNavigatingWeeks(){
+        for (int i = 0; i < 11; i++) {
+            clickOn("#prevWeekButton");
+          }
+          for (int i = 0; i < 2; i++) {
+            clickOn("#nextWeekButton");
+          }
+        
+        event3 = new Event("Morning yoga", "exercise", "At the studio","05:00","07:00","04.01.2022");
+        assertEquals(true, checkEmptyTimetable());
+        clickOn("#newTitle").write("Morning yoga");
+        clickOn("#newCategory");
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        type(KeyCode.ENTER);
+        clickOn("#newDate");
+        type(KeyCode.BACK_SPACE, 10);
+        clickOn(((DatePicker)lookup("#newDate").query()).getEditor()).write("04.01.2022\n");
+        selectChoiceBox("#newStartTime",5, currentHour);
+        selectChoiceBox("#newEndTime", 7, currentHour+1);
+        clickOn("#newDescription").write("At the studio");
+        clickOn("#addEventButton");
+        assertEquals(false, checkEmptyTimetable());
+        checkEvent(event3);
+    }
+
+    @Test
+    public void testAddEventRestrictions(){
+        assertEquals(true, checkEmptyTimetable());
+        clickOn("#newTitle").write("Workout");
+        clickOn("#newCategory");
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        type(KeyCode.ENTER);
+        clickOn("#newDate");
+        type(KeyCode.BACK_SPACE, 10);
+        clickOn(((DatePicker)lookup("#newDate").query()).getEditor()).write("10.03.2022\n");
+        selectChoiceBox("#newStartTime",5, currentHour);
+        selectChoiceBox("#newEndTime", 7, currentHour+1);
+        clickOn("#addEventButton");
+        assertEquals(true, checkEmptyTimetable());
+
+        clickOn("#newCategory");
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        type(KeyCode.ENTER);
+        clickOn("#newDate");
+        type(KeyCode.BACK_SPACE, 10);
+        clickOn(((DatePicker)lookup("#newDate").query()).getEditor()).write("11.03.2022\n");
+        selectChoiceBox("#newStartTime",5, currentHour);
+        selectChoiceBox("#newEndTime", 7, currentHour+1);
+        clickOn("#newDescription").write("At the gym");
+        clickOn("#addEventButton");
+        assertEquals(true, checkEmptyTimetable());
+        
+        clickOn("#newTitle").write("Workout");
+        clickOn("#newCategory");
+        type(KeyCode.DOWN);
+        type(KeyCode.DOWN);
+        type(KeyCode.ENTER);
+        clickOn("#newDate");
+        type(KeyCode.BACK_SPACE, 10);
+        clickOn(((DatePicker)lookup("#newDate").query()).getEditor()).write("10.03.2022\n");
+        selectChoiceBox("#newStartTime",7, currentHour);
+        selectChoiceBox("#newEndTime", 5, currentHour+1);
+        clickOn("#newDescription").write("At the gym");
+        clickOn("#addEventButton");
+        assertEquals(true, checkEmptyTimetable());
+
+    }
+
+    @Test
+    public void testWeekFiftyThree() throws InterruptedException{
+        selectChoiceBox("#year",2026, 2022);
+        clickOn("#goButton");
+        for (int i = 0; i < 10; i++) {
+            clickOn("#prevWeekButton");
+          }
+        event4 = new Event("Wedding", "social", "At the beach","18:00","00:00","03.01.2027");
+        clickOn("#newTitle").write("Wedding");
+        clickOn("#newCategory");
+        type(KeyCode.ENTER);
+        clickOn("#newDate");
+        type(KeyCode.BACK_SPACE, 10);
+        clickOn(((DatePicker)lookup("#newDate").query()).getEditor()).write("03.01.2027\n");
+        selectChoiceBox("#newStartTime",18, currentHour);
+        selectChoiceBox("#newEndTime", 00, currentHour+1);
+        clickOn("#newDescription").write("At the beach");
+        clickOn("#addEventButton");
+        assertEquals(false, checkEmptyTimetable());
+        checkEvent(event4);
+        selectChoiceBox("#year", 2027, 2026);
+    }
+
+    @Test
+    public void testSelectAndDelete(){
+        assertEquals(true, checkEmptyTimetable());
         clickOn("#newTitle").write("Night shift");
         clickOn("#newCategory");
         type(KeyCode.DOWN);
@@ -104,19 +200,15 @@ public class AppTest extends ApplicationTest{
         selectChoiceBox("#newEndTime", 6, currentHour+1);
         clickOn("#newDescription").write("At the hospital");
         clickOn("#addEventButton");
+
+        assertEquals(false, checkEmptyTimetable());
         checkEvent(event1);
 
-        if(checkEmptyTimetable() != false){
-            assertEquals(false, checkEmptyTimetable());
-        }
         type(KeyCode.TAB, 60);
         type(KeyCode.DOWN);
         clickOn("#deleteButton");
-        Thread.sleep(1000);
 
-        if(checkEmptyTimetable() != true){
-            assertEquals(true, checkEmptyTimetable());
-        }
+        assertEquals(true, checkEmptyTimetable());
     }
 
     private Boolean checkEmptyTimetable(){

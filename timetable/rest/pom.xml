@@ -12,7 +12,13 @@
     </parent>
 
     <artifactId>rest</artifactId>
+    
+    <properties>
+        <slf4jVersion>2.0.0-alpha5</slf4jVersion>
+        <jerseyVersion>3.0.3</jerseyVersion>
+    </properties>
 
+    
     <dependencies>
         <dependency>
             <groupId>it1901</groupId>
@@ -37,6 +43,12 @@
         </dependency>
         
        
+       <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.3</version>
+        </dependency>
+
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
             <artifactId>jakarta.ws.rs-api</artifactId>
@@ -108,6 +120,35 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>3.0.3</version>
+        </dependency>
+
+        <!-- Testing with Jersey and Grizzly-->
+
+         <dependency>
+            <groupId>org.glassfish.jersey.test-framework</groupId>
+            <artifactId>jersey-test-framework-util</artifactId>
+            <version>3.0.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+            <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
+            <version>3.0.3</version>
+            <scope>test</scope>
+        </dependency>
+
+
+        <!-- Jersey -->
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>3.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+            <scope>runtime</scope>
         </dependency>
 
     </dependencies>

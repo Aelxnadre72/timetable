@@ -32,7 +32,6 @@ class TimetableDeserializer extends JsonDeserializer<Timetable>{
     
     Timetable deserialize(JsonNode treeNode) {
         if (treeNode instanceof ObjectNode objNode) {
-
             int week = objNode.get("week").intValue();
             int year = objNode.get("year").intValue(); 
             Timetable timetable = new Timetable(week, year);

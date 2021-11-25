@@ -13,7 +13,7 @@ public class UserTest {
     @BeforeEach
     public void initialize(){
         timetable = new Timetable(48, 2021);
-        user = new User("Test");
+        user = new User();
         user.addTimetable(timetable);
     }
     
