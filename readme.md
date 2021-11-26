@@ -5,7 +5,7 @@
 # timetable 
 Timetable [timetable](timetable) is the main folder for our group project in the subject IT1901. 
 The goal for our app is for the user to add events, with title, a date, time of day and a description. The event will then appear in a timetable. The user can also choose between several years and weeks, with the right number of weeks in each year. 
-In timetable there is a folder for the logic of the app ([core](timetable/core)), and a folder for the user interface ([fxui](timetable/fxui)). 
+In timetable there is a folder for the logic of the app ([core](timetable/core)), a folder for the user interface ([fxui](timetable/fxui)), a folder for the rest service ([rest](timetable/rest)) and a folder for the integrationtests ([integrationtests](timetable/integrationtests)). The documentation of our work is in the [docs](docs) folder, with the user stories and workhabits through all 3 releases. 
 
 # Core 
 The core logic is implemented in [Timetable.java](timetable/core/src/main/java/timetable/core/Timetable.java). It has methods for adding and removing events from the lists of events.
@@ -66,8 +66,8 @@ To start the server (before running the application), write "mvn -pl integration
 ## rest tests
 
 
-## Integrationtests
-[AppIT.java](timetable/integrationtests/src/test/java/timetable/ui/AppIT.java) is the integration test and it tests several components of the system. It test that the server works as it should.  
+## Integration tests
+[AppIT.java](timetable/integrationtests/src/test/java/timetable/ui/AppIT.java) has the integration test and it tests several components of the system. It test that the server works as it should.  
 
 
 We also implemnted other tools to check code quality:
