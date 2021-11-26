@@ -8,10 +8,7 @@ import jakarta.ws.rs.ext.ContextResolver;
 import jakarta.ws.rs.ext.Provider;
 import timetable.json.TimetablePersistence;
 
-/**
-* Jackson-module provider for serialization.
-*/
-
+/** Jackson-module provider for serialization. */
 @Provider
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
