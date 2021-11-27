@@ -66,14 +66,14 @@ public class UserServiceTest extends JerseyTest{
             Iterator<Timetable> timetables = user.getTimetableList().iterator();
             assertTrue(timetables.hasNext());
             Timetable timetable1 = timetables.next();
-            assertEquals(47,timetable1.getWeek());
+            assertEquals(39,timetable1.getWeek());
             assertTrue(timetables.hasNext());
             
             Timetable timetable2 = timetables.next();
             assertFalse(timetables.hasNext());
 
-            assertEquals(47, timetable1.getWeek());
-            assertEquals(39, timetable2.getWeek());
+            assertEquals(39, timetable1.getWeek());
+            assertEquals(47, timetable2.getWeek());
 
         } catch (JsonProcessingException e) {
             fail(e.getMessage());

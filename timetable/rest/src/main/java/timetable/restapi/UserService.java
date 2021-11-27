@@ -26,10 +26,10 @@ public class UserService {
   private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
   @Context
-  private User user;  
+  public User user;  
 
   @Context
-  private TimetablePersistence timetablePersistence;
+  public TimetablePersistence timetablePersistence;
 
 /**
    * The root resource, i.e. /timetable
