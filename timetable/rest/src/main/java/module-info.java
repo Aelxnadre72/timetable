@@ -11,7 +11,4 @@ module timetableModule.rest {
     requires jersey.media.json.jackson;
 
     opens timetable.restapi to jersey.server;
-
-  opens timetable.restapi to
-      jersey.server;
 }
