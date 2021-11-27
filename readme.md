@@ -38,15 +38,42 @@ When an event is selected/clicked on, then the corresponding information will sh
 To start the server (before running the application), write "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder. To terminate the server, type ctrl+c in the same terminal.
 
 ## restapi
-[restapi](timetable/rest/src/main/java/timetable/restapi)
+[restapi](timetable/rest/src/main/java/timetable/restapi) is the API providing the server-side of the REST web service with necessary methods to fetch and process HTTP requests, as well as sending the appriopriate response back. 
 
-[TimetableResource.java](timetable/rest/src/main/java/timetable/restapi/TimetableResource.java)...
-[UserService.java](timetable/rest/src/main/java/timetable/restapi/UserService.java) ....
+- GET: gets the desired timetable from the server. Obtained with week and year, via request: http://localhost:8999/user/timetable/{week+year} GET
+Format on response:
+{"week":week,"year":year,"events":[{"title":"title","category":"category","description":"description","time-start":"hh:mm","time-end":"hh:mm","date":"dd.mm.yyyy"}]}
+
+- PUT: puts the desired timetable in server-user, replaces if it exists, adds if not. Obtained via request: http://localhost:8999/user/timetable/{week+year} PUT.
+Format on serialized timetable: {"week":week,"year":year,"events":[{"title":"title","category":"category","description":"description","time-start":"hh:mm","time-end":"hh:mm","date":"dd.mm.yyyy"}]}
+
+- REMOVE: removes the relevant timetable from the remote user on server. Obtained via request: http://localhost:8999/user/timetable/{week+year} REMOVE
+
+- The format used by the json-file stored in the server: 
+    {
+    "timetables": [{"week": week, "year": year,"events":[
+        {
+            "title": "title",
+            "category": "category",
+            "description": "description",
+            "time-start": "hh:mm",
+            "time-end": "hh:mm",
+            "date": "dd.mm.yyyy"}
+            ]
+        }
+        ]
+    }
+
+[UserService.java](timetable/rest/src/main/java/timetable/restapi/UserService.java) is the top level class, which receives the requests and fetches the information.
+ Logic for the actions GET, PUT and  by the client on relevant timetables gets initialized through 
+[TimetableResource.java](timetable/rest/src/main/java/timetable/restapi/TimetableResource.java). Logic for methods needed by the server-side to get, put and remove timetables is implemented in this class. 
+
 
 ## restserver
-[restserver](timetable/rest/src/main/java/timetable/restserver) ....
-[Config.java](timetable/rest/src/main/java/timetable/restserver/Config.java)....
-[UserMapperProvider.java](timetable/rest/src/main/java/timetable/restserver/UserMapperProvider.java)
+[restserver](timetable/rest/src/main/java/timetable/restserver) is the implementation of the actual server. The folder contains two different classes:
+[Config.java](timetable/rest/src/main/java/timetable/restserver/Config.java) configures and binds the server up with a user and a persistence. Methods for testing the server is also implemented in this class. 
+[UserMapperProvider.java](timetable/rest/src/main/java/timetable/restserver/UserMapperProvider.java) provides a Objectmapper for jackson serialization and deserialization. 
+
 
 
 # Tests
