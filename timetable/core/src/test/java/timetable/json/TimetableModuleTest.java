@@ -13,7 +13,6 @@ import timetable.core.User;
 import timetable.core.Timetable;
 import timetable.core.Event;
 
-/*{"timetables":[{"week":47,"year":2021,"events":[{"title":"study","category":"school","description":"exam","time-start":"12:00","time-end":"14:00","date":"25.11.2021"},{"title":"study2","category":"school","description":"exam","time-start":"10:00","time-end":"12:00","date":"26.11.2021"}]}]}*/
 public class TimetableModuleTest {
     private static ObjectMapper mapper;
 
