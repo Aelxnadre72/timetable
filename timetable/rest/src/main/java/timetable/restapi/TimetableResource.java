@@ -36,7 +36,7 @@ public class TimetableResource {
         this.id = id; 
     }
 
-    private void checkTimetable(){ //check timetable or user?
+    private void checkTimetable(){ 
         if (this.timetable == null) {
             throw new IllegalArgumentException("No timetable has id \"" + id + "\"");
         }
@@ -46,10 +46,10 @@ public class TimetableResource {
     
 
     @GET
-    public Timetable getTimetable(){ //timetable eller user?
+    public Timetable getTimetable(){ 
         checkTimetable();
         LOG.debug("getTimetable({})", id);
-        return this.timetable; //timetable/user?
+        return this.timetable; 
     }
 
     private void autoSaveUser(){
