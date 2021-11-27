@@ -5,6 +5,8 @@ import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -495,9 +497,9 @@ public class AppController {
   // sets the current week as the chosen week. The week number is displayed under the TIMETABLE
   // header
   private void initializeWeekNumber() {
-    Calendar cal = Calendar.getInstance();
-    cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
-    weekNumber.setText(Integer.toString(cal.get(Calendar.WEEK_OF_YEAR)));
+    LocalDate ld = LocalDate.now();
+    TemporalField woy = WeekFields.of(Locale.getDefault()).weekOfWeekBasedYear();
+    weekNumber.setText(String.valueOf(ld.get(woy)));
   }
 
   // adds the hours to startTime and endTime combobox and adds the categories to the newCategory
@@ -506,8 +508,7 @@ public class AppController {
 
     // set default locale for datepicker and default value to todays date
     Locale.setDefault(new Locale("no", "NO"));
-    LocalDate.now(ZoneId.of("Europe/Oslo"));
-    newDate.setValue(LocalDate.now());
+    newDate.setValue(LocalDate.now(ZoneId.of("Europe/Oslo")));
 
     // sets the categories to choose from in the choicebox
     newCategory
