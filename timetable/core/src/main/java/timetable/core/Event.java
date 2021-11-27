@@ -135,6 +135,7 @@ public class Event {
    * @throws DateTimeException if formatting does not work
    */
   public int getWeek() {
+    Locale.setDefault(new Locale("no", "NO"));
     WeekFields weekFields = WeekFields.of(Locale.getDefault());
     int weekNumber = date.get(weekFields.weekOfWeekBasedYear());
     return weekNumber;
@@ -186,6 +187,7 @@ public class Event {
     }
     try {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+      Locale.setDefault(new Locale("no", "NO"));
       return LocalDate.parse(s, formatter);
     } catch (DateTimeParseException e) {
       e.printStackTrace();
