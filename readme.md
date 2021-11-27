@@ -66,11 +66,13 @@ We used these tools to check for bugs, errors and test coverage to optimalize th
 To try out the projects, cd into the corrosponding folder (timetable).
 * "mvn clean install" to get mvn to work when running the project for the first time
 * compile with "mvn compile"
-* test with "mvn test"
+* test with "mvn test". This does not run the integration-tests.
+* test (with integrationtests) with "mvn test integration-test".
 * check test coverage with "mvn test" first, and then "mvn jacoco:report". The coverage is shown in index.html inside target/site/jacoco. There is one for each module core and fxui.
 * Start the rest-api server with the command 'mvn -pl integrationtests jetty:run -D"jetty.port=8999"'.
 It is advisable to run the server command and the javafx:run command from two different terminals.
 * Our relative paths to see what's stored on the server is /user (all timetables) and /user/timetable/weeknumber+year (specific timetable, for example: /user/timetable/472021). Only timetable weeks with events will have information on the site. The others will have a Request failed message. If you are running it with localhost, our relative paths are http://localhost:8999/user and http://localhost:8999/user/timetable/week+year
+* At startup there will be some events that are from the rest server, these are in week 47 (2021) and week 39 (2021).
 * To terminate the server you can use ctrl+c to stop the terminal where your server is running from.
 * run "mvn javfx:run" (inside timetable/fxui) or mvn -pl fxui javafx:run from the timetable folder.
 * check code quality with mvn verify
@@ -85,4 +87,4 @@ It is advisable to run the server command and the javafx:run command from two di
 5. Open the timetablefx program on your computer.
 
 # An image of the apps interface
-![](interface.png)
+![](timetable\interface.png)
