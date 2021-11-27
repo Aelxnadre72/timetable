@@ -52,6 +52,18 @@
             <artifactId>mockito-core</artifactId>
         </dependency>
 
+                <!-- javafx -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>16</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>16</version>
+        </dependency>
+
         <!-- Test with TextFX -->
 		<dependency>
 			<groupId>org.testfx</groupId>
@@ -103,6 +115,7 @@
             </plugin>
             <!-- Reservere porter og tilordne dem til variabler -->
             <plugin>
+            
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
                 <version>3.2.0</version>
