@@ -21,9 +21,11 @@ public class UserService {
 
   private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
 
-  @Context private User user;
+  @Context
+  public User user;  
 
-  @Context private TimetablePersistence timetablePersistence;
+  @Context
+  public TimetablePersistence timetablePersistence;
 
   /**
    * The root resource, i.e. /timetable
