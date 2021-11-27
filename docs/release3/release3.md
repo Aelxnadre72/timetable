@@ -19,7 +19,13 @@ The ui now has the functionality to add an event and view the event in the corre
 
 
 ## rest
+The rest-module was the main feature implemented for release 3. The module is split into two main folders, RESTapi and RESTserver. The restapi-folder implements methods used by the server-side, by receiving and processing HTTP-requests into appropriate responses. The API consists of two classes: UserService and TimetableResource. UserService is the top level class which receives the requests from the client, and uses TimetableResource to allow both putting, removing and fetching timetables from the server. 
 
+The RESTserver is implemented as the actual server with two classes: Config and UserMapperProvider. UserMapperProvider is a provider of the Jackson-module objectmapper, used in serialization and deserialitzation of json objects to and from java objects. Config configures the server with the proper file-path to the server file, as well as binding up the user and persistence-class. 
+
+In fxui-module, UserAcces interface with two different inheriting classes RemoteUserAccess and LocalUserAccess were implemented to easier accessing the user object outside of the controller. With splitting up UserAccess into both Remote and Local, we could use the same controller wether the client connected to the server or not. RemoteUserAccess implements the key features of the user while using the remote user in the server, while LocalUserAccess uses a local one .
+
+TimetablePeristence in core is also a similar helping-class. It takes care of writing and reading, as well as setting filepaths and create mappers. This is implemented in the core-module to avoid jackson-dependencies in other parts of the program. 
 ## Weaknesses
 Two members of our group got sick and one member was abroad for some weeks. This made it more challenging to do pair programming and keeping our work routines in the affected periods.
 
