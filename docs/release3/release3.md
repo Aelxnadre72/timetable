@@ -25,7 +25,8 @@ The RESTserver is implemented as the actual server with two classes: Config and 
 
 In fxui-module, UserAcces interface with two different inheriting classes RemoteUserAccess and LocalUserAccess were implemented to easier accessing the user object outside of the controller. With splitting up UserAccess into both Remote and Local, we could use the same controller wether the client connected to the server or not. RemoteUserAccess implements the key features of the user while using the remote user in the server, while LocalUserAccess uses a local one .
 
-TimetablePeristence in core is also a similar helping-class. It takes care of writing and reading, as well as setting filepaths and create mappers. This is implemented in the core-module to avoid jackson-dependencies in other parts of the program. 
+TimetablePeristence in core is also a similar helping-class. It takes care of writing and reading, as well as setting filepaths and create mappers. This is implemented in the core-module to avoid jackson-dependencies in other parts of the program.
+
 ## Weaknesses
 Two members of our group got sick and one member was abroad for some weeks. This made it more challenging to do pair programming and keeping our work routines in the affected periods.
 

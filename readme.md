@@ -91,7 +91,7 @@ Format on serialized timetable: {"week":week,"year":year,"events":[{"title":"tit
 [AppTest.java] (timetable\fxui\src\test\java\timetable\ui\AppTest.java) have ui tests that recreates a users behaviour when using the app. There is two test for adding an event and viewing it in the the correct year and week. It also checks that the event was added into the user. There is a test that deletes an added event and checks the listviews and the eventmap before and each deletion to ensure that the delete functionality is working.
 
 ## rest tests
-
+[UserServiceTest.java](timetable\rest\src\test\java\timetable\restserver\UserServiceTest.java) has the rest test that runs the server with its test configuration and then gets the timetables currently saved on the server. The data are then compared to the expected data to complete the test.
 
 ## Integration tests
 [AppIT.java](timetable/integrationtests/src/test/java/timetable/ui/AppIT.java) has the integration test and it tests several components of the system. It test that the server works as it should.  
