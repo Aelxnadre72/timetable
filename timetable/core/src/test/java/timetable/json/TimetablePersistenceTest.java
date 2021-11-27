@@ -20,7 +20,7 @@ public class TimetablePersistenceTest {
     private TimetablePersistence timetablePersistence = new TimetablePersistence();
 
     private User createSamplUser(){
-        User user = new User("user");
+        User user = new User();
         Timetable timetable = new Timetable(47, 2021);
         Event event1 = new Event("study", "school", "exam", "12:00", "14:00", "25.11.2021");
         Event event2 = new Event("study2", "school", "exam", "10:00", "12:00", "26.11.2021");

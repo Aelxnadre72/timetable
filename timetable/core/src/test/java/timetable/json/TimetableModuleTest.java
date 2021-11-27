@@ -45,7 +45,7 @@ public class TimetableModuleTest {
             }
         """;
     static User createTimetableWithTwoEvents() {
-        User user = new User("user");
+        User user = new User();
         Timetable timetable = new Timetable(47, 2021);
         user.addTimetable(timetable);
         Event ev = new Event("study", "school", "exam", "12:00", "14:00", "25.11.2021");
@@ -85,7 +85,7 @@ public class TimetableModuleTest {
 
     @Test 
     public void testSerializersAndDeserializers() {
-        User user = new User("user");
+        User user = new User();
         Timetable timetable = new Timetable(47, 2021);
         user.addTimetable(timetable);
         Event ev = new Event("study", "school", "exam", "12:00", "14:00", "25.11.2021");
