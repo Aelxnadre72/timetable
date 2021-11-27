@@ -3,6 +3,7 @@ package timetable.ui;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -467,7 +468,9 @@ public class AppController {
       year.getItems().add(Integer.toString(i));
     }
     // sets the default value of the year-choicebox to the current year
-    String currentYear = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
+    String currentYear = Integer.toString(cal.get(Calendar.YEAR));
     year.setValue(currentYear);
     // shows the correct number of weeks of the current year (52 or 53)
     initializeNumberOfWeeks(currentYear);
@@ -476,9 +479,10 @@ public class AppController {
   // shows 52 or 53 week-buttons in the scrollbar at the bottom depending on if the chosen year has
   // 52 or 53 weeks
   private void initializeNumberOfWeeks(String year) {
-    Calendar c = Calendar.getInstance();
-    c.set(Integer.parseInt(year), 11, 31);
-    if (c.get(Calendar.WEEK_OF_YEAR) == 52) {
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
+    cal.set(Integer.parseInt(year), 11, 31);
+    if (cal.get(Calendar.WEEK_OF_YEAR) == 52) {
       extraWeek.setVisible(false);
       if (weekNumber.getText().equals("53")) {
         weekNumber.setText("52");
@@ -491,7 +495,9 @@ public class AppController {
   // sets the current week as the chosen week. The week number is displayed under the TIMETABLE
   // header
   private void initializeWeekNumber() {
-    weekNumber.setText(Integer.toString(Calendar.getInstance().get(Calendar.WEEK_OF_YEAR)));
+    Calendar cal = Calendar.getInstance();
+    cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
+    weekNumber.setText(Integer.toString(cal.get(Calendar.WEEK_OF_YEAR)));
   }
 
   // adds the hours to startTime and endTime combobox and adds the categories to the newCategory
@@ -500,6 +506,7 @@ public class AppController {
 
     // set default locale for datepicker and default value to todays date
     Locale.setDefault(new Locale("no", "NO"));
+    LocalDate.now(ZoneId.of("Europe/Oslo"));
     newDate.setValue(LocalDate.now());
 
     // sets the categories to choose from in the choicebox
