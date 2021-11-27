@@ -81,7 +81,8 @@ We used these tools to check for bugs, errors and test coverage to optimalize th
 To try out the projects, cd into the corrosponding folder (timetable).
 * "mvn clean install" to get mvn to work when running the project for the first time
 * compile with "mvn compile"
-* test with "mvn test"
+* test with "mvn test". This does not run the integration-tests.
+* test (with integrationtests) with "mvn test integration-test".
 * check test coverage with "mvn test" first, and then "mvn jacoco:report". The coverage is shown in index.html inside target/site/jacoco. There is one for each module core and fxui.
 * Start the rest-api server with the command 'mvn -pl integrationtests jetty:run -D"jetty.port=8999"'.
 It is advisable to run the server command and the javafx:run command from two different terminals.
@@ -101,4 +102,4 @@ It is advisable to run the server command and the javafx:run command from two di
 5. Open the timetablefx program on your computer.
 
 # An image of the apps interface
-![](interface.png)
+![](timetable\interface.png)
