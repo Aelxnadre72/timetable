@@ -10,9 +10,7 @@ import timetable.core.User;
 import timetable.json.TimetablePersistence;
 import timetable.restapi.UserService;
 
-/**
- * Configuration for user.
- */
+/** Configuration for user. */
 public class Config extends ResourceConfig {
   private User user;
   private TimetablePersistence persistence;
@@ -72,7 +70,7 @@ public class Config extends ResourceConfig {
     timetable1.addEvent(event2);
     Event event4 = new Event("yoga", "exercise", "description1", "05:00", "07:00", "23.11.2021");
     timetable1.addEvent(event4);
-    
+
     User user = new User();
     user.addTimetable(timetable);
     user.addTimetable(timetable1);

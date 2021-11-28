@@ -8,9 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 
-/**
- * Create event with attributes.
- */
+/** Create event with attributes. */
 public class Event {
   private String title;
   private String category;
@@ -28,7 +26,7 @@ public class Event {
    * @param timeStart start time of event
    * @param timeEnd end time of event
    * @param date date of event
-  */
+   */
   public Event(
       String title,
       String category,
@@ -68,7 +66,7 @@ public class Event {
     this.description = description;
   }
 
-  /** 
+  /**
    * Gets timeStart as String.
    *
    * @return start time
@@ -88,7 +86,7 @@ public class Event {
     timeStart = timeParser(startString);
   }
 
-  /** 
+  /**
    * Gets timeEnd as String.
    *
    * @return end time
@@ -112,7 +110,7 @@ public class Event {
     this.date = dateParser(date);
   }
 
-  /** 
+  /**
    * Gets date as String.
    *
    * @return date
@@ -148,7 +146,7 @@ public class Event {
   /**
    * Gets day as int in [0-6].
    *
-   * @return day of week  
+   * @return day of week
    */
   public int getDayOfWeek() {
     return date.getDayOfWeek().getValue();

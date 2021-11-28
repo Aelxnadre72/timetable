@@ -13,9 +13,7 @@ import java.nio.file.Paths;
 import timetable.core.User;
 import timetable.json.serialization.TimetableModule;
 
-/**
- * Persistence class for timetable.
- */
+/** Persistence class for timetable. */
 public class TimetablePersistence {
   private ObjectMapper mapper;
   private Path filePath = null;
@@ -48,7 +46,7 @@ public class TimetablePersistence {
     return mapper.readValue(reader, User.class);
   }
 
-  /** 
+  /**
    * Write method.
    *
    * @param user for user-object
@@ -62,7 +60,7 @@ public class TimetablePersistence {
   /**
    * LoadUser method.
    *
-   * @return User that was loaded 
+   * @return User that was loaded
    * @throws IOException if Input/Output exception occurred
    * @throws IllegalStateException if no existing file path
    */

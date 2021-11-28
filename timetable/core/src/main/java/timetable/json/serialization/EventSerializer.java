@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import timetable.core.Event;
 
-/**
- * Serializer for Event-object.
- */
+/** Serializer for Event-object. */
 public class EventSerializer extends JsonSerializer<Event> {
 
   @Override

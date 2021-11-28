@@ -4,9 +4,7 @@ import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 
-/**
- * Gives access to local methods.
- */
+/** Gives access to local methods. */
 public class LocalUserAccess implements UserAccess {
   private final User user;
 

@@ -7,15 +7,15 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
 import java.net.http.HttpResponse;
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.stream.Collectors;
 import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.TimetablePersistence;
 
-/**
- * Gives access to remote methods.
- */
+/** Gives access to remote methods. */
 public class RemoteUserAccess implements UserAccess {
   private User user;
   private ObjectMapper mapper;
@@ -145,6 +145,36 @@ public class RemoteUserAccess implements UserAccess {
 
   @Override
   public void removeEvent(Timetable timetable, Event event) {
+    Timetable t = getTimetableWithoutEvent(timetable, event);
+    if (t.getEventList().size() == 0) {
+      if (timetable.getWeek() == 53) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
+        cal.set(Integer.parseInt(String.valueOf(timetable.getYear())), 11, 31);
+        if (cal.get(Calendar.WEEK_OF_YEAR) == 53) {
+          Timetable weekNextYear = getTimetable("53" + String.valueOf(timetable.getYear() + 1));
+          if (weekNextYear == null) {
+            removeTimetable(
+                String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear()));
+            return;
+          } else {
+            addTimetable(t);
+            return;
+          }
+        } else {
+          Timetable weekPreviousYear = getTimetable("53" + String.valueOf(timetable.getYear() - 1));
+          if (weekPreviousYear.getEventList().size() == 0) {
+            removeTimetable("53" + String.valueOf(timetable.getYear() - 1));
+          }
+        }
+      }
+      removeTimetable(String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear()));
+    } else {
+      addTimetable(t);
+    }
+  }
+
+  private Timetable getTimetableWithoutEvent(Timetable timetable, Event event) {
     Timetable t = new Timetable(timetable.getWeek(), timetable.getYear());
     for (Event e :
         timetable.getEventList().stream()
@@ -155,10 +185,8 @@ public class RemoteUserAccess implements UserAccess {
             .collect(Collectors.toList())) {
       t.addEvent(e);
     }
-    if (t.getEventList().size() == 0) {
-      removeTimetable(String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear()));
-    } else {
-      addTimetable(t);
-    }
+    System.out.println(t.getEventList().toString());
+    System.out.println("her");
+    return t;
   }
 }

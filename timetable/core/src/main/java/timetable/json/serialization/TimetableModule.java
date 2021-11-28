@@ -6,9 +6,7 @@ import timetable.core.Event;
 import timetable.core.Timetable;
 import timetable.core.User;
 
-/**
- * Module for serializing and deserializing events.
- */
+/** Module for serializing and deserializing events. */
 public class TimetableModule extends SimpleModule {
   private static final String NAME = "TimetableModule";
 

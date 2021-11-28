@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Create timetable with attributes.
- */
+/** Create timetable with attributes. */
 public class Timetable {
   private List<Event> eventList = new ArrayList<>();
   private int week;

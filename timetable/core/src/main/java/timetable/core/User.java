@@ -5,9 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Create user with attribute.
- */
+/** Create user with attribute. */
 public class User {
   private Map<String, Timetable> timetableMap = new HashMap<>();
 
@@ -49,7 +47,7 @@ public class User {
   /**
    * Check if timetableMap contains a timetable with key k.
    *
-   * @param k the key 
+   * @param k the key
    * @return true if timetableMap containts key, false otherwise
    */
   public boolean hasTimetable(String k) {

@@ -29,9 +29,7 @@ import javafx.util.StringConverter;
 import timetable.core.Event;
 import timetable.core.Timetable;
 
-/**
- * controller for the timetable application.
- */
+/** controller for the timetable application. */
 public class AppController {
 
   @FXML private ListView<String> hours;
@@ -104,9 +102,7 @@ public class AppController {
 
   UserAccess userAccess;
 
-  /** 
-   * Sets userAccess as remote if endpointUri exists, locally if else.
-   */
+  /** Sets userAccess as remote if endpointUri exists, locally if else. */
   @FXML
   void initialize() {
     if (endpointUri != null) {
@@ -213,7 +209,7 @@ public class AppController {
           && !newEndTime.getValue().equals("00:00")) {
         addEventWarning.setText("The chosen timeframe of the event is invalid!");
         throw new IllegalArgumentException("The chosen timeframe of the event is invalid!");
-      } else if (newTitle.getText().equals("") || newDescription.getText().equals("")) { 
+      } else if (newTitle.getText().equals("") || newDescription.getText().equals("")) {
         // if title or description fields are empty{
         addEventWarning.setText("Fields can not be empty!");
         throw new IllegalArgumentException("One or more of the fields are empty!");
@@ -564,7 +560,7 @@ public class AppController {
   Map<ListView<String>, List<Event>> getEventMap() {
     return eventMap;
   }
-  
+
   // Method for testing UI. Get listviews of days (also used as keys in eventMap).
   List<ListView<String>> getDays() {
     return days;

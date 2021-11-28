@@ -7,14 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * Launches application.
- */
+/** Launches application. */
 public class App extends Application {
 
-  /**
-  * Method for testing.
-  */
+  /** Method for testing. */
   public static void supportHeadless() {
     if (Boolean.getBoolean("headless")) {
       System.setProperty("testfx.robot", "glass");
@@ -22,7 +18,7 @@ public class App extends Application {
       System.setProperty("prism.order", "sw");
       System.setProperty("prism.text", "t2k");
       System.setProperty("java.awt.headless", "true");
-    }      
+    }
   }
 
   @Override

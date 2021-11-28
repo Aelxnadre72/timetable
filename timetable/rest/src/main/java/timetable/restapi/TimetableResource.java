@@ -14,9 +14,7 @@ import timetable.core.Timetable;
 import timetable.core.User;
 import timetable.json.TimetablePersistence;
 
-/**
- * Resource for managing timetables.
- */
+/** Resource for managing timetables. */
 @Produces(MediaType.APPLICATION_JSON)
 public class TimetableResource {
   private static final Logger LOG = LoggerFactory.getLogger(TimetableResource.class);
@@ -43,7 +41,7 @@ public class TimetableResource {
     this.id = id;
   }
 
-  private void checkTimetable() { 
+  private void checkTimetable() {
     if (this.timetable == null) {
       throw new IllegalArgumentException("No timetable has id \"" + id + "\"");
     }
@@ -55,7 +53,7 @@ public class TimetableResource {
    * @return timetable
    */
   @GET
-  public Timetable getTimetable() { 
+  public Timetable getTimetable() {
     checkTimetable();
     LOG.debug("getTimetable({})", id);
     return this.timetable;
@@ -107,9 +105,7 @@ public class TimetableResource {
     }
   }
 
-  /** 
-   * Removes the timetable. 
-   */
+  /** Removes the timetable. */
   @DELETE
   public boolean removeTimetable() {
     checkTimetable();

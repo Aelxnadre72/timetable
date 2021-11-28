@@ -7,9 +7,7 @@ import java.io.IOException;
 import timetable.core.Timetable;
 import timetable.core.User;
 
-/**
- * Serializer for user-object.
- */
+/** Serializer for user-object. */
 public class UserSerializer extends JsonSerializer<User> {
 
   @Override

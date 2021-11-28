@@ -3,9 +3,7 @@ package timetable.ui;
 import timetable.core.Event;
 import timetable.core.Timetable;
 
-/**
- * Interface used in RemoteUserAccess and LocalUserAccess.
- */
+/** Interface used in RemoteUserAccess and LocalUserAccess. */
 public interface UserAccess {
 
   /**
@@ -15,9 +13,7 @@ public interface UserAccess {
    */
   public boolean hasTimetable(String weekYear);
 
-  /** 
-   * Adds timetable if it does not exist, updates timetable if it exists. 
-  */
+  /** Adds timetable if it does not exist, updates timetable if it exists. */
   public void addTimetable(Timetable timetable);
 
   /**
@@ -27,13 +23,9 @@ public interface UserAccess {
    */
   public Timetable getTimetable(String weekYear);
 
-  /** 
-   * Private method for removing timetable. 
-   */
+  /** Private method for removing timetable. */
   void removeTimetable(String weekYear);
 
-  /** 
-   * remove event from timetable.
-   */
+  /** remove event from timetable. */
   public void removeEvent(Timetable timetable, Event event);
 }
