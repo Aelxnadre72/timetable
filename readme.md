@@ -1,4 +1,4 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://lime-asp-hlza29ou.ws.gitpod.stud.ntnu.no/)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://black-centipede-3d0ijc8h.ws.gitpod.stud.ntnu.no/)
 
 # Instructions for running the application is at the bottom of this readme file.
 
