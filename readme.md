@@ -135,4 +135,4 @@ It is advisable to run the server command and the javafx:run command from two di
 5. Open the timetablefx program on your computer.
 
 # An image of the apps interface
-![](timetable\interface.png)
+![](interface.png)
