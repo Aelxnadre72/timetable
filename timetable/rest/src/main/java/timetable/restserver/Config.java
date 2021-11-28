@@ -25,13 +25,6 @@ public class Config extends ResourceConfig {
     setUser(user);
     persistence = new TimetablePersistence();
     persistence.setFilePath("server.json");
-    try {
-      persistence.saveUser(
-          createTestUser()); // legge inn testbruker i serverfilen for å sjekke om det nås fra
-      // klienten
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
     register(UserService.class);
     register(UserMapperProvider.class);
     register(JacksonFeature.class);
