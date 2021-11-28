@@ -25,29 +25,6 @@
             <artifactId>core</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!-- jackson-core -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-        </dependency>
-
-        <!-- jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <!-- jackson-annotations -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        
-       
-       <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.3</version>
-        </dependency>
 
         <dependency>
             <groupId>jakarta.ws.rs</groupId>
@@ -61,27 +38,24 @@
             <version>1</version>
         </dependency>
 
+        <!-- Logging med slf4j -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>2.0.0-alpha5</version>
+            <version>${slf4jVersion}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.0-alpha5</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
         </dependency>
-
-
-
-
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
         <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
         </dependency>
 
-        <!-- junit testing with jupiter -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -90,39 +64,53 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
 
-        <!-- jersey-dependencies -->
+        <!-- Logging med slf4j
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4jVersion}</version>
+            </dependency>
+        -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4jVersion}</version>
+        </dependency>
+
+        <!-- Kompileringsavhengigheter for Jersey -->
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-common</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.core</groupId>
             <artifactId>jersey-server</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.inject</groupId>
             <artifactId>jersey-hk2</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-processing</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
 
-        <!-- Testing with Jersey and Grizzly-->
+        <!-- Støtte for testing med Jersey og Grizzly2 -->
         <dependency>
             <groupId>org.glassfish.jersey.test-framework</groupId>
             <artifactId>jersey-test-framework-util</artifactId>
@@ -130,24 +118,24 @@
             <scope>test</scope>
         </dependency>
 
-         <dependency>
+        <!-- See https://eclipse-ee4j.github.io/jersey.github.io/documentation/latest/deployment.html for various server options -->
+        <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-grizzly2-http</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish.jersey.test-framework.providers</groupId>
             <artifactId>jersey-test-framework-provider-grizzly2</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
             <scope>test</scope>
         </dependency>
 
-
-        <!-- Jersey -->
+        <!-- Kjøretidsavhengigheter for Jersey -->
         <dependency>
             <groupId>org.glassfish.jersey.containers</groupId>
             <artifactId>jersey-container-servlet</artifactId>
-            <version>3.0.3</version>
+            <version>${jerseyVersion}</version>
         </dependency>
         <dependency>
             <groupId>javax.activation</groupId>
@@ -158,33 +146,40 @@
 
     </dependencies>
 
-    <build>    
+    <build>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                
-
+                <configuration>
+                    <argLine>
+                    @{jaCoCoArgLine} --add-opens timetableModule.rest/timetable.restapi=ALL-UNNAMED
+                    </argLine>
+                </configuration>
             </plugin>
-            
+            <!-- Run the checkstyle code quality tool -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
             </plugin>
+
+            <!-- Run the spotbugs code quality tool -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
             </plugin>
-             <plugin>
+
+            <!-- Configure jacoco code coverage -->
+            <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
-        </plugins> 
+                <configuration>
+                    <propertyName>jaCoCoArgLine</propertyName>
+                </configuration>
+           </plugin>
+        </plugins>
     </build>
-
-
 </project>
