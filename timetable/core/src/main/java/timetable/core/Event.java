@@ -186,6 +186,7 @@ public class Event {
         }
         try{
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            Locale.setDefault(new Locale("no", "NO"));
             return LocalDate.parse(s, formatter);
         } catch(DateTimeParseException e){
             e.printStackTrace();
