@@ -5,7 +5,7 @@
 # timetable 
 Timetable [timetable](timetable) is the main folder for our group project in the subject IT1901. 
 The goal for our app is for the user to add events, with title, a date, time of day and a description. The event will then appear in a timetable. The user can also choose between several years and weeks, with the right number of weeks in each year. 
-In timetable there is a folder for the logic of the app ([core](timetable/core)), and a folder for the user interface ([fxui](timetable/fxui)). 
+In timetable there is a folder for the logic of the app ([core](timetable/core)), a folder for the user interface ([fxui](timetable/fxui)), a folder for the rest service ([rest](timetable/rest)) and a folder for the integrationtests ([integrationtests](timetable/integrationtests)). The documentation of our work is in the [docs](docs) folder, with the user stories and workhabits through all 3 releases. 
 
 # Core 
 The core logic is implemented in [Timetable.java](timetable/core/src/main/java/timetable/core/Timetable.java). It has methods for adding and removing events from the lists of events.
@@ -38,22 +38,64 @@ When an event is selected/clicked on, then the corresponding information will sh
 To start the server (before running the application), write "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder. To terminate the server, type ctrl+c in the same terminal.
 
 ## restapi
-[restapi](timetable/rest/src/main/java/timetable/restapi)
+[restapi](timetable/rest/src/main/java/timetable/restapi) is the API providing the server-side of the REST web service with necessary methods to fetch and process HTTP requests, as well as sending the appriopriate response back. 
 
-[TimetableResource.java](timetable/rest/src/main/java/timetable/restapi/TimetableResource.java)...
-[UserService.java](timetable/rest/src/main/java/timetable/restapi/UserService.java) ....
+- GET: gets the desired timetable from the server. Obtained with week and year, via request: http://localhost:8999/user/timetable/{week+year} GET
+Format on response:
+{"week":week,"year":year,"events":[{"title":"title","category":"category","description":"description","time-start":"hh:mm","time-end":"hh:mm","date":"dd.mm.yyyy"}]}
+
+- PUT: puts the desired timetable in server-user, replaces if it exists, adds if not. Obtained via request: http://localhost:8999/user/timetable/{week+year} PUT.
+Format on serialized timetable: {"week":week,"year":year,"events":[{"title":"title","category":"category","description":"description","time-start":"hh:mm","time-end":"hh:mm","date":"dd.mm.yyyy"}]}
+
+- REMOVE: removes the relevant timetable from the remote user on server. Obtained via request: http://localhost:8999/user/timetable/{week+year} REMOVE
+
+- The format used by the json-file stored in the server: 
+    {
+    "timetables": [{"week": week, "year": year,"events":[
+        {
+            "title": "title",
+            "category": "category",
+            "description": "description",
+            "time-start": "hh:mm",
+            "time-end": "hh:mm",
+            "date": "dd.mm.yyyy"}
+            ]
+        }
+        ]
+    }
+
+[UserService.java](timetable/rest/src/main/java/timetable/restapi/UserService.java) is the top level class, which receives the requests and fetches the information.
+ Logic for the actions GET, PUT and  by the client on relevant timetables gets initialized through 
+[TimetableResource.java](timetable/rest/src/main/java/timetable/restapi/TimetableResource.java). Logic for methods needed by the server-side to get, put and remove timetables is implemented in this class. 
+
 
 ## restserver
-[restserver](timetable/rest/src/main/java/timetable/restserver) ....
-[Config.java](timetable/rest/src/main/java/timetable/restserver/Config.java)....
-[UserMapperProvider.java](timetable/rest/src/main/java/timetable/restserver/UserMapperProvider.java)
+[restserver](timetable/rest/src/main/java/timetable/restserver) is the implementation of the actual server. The folder contains two different classes:
+[Config.java](timetable/rest/src/main/java/timetable/restserver/Config.java) configures and binds the server up with a user and a persistence. Methods for testing the server is also implemented in this class. 
+[UserMapperProvider.java](timetable/rest/src/main/java/timetable/restserver/UserMapperProvider.java) provides a Objectmapper for jackson serialization and deserialization. 
+
 
 
 # Tests
+## core tests
+### core
 [EventTest.java](timetable/core/src/test/java/timetable/core/EventTest.java) have Junit tests that tests the event class (the constructor and the setters) and it also has exception tests.
 [TimetableTest.java](timetable/core/src/test/java/timetable/core/TimetableTest.java) have Junit tests that test the timetable class (the constructor and adding events to the timetable).
 [UserTest.java](timetable/core/src/test/java/timetable/core/UserTest.java) have junit tests that tests adding a timetable to a user.
+
+### json
+[TimetableModuleTest.java](timetable/core/src/test/java/timetable/json/TimetableModuleTest.java) have junit tests that tests the serializers and desiarlizers. 
+[TimetablePersistenceTest.java](timetable/core/src/test/java/timetable/json/TimetablePersistenceTest.java) have junit tests to test TimetablePersistence. 
+
+## fxui tests
 [AppTest.java] (timetable\fxui\src\test\java\timetable\ui\AppTest.java) have ui tests that recreates a users behaviour when using the app. There is two test for adding an event and viewing it in the the correct year and week. It also checks that the event was added into the user. There is a test that deletes an added event and checks the listviews and the eventmap before and each deletion to ensure that the delete functionality is working.
+
+## rest tests
+[UserServiceTest.java](timetable\rest\src\test\java\timetable\restserver\UserServiceTest.java) has the rest test that runs the server with its test configuration and then gets the timetables currently saved on the server. The data are then compared to the expected data to complete the test.
+
+## Integration tests
+[AppIT.java](timetable/integrationtests/src/test/java/timetable/ui/AppIT.java) has the integration test and it tests several components of the system. It test that the server works as it should.  
+
 
 We also implemnted other tools to check code quality:
 * Spotbugs
