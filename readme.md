@@ -26,7 +26,7 @@ It also implements the functionality of the userinterface:
 * Displaying the chosen event information.
 * Deleting an event from the view and the user object.
 * Connect the 7 listviews to achieve a specific functionality.
-* Displays week 53 of a year and week 53 of the start of the next year in the same timetable (week 53). Handles add/delete/display events correctly from these two timetables with assistance from [RemoteUserAccess.java] (timetable\fxui\src\main\java\timetable\ui\RemoteUserAccess.javav).
+* Displays week 53 of a year and week 53 of the start of the next year in the same timetable (week 53). Handles add/delete/display events correctly from these two timetables with assistance from [RemoteUserAccess.java](timetable\fxui\src\main\java\timetable\ui\RemoteUserAccess.javav).
 
 ## fxml
 In [App.fxml](timetable/fxui/src/main/resources/timetable/ui/App.fxml) the GUI for the timetable is implemented. The timetable is made with a pane and ListView for each coloumn. The first coloumn represents the hours of the day and the rest of them represents the days of the week. It also have buttons for each week of the year and it's contained in a scrollpane to save space. The scrollpain shows 52 or 53 week-buttons depending on the chosen year.
@@ -35,7 +35,7 @@ At the right hand side, an event will show up when it's selected/clicked on in t
 When an event is selected/clicked on, then the corresponding information will show up, as well as a delete event button for deleting the event.
 
 ## UserAccess
-The AppController will either use a remote user access in [RemoteUserAccess.java] (timetable\fxui\src\main\java\timetable\ui\RemoteUserAccess.java) or a local user access in [LocalUserAccess.java] (timetable\fxui\src\main\java\timetable\ui\LocalUserAccess.java), both classes are inherited from the [UserAccess.java] (timetable\fxui\src\main\java\timetable\ui\UserAccess.java). The local one is currently reserved for testing while the remote one is the main one when runnning the app.
+The AppController will either use a remote user access in [RemoteUserAccess.java](timetable\fxui\src\main\java\timetable\ui\RemoteUserAccess.java) or a local user access in [LocalUserAccess.java](timetable\fxui\src\main\java\timetable\ui\LocalUserAccess.java), both classes are inherited from the [UserAccess.java](timetable\fxui\src\main\java\timetable\ui\UserAccess.java). The local one is currently reserved for testing while the remote one is the main one when runnning the app.
 
 # rest
 [rest](timetable/rest) is one of the two folders (together with integrationtests) containing the code to run our rest server.
@@ -129,7 +129,7 @@ It is advisable to run the server command and the javafx:run command from two di
 * The project can be created into an exe file to install the application on your computer.
 * Steps to create a shippable product:
 1. If you are on windows, if not then skip this step: Download wix311.exe from (https://github.com/wixtoolset/wix3/releases/tag/wix3112rtm) and run the program an install wix.
-2. Run "mvn -pl fxui clean compile javafx:jlink jpackage:jpackage" from the timetable folder. This will create a zip file at (timetable\fxui\target\timetablefx.zip) and an exe file at (timetable\fxui\target\dist\TimetableFX-1.0.0.exe).
+2. Run "mvn -pl fxui clean compile javafx:jlink jpackage:jpackage" from the timetable folder. This will create a zip file at timetable\fxui\target\timetablefx.zip and an exe file at timetable\fxui\target\dist\TimetableFX-1.0.0.exe.
 3. Install the TimetableFX-1.0.0.exe file. The application/program (timetablefx) will be installed on your computer under programs.
 4. start the server by running "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder.
 5. Open the timetablefx program on your computer.
