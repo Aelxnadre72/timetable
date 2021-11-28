@@ -3,26 +3,22 @@ package timetable.json.serialization;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-
-
+import java.io.IOException;
 import timetable.core.Timetable;
 import timetable.core.User;
 
-import java.io.IOException;
+/** Serializer for user-object. */
+public class UserSerializer extends JsonSerializer<User> {
 
-
-public class UserSerializer extends JsonSerializer<User>{
-    
-    @Override
-    public void serialize(User user, JsonGenerator jGenerator, SerializerProvider provider) 
-    throws IOException {
-        jGenerator.writeStartObject();
-        jGenerator.writeArrayFieldStart("timetables");
-        for (Timetable timetable : user.getTimetableList()) {
-            jGenerator.writeObject(timetable);
-        }
-        jGenerator.writeEndArray();
-        jGenerator.writeEndObject();
-        
+  @Override
+  public void serialize(User user, JsonGenerator jsGenerator, SerializerProvider provider)
+      throws IOException {
+    jsGenerator.writeStartObject();
+    jsGenerator.writeArrayFieldStart("timetables");
+    for (Timetable timetable : user.getTimetableList()) {
+      jsGenerator.writeObject(timetable);
     }
+    jsGenerator.writeEndArray();
+    jsGenerator.writeEndObject();
+  }
 }

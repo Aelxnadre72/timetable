@@ -57,8 +57,6 @@
                 <version>3.12.4</version>
                 <scope>test</scope>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -146,6 +144,27 @@
                             <phase>verify</phase>
                             <goals>
                                 <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.coveo</groupId>
+                    <artifactId>fmt-maven-plugin</artifactId>
+                    <version>2.9</version>
+                    <configuration>
+                        <sourceDirectory>src/main/java</sourceDirectory>
+                        <testSourceDirectory>src/test/java</testSourceDirectory>
+                        <verbose>false</verbose>
+                        <filesNamePattern>.*\.java</filesNamePattern>
+                        <skip>false</skip>
+                        <skipSortingImports>false</skipSortingImports>
+                        <style>google</style>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>check</goal>
                             </goals>
                         </execution>
                     </executions>
