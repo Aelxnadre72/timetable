@@ -70,18 +70,14 @@ public class RemoteUserAccess implements UserAccess {
   @Override
   public Timetable getTimetable(String weekYear) {
     String key = (weekYear);
-    System.out.println("gets " + weekYear); // for å sjekke programflyt
-    System.out.println(timetableUri(key));
     HttpRequest request =
         HttpRequest.newBuilder(timetableUri(key))
             .header("Accept", "application/json")
             .GET()
             .build();
-    System.out.println(request); // printer ut requesten i terminalen
     try {
       HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
       String responseStr = response.body();
-      System.out.println(responseStr);
       if (responseStr.contains("Not Found") == false
           && responseStr.contains("Request failed") == false) {
         Timetable timetable = mapper.readValue(responseStr, Timetable.class);
@@ -97,7 +93,6 @@ public class RemoteUserAccess implements UserAccess {
 
   @Override
   public void addTimetable(Timetable timetable) {
-    System.out.println("puts " + String.valueOf(timetable.getWeek())); // sjekke programflyt
     String weekYear = String.valueOf(timetable.getWeek()) + String.valueOf(timetable.getYear());
     if (hasTimetable(weekYear)) {
       removeTimetable(weekYear);
@@ -124,7 +119,6 @@ public class RemoteUserAccess implements UserAccess {
 
   @Override
   public void removeTimetable(String weekYear) {
-    System.out.println("removes " + weekYear); // programflyt
     try {
       HttpRequest request =
           HttpRequest.newBuilder(timetableUri(weekYear))
@@ -147,6 +141,9 @@ public class RemoteUserAccess implements UserAccess {
   public void removeEvent(Timetable timetable, Event event) {
     Timetable t = getTimetableWithoutEvent(timetable, event);
     if (t.getEventList().size() == 0) {
+      // handles week 53 so that the timetable for week 53 does not get deleted if the timetable
+      // does not have any events left, but the first week of the next year still does, and vice
+      // versa.
       if (timetable.getWeek() == 53) {
         Calendar cal = Calendar.getInstance();
         cal.setTimeZone(TimeZone.getTimeZone("Europe/Oslo"));
@@ -185,8 +182,6 @@ public class RemoteUserAccess implements UserAccess {
             .collect(Collectors.toList())) {
       t.addEvent(e);
     }
-    System.out.println(t.getEventList().toString());
-    System.out.println("her");
     return t;
   }
 }

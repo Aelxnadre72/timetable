@@ -241,14 +241,12 @@ public class AppController {
           if (fiftythree == null) {
             fiftythree = new Timetable(ev.getWeek(), ev.getYear() - 1);
             userAccess.addTimetable(fiftythree);
-            // userAccess.notifyTimetableChanged(fiftythree);
           }
         }
       } else {
         timetable.addEvent(ev);
         userAccess.addTimetable(timetable);
       }
-      // notify?
     } catch (IllegalArgumentException e) {
       // shows the warning
       addEventWarning.setVisible(true);

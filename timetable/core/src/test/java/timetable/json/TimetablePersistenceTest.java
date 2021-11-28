@@ -27,8 +27,6 @@ public class TimetablePersistenceTest {
     timetable.addEvent(event2);
     user.addTimetable(timetable);
     timetable.removeEvent(event1);
-    // user.getTimetable("1");
-    // user.hasTimetable("1");
 
     return user;
   }

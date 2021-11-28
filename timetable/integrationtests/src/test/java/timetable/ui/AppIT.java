@@ -17,8 +17,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
-// import timetable.ui.RemoteUserAcces;
-
 public class AppIT extends ApplicationTest {
 
   @BeforeAll
@@ -44,8 +42,6 @@ public class AppIT extends ApplicationTest {
       String port = System.getProperty("user.port");
       assertNotNull(port, "No user.port system property set");
       URI baseUri = new URI("http://localhost:" + port + "/user/");
-      System.out.println("Base RemoteUserAcces URI: " + baseUri);
-      // this.controller.setUserAccess(new RemoteUserAccess(baseUri));
       this.controller.userAccess = new RemoteUserAccess(baseUri);
     } catch (IOException ioe) {
       fail(ioe.getMessage());

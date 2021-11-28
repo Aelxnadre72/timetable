@@ -53,7 +53,6 @@ public class UserService {
    */
   @Path("/timetable/{weekYear}") // "/list/{@week+@year}"
   public TimetableResource getTimetable(@PathParam("weekYear") String weekYear) {
-    System.out.println("got " + weekYear); // programflyt
     Timetable timetable = getUser().getTimetable(weekYear);
     LOG.debug("Sub-resource for Timetable " + weekYear + ": " + timetable);
     TimetableResource timetableResource =
