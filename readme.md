@@ -122,7 +122,7 @@ It is advisable to run the server command and the javafx:run command from two di
 * Our relative paths to see what's stored on the server is /user (all timetables) and /user/timetable/weeknumber+year (specific timetable, for example: /user/timetable/472021). Only timetable weeks with events will have information on the site. The others will have a Request failed message. If you are running it with localhost, our relative paths are http://localhost:8999/user and http://localhost:8999/user/timetable/week+year
 * At startup there will be some events that are from the rest server, these are in week 47 (2021) and week 39 (2021).
 * To terminate the server you can use ctrl+c to stop the terminal where your server is running from.
-* run "mvn javfx:run" (inside timetable/fxui) or mvn -pl fxui javafx:run from the timetable folder.
+* run "mvn javafx:run" (inside timetable/fxui) or mvn -pl fxui javafx:run from the timetable folder.
 * check code quality with mvn verify
 
 # Shippable product
@@ -134,5 +134,5 @@ It is advisable to run the server command and the javafx:run command from two di
 4. start the server by running "mvn -pl integrationtests jetty:run -D"jetty.port=8999"" from the timetable folder.
 5. Open the timetablefx program on your computer.
 
-# An image of the apps interface
-![](interface.png)
+# An image of the apps interf
+
